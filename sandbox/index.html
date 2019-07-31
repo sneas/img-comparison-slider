@@ -17,6 +17,8 @@
             position: absolute;
             left: 0;
             top: 0;
+
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
         }
 
         input[type=range] {
@@ -109,8 +111,21 @@
 <body>
     <div class="compare">
         <img class="before" src="before.jpg">
-        <img class="after" src="after.jpg">
-        <input type="range">
+        <img id="after" class="after" src="after.jpg">
+        <input id="slider" type="range" min="0" max="100" step="0.5">
     </div>
+    <script type="text/javascript">
+        (function() {
+            const after = document.getElementById('after');
+            const slider = document.getElementById('slider');
+
+            const redrawImage  = () => {
+                after.style.clipPath = `polygon(0 0, ${slider.value}% 0, ${slider.value}% 100%, 0 100%)`;
+            };
+
+            slider.addEventListener('input', redrawImage);
+            redrawImage();
+        })();
+    </script>
 </body>
 </html>
