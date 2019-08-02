@@ -2,7 +2,7 @@ import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'img-compare-slider',
-  styleUrl: 'img-compare-slider.css',
+  styleUrl: 'img-compare-slider.scss',
   shadow: true
 })
 export class ImgCompareSlider {

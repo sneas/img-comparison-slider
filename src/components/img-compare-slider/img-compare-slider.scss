@@ -1,7 +1,25 @@
+$thumb-color: Green;
+$thumb-width: 6px;
+
+@mixin track {
+  background: transparent;
+  height: 100%;
+}
+
+@mixin thumb($color, $width) {
+  height: 100%;
+  width: $width;
+  background: $color;
+  border: none;
+  outline: none;
+  border-radius: 0
+}
+
 :host {
   position: relative;
   display: inline-block;
   font-size: 0;
+  background-color: White;
 }
 
 .after {
@@ -13,8 +31,8 @@
 }
 
 input[type=range] {
-  --thumb-color: Red;
-  --thumb-width: 6px;
+  --thumb-color: #{$thumb-color};
+  --thumb-width: #{$thumb-width};
 
   -webkit-appearance: none;
   margin: 0px 0;
@@ -33,66 +51,55 @@ input[type=range]:focus {
   outline: none;
 }
 input[type=range]::-webkit-slider-runnable-track {
-  background: transparent;
-  height: 100%;
+  @include track;
 }
 input[type=range]::-webkit-slider-thumb {
-  height: 100%;
-  width: var(--thumb-width);
-  background: var(--thumb-color);
+  @include thumb(var(--thumb-color), var(--thumb-width));
+
   -webkit-appearance: none;
-  border: none;
-  outline: none;
-  border-radius: 0
 }
 input[type=range]::-moz-range-track {
-  background: transparent;
-  height: 100%;
+  @include track;
 }
 
 input[type=range]::-moz-range-thumb {
-  height: 100%;
-  width: var(--thumb-width);
-  background: var(--thumb-color);
-  border: none;
-  outline: none;
-  border-radius: 0;
+  @include thumb(var(--thumb-color), var(--thumb-width));
 }
 input[type=range]::-moz-focus-outer {
   border: none;
 }
 input[type=range]::-ms-track {
   width: 100%;
-  height: 32px;
+  height: 100%;
   cursor: pointer;
   background: transparent;
-  border-color: transparent;
+  //border-color: transparent;
   color: transparent;
+  border: 1px solid Red;
 }
 input[type=range]::-ms-fill-lower {
-  background: #ffffbd;
-  border: 0px solid #010101;
-  border-radius: 0px;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  height: 100%;
 }
 input[type=range]::-ms-fill-upper {
-  background: #ffffd6;
-  border: 0px solid #010101;
-  border-radius: 0px;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  height: 100%;
 }
 input[type=range]::-ms-thumb {
-  box-shadow: 0.8px 0.8px 1.9px rgba(0, 0, 62, 0.67), 0px 0px 0.8px rgba(0, 0, 88, 0.67);
-  border: 1.9px solid rgba(0, 30, 0, 0.57);
-  width: 32px;
-  border-radius: 4px;
-  background: Red;
-  cursor: pointer;
-  height: 32px;
+  @include thumb($thumb-color, $thumb-width);
+
+  height: 500px;
+}
+input[type-range]::-ms-tooltip {
+  display: none;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #ffffd6;
+  background: transparent;
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: #fffff0;
+  background: transparent;
 }
