@@ -10,13 +10,13 @@ export class ImgCompareSlider {
   private slider?: HTMLInputElement;
 
   componentDidRender() {
-    const redrawImage  = () => {
+    const refreshAfter  = () => {
       this.after.style.width = `${this.slider.value}%`;
     };
 
-    this.slider.addEventListener('input', redrawImage);
-    this.slider.addEventListener('change', redrawImage);
-    redrawImage();
+    this.slider.addEventListener('input', refreshAfter);
+    this.slider.addEventListener('change', refreshAfter);
+    refreshAfter();
   }
 
   render() {
@@ -25,7 +25,7 @@ export class ImgCompareSlider {
       <div ref={el => this.after = el as HTMLElement} class="after">
         <slot name="after"></slot>
       </div>
-      <input ref={el => this.slider = el as HTMLInputElement} id="slider" type="range" min="0" max="100" step="0.5" />
+      <input ref={el => this.slider = el as HTMLInputElement} id="slider" type="range" min="0" max="100" step="1" />
     </div>;
   }
 }
