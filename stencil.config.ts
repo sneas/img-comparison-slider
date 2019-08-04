@@ -9,6 +9,12 @@ export const config: Config = {
       esmLoaderPath: '../loader'
     },
     {
+      type: 'dist',
+      copy: [
+        { src: 'styles' }
+      ]
+    },
+    {
       type: 'docs-readme'
     },
     {
@@ -19,6 +25,12 @@ export const config: Config = {
       type: 'www',
       copy: [
         { src: 'images' }
+      ]
+    },
+    {
+      type: 'www',
+      copy: [
+        { src: 'styles' }
       ]
     }
   ],
