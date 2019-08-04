@@ -1,5 +1,6 @@
-$thumb-color: White;
-$thumb-width: 6px;
+$divider-color: #dedede;
+$divider-width: 1px;
+$hint-size: 60px;
 
 @mixin track {
   background: transparent;
@@ -19,6 +20,33 @@ $thumb-width: 6px;
   position: relative;
   display: inline-block;
   font-size: 0;
+  overflow: hidden;
+
+  --divider-color: #{$divider-color};
+  --divider-width: #{$divider-width};
+}
+
+.component:hover {
+  .hint {
+    opacity: 0;
+  }
+}
+
+.hint {
+  position: absolute;
+  width: $hint-size;
+  height: $hint-size;
+  background-color: #d7d7d7;
+  top: 50%;
+  margin-top: -$hint-size / 2;
+  margin-left: -$hint-size / 2;
+  transition: opacity 1s;
+  border: 2px solid #d7d7d7;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+  pointer-events: none;
+  opacity: 0.5;
+  transform: rotate(45deg);
 }
 
 .after {
@@ -30,9 +58,6 @@ $thumb-width: 6px;
 }
 
 input[type=range] {
-  --thumb-color: #{$thumb-color};
-  --thumb-width: #{$thumb-width};
-
   -webkit-appearance: none;
   position: absolute;
   left: 0;
@@ -57,7 +82,7 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 input[type=range]::-webkit-slider-thumb {
-  @include thumb(var(--thumb-color), var(--thumb-width));
+  @include thumb(var(--divider-color), var(--divider-width));
 
   -webkit-appearance: none;
 }
@@ -67,7 +92,7 @@ input[type=range]::-moz-range-track {
 }
 
 input[type=range]::-moz-range-thumb {
-  @include thumb(var(--thumb-color), var(--thumb-width));
+  @include thumb(var(--divider-color), var(--divider-width));
 }
 
 input[type=range]::-moz-focus-outer {
@@ -98,7 +123,7 @@ input[type=range]::-ms-fill-upper {
 }
 
 input[type=range]::-ms-thumb {
-  @include thumb($thumb-color, $thumb-width);;
+  @include thumb($divider-color, $divider-width);;
 }
 
 input[type-range]::-ms-tooltip {

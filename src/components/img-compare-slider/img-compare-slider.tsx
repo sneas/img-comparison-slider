@@ -9,11 +9,13 @@ export class ImgCompareSlider {
   private after?: HTMLElement;
   private before?: HTMLElement;
   private slider?: HTMLInputElement;
+  private hint?: HTMLElement;
   private style?: HTMLStyleElement;
 
   componentDidRender() {
     const refreshAfter  = () => {
       this.after.style.width = `${this.slider.value}%`;
+      this.hint.style.left = `${this.slider.value}%`;
     };
 
     this.slider.addEventListener('input', refreshAfter);
@@ -28,7 +30,7 @@ export class ImgCompareSlider {
   }
 
   render() {
-    return <div>
+    return <div class="component">
       <div ref={el => this.before = el as HTMLElement}>
         <slot name="before"></slot>
       </div>
@@ -46,6 +48,7 @@ export class ImgCompareSlider {
         class="slider"
         ref={el => this.slider = el as HTMLInputElement}
       />
+      <div class="hint" ref={el => this.hint = el as HTMLElement}></div>
       <style type="text/css" ref={el => this.style = el as HTMLStyleElement}></style>
     </div>;
   }
