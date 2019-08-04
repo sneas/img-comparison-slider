@@ -1,51 +1,52 @@
-$divider-color: #dedede;
-$divider-width: 1px;
-$hint-size: 60px;
+:host {
+  --divider-color: #dedede;
+  --divider-width: 1px;
+  --hint-size: 60px;
+  --hint-bg-color: #d7d7d7;
+  --hint-border: 2px solid #d7d7d7;
+  --hint-opacity: 0.5;
+  --hint-opacity-hover: 0;
+
+  position: relative;
+  display: inline-block;
+  font-size: 0;
+  overflow: hidden;
+}
 
 @mixin track {
   background: transparent;
   height: 100%;
 }
 
-@mixin thumb($color, $width) {
+@mixin thumb {
   height: 100%;
-  width: $width;
-  background: $color;
+  width: var(--divider-width);
+  background: var(--divider-color);
   border: none;
   outline: none;
   border-radius: 0
 }
 
-:host {
-  position: relative;
-  display: inline-block;
-  font-size: 0;
-  overflow: hidden;
-
-  --divider-color: #{$divider-color};
-  --divider-width: #{$divider-width};
-}
-
 .component:hover {
   .hint {
-    opacity: 0;
+    opacity: var(--hint-opacity-hover);
   }
 }
 
 .hint {
   position: absolute;
-  width: $hint-size;
-  height: $hint-size;
-  background-color: #d7d7d7;
+  width: var(--hint-size);
+  height: var(--hint-size);
+  background-color: var(--hint-bg-color);
   top: 50%;
-  margin-top: -$hint-size / 2;
-  margin-left: -$hint-size / 2;
+  margin-top: calc(var(--hint-size) / (-2));
+  margin-left: calc(var(--hint-size) / (-2));
   transition: opacity 1s;
-  border: 2px solid #d7d7d7;
+  border: var(--hint-border);
   box-sizing: border-box;
   box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
   pointer-events: none;
-  opacity: 0.5;
+  opacity: var(--hint-opacity);
   transform: rotate(45deg);
 }
 
@@ -82,7 +83,7 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 input[type=range]::-webkit-slider-thumb {
-  @include thumb(var(--divider-color), var(--divider-width));
+  @include thumb;
 
   -webkit-appearance: none;
 }
@@ -92,7 +93,7 @@ input[type=range]::-moz-range-track {
 }
 
 input[type=range]::-moz-range-thumb {
-  @include thumb(var(--divider-color), var(--divider-width));
+  @include thumb;
 }
 
 input[type=range]::-moz-focus-outer {
@@ -123,7 +124,7 @@ input[type=range]::-ms-fill-upper {
 }
 
 input[type=range]::-ms-thumb {
-  @include thumb($divider-color, $divider-width);;
+  @include thumb;
 }
 
 input[type-range]::-ms-tooltip {
