@@ -1,9 +1,0 @@
-{
-  "name": "img-compare-slider-loader",
-  "typings": "./index.d.ts",
-  "module": "./index.mjs",
-  "main": "./index.cjs.js",
-  "jsnext:main": "./index.es2017.mjs",
-  "es2015": "./index.es2017.mjs",
-  "es2017": "./index.es2017.mjs"
-}
