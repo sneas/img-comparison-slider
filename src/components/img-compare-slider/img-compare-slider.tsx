@@ -7,7 +7,9 @@ import { Component, h } from '@stencil/core';
 })
 export class ImgCompareSlider {
   private after?: HTMLElement;
+  private before?: HTMLElement;
   private slider?: HTMLInputElement;
+  private style?: HTMLStyleElement;
 
   componentDidRender() {
     const refreshAfter  = () => {
@@ -17,15 +19,34 @@ export class ImgCompareSlider {
     this.slider.addEventListener('input', refreshAfter);
     this.slider.addEventListener('change', refreshAfter);
     refreshAfter();
+
+    this.style.innerHTML = `
+      .slider::-ms-thumb {
+        height: ${this.before.offsetHeight}px !important;
+      }
+    `
   }
 
   render() {
     return <div>
-      <slot name="before"></slot>
-      <div ref={el => this.after = el as HTMLElement} class="after">
+      <div ref={el => this.before = el as HTMLElement}>
+        <slot name="before"></slot>
+      </div>
+      <div
+        class="after"
+        ref={el => this.after = el as HTMLElement}
+      >
         <slot name="after"></slot>
       </div>
-      <input ref={el => this.slider = el as HTMLInputElement} id="slider" type="range" min="0" max="100" step="1" />
+      <input
+        type="range"
+        min="0"
+        max="100"
+        step="0.5"
+        class="slider"
+        ref={el => this.slider = el as HTMLInputElement}
+      />
+      <style type="text/css" ref={el => this.style = el as HTMLStyleElement}></style>
     </div>;
   }
 }

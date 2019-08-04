@@ -34,7 +34,6 @@ input[type=range] {
   --thumb-width: #{$thumb-width};
 
   -webkit-appearance: none;
-  margin: 0px 0;
   position: absolute;
   left: 0;
   top: 0;
@@ -45,6 +44,8 @@ input[type=range] {
   background-color: transparent;
   cursor: col-resize;
   outline: none;
+  padding: 0;
+  margin: 0;
 }
 
 input[type=range]:focus {
@@ -102,4 +103,5 @@ input[type=range]::-ms-thumb {
 
 input[type-range]::-ms-tooltip {
   display: none;
+  backface-visibility: hidden;
 }
