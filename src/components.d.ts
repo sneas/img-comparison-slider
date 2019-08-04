@@ -9,27 +9,27 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
-  interface ImgCompareSlider {}
+  interface ImgComparisonSlider {}
 }
 
 declare global {
 
 
-  interface HTMLImgCompareSliderElement extends Components.ImgCompareSlider, HTMLStencilElement {}
-  var HTMLImgCompareSliderElement: {
-    prototype: HTMLImgCompareSliderElement;
-    new (): HTMLImgCompareSliderElement;
+  interface HTMLImgComparisonSliderElement extends Components.ImgComparisonSlider, HTMLStencilElement {}
+  var HTMLImgComparisonSliderElement: {
+    prototype: HTMLImgComparisonSliderElement;
+    new (): HTMLImgComparisonSliderElement;
   };
   interface HTMLElementTagNameMap {
-    'img-compare-slider': HTMLImgCompareSliderElement;
+    'img-comparison-slider': HTMLImgComparisonSliderElement;
   }
 }
 
 declare namespace LocalJSX {
-  interface ImgCompareSlider extends JSXBase.HTMLAttributes<HTMLImgCompareSliderElement> {}
+  interface ImgComparisonSlider extends JSXBase.HTMLAttributes<HTMLImgComparisonSliderElement> {}
 
   interface IntrinsicElements {
-    'img-compare-slider': ImgCompareSlider;
+    'img-comparison-slider': ImgComparisonSlider;
   }
 }
 

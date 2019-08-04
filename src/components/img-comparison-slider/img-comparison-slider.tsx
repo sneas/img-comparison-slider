@@ -1,11 +1,11 @@
 import { Component, h } from '@stencil/core';
 
 @Component({
-  tag: 'img-compare-slider',
-  styleUrl: 'img-compare-slider.scss',
+  tag: 'img-comparison-slider',
+  styleUrl: 'img-comparison-slider.scss',
   shadow: true
 })
-export class ImgCompareSlider {
+export class ImgComparisonSlider {
   private after?: HTMLElement;
   private before?: HTMLElement;
   private slider?: HTMLInputElement;
