@@ -11,6 +11,7 @@ export class ImgComparisonSlider {
   private slider?: HTMLInputElement;
   private hint?: HTMLElement;
   private style?: HTMLStyleElement;
+  private component?: HTMLElement;
 
   componentDidRender() {
     const refreshAfter  = () => {
@@ -22,6 +23,14 @@ export class ImgComparisonSlider {
     this.slider.addEventListener('change', refreshAfter);
     refreshAfter();
 
+    this.slider.addEventListener('focus', () => {
+      this.component.classList.add('focused');
+    });
+
+    this.slider.addEventListener('blur', () => {
+      this.component.classList.remove('focused');
+    });
+
     this.style.innerHTML = `
       .slider::-ms-thumb {
         height: ${this.before.offsetHeight}px !important;
@@ -30,7 +39,7 @@ export class ImgComparisonSlider {
   }
 
   render() {
-    return <div class="component">
+    return <div class="component" ref={el => this.component = el as HTMLElement}>
       <div ref={el => this.before = el as HTMLElement}>
         <slot name="before"></slot>
       </div>

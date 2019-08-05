@@ -1,7 +1,8 @@
 :host {
   --divider-color: #dedede;
+  --divider-color-focus: #fbfbfb;
   --divider-width: 1px;
-  --hint-size: 60px;
+  --hint-size: 40px;
   --hint-bg-color: #d7d7d7;
   --hint-border: 2px solid #d7d7d7;
   --hint-opacity: 0.5;
@@ -27,6 +28,10 @@
   border-radius: 0
 }
 
+@mixin thumb-focus {
+  background: var(--divider-color-focus);
+}
+
 .component:hover {
   .hint {
     opacity: var(--hint-opacity-hover);
@@ -41,13 +46,17 @@
   top: 50%;
   margin-top: calc(var(--hint-size) / (-2));
   margin-left: calc(var(--hint-size) / (-2));
-  transition: opacity 1s;
+  transition: opacity 1s, transform 1s;
   border: var(--hint-border);
   box-sizing: border-box;
   box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
   pointer-events: none;
   opacity: var(--hint-opacity);
   transform: rotate(45deg);
+}
+
+.focused .hint {
+  transform: rotate(45deg) scale(1.5);
 }
 
 .after {
@@ -76,6 +85,18 @@ input[type=range] {
 
 input[type=range]:focus {
   outline: none;
+
+  &::-webkit-slider-thumb {
+    @include thumb-focus;
+  }
+
+  &::-moz-range-thumb {
+    @include thumb-focus;
+  }
+
+  &::-ms-thumb {
+    @include thumb-focus;
+  }
 }
 
 input[type=range]::-webkit-slider-runnable-track {
