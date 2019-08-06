@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core';
+import {Component, h, Listen} from '@stencil/core';
 
 @Component({
   tag: 'img-comparison-slider',
@@ -7,6 +7,7 @@ import { Component, h } from '@stencil/core';
 })
 export class ImgComparisonSlider {
   private after?: HTMLElement;
+  private afterContent?: HTMLElement;
   private before?: HTMLElement;
   private slider?: HTMLInputElement;
   private hint?: HTMLElement;
@@ -36,6 +37,13 @@ export class ImgComparisonSlider {
         height: ${this.before.offsetHeight}px !important;
       }
     `
+
+    this.updateAfterWidth();
+  }
+
+  @Listen('resize', {target: 'window'})
+  updateAfterWidth() {
+    this.afterContent.style.width = `${this.component.offsetWidth}px`;
   }
 
   render() {
@@ -47,7 +55,9 @@ export class ImgComparisonSlider {
         class="after"
         ref={el => this.after = el as HTMLElement}
       >
-        <slot name="after"></slot>
+        <div ref={el => this.afterContent = el as HTMLElement}>
+          <slot name="after"></slot>
+        </div>
       </div>
       <input
         type="range"
