@@ -4,7 +4,7 @@
   --divider-width: 1px;
   --hint-size: 40px;
   --hint-bg-color: #d7d7d7;
-  --hint-border: 2px solid #d7d7d7;
+  --hint-border: 1px solid #d7d7d7;
   --hint-opacity: 0.5;
   --hint-opacity-hover: 0;
 
@@ -12,24 +12,27 @@
   display: inline-block;
   font-size: 0;
   overflow: hidden;
-}
-
-@mixin track {
-  background: transparent;
-  height: 100%;
-}
-
-@mixin thumb {
-  height: 100%;
-  width: var(--divider-width);
-  background: var(--divider-color);
-  border: none;
   outline: none;
-  border-radius: 0
 }
 
-@mixin thumb-focus {
-  background: var(--divider-color-focus);
+:host(:focus) {
+  .hint {
+    transform: rotate(45deg) scale(1.5);
+  }
+}
+
+:host(:hover) {
+  .hint {
+    opacity: 0;
+  }
+}
+
+::slotted(img) {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 
 .component:hover {
@@ -65,90 +68,5 @@
   top: 0;
   bottom: 0;
   overflow: hidden;
-}
-
-input[type=range] {
-  -webkit-appearance: none;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  cursor: col-resize;
-  outline: none;
-  padding: 0;
-  margin: 0;
-}
-
-input[type=range]:focus {
-  outline: none;
-
-  &::-webkit-slider-thumb {
-    @include thumb-focus;
-  }
-
-  &::-moz-range-thumb {
-    @include thumb-focus;
-  }
-
-  &::-ms-thumb {
-    @include thumb-focus;
-  }
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-  @include track;
-}
-
-input[type=range]::-webkit-slider-thumb {
-  @include thumb;
-
-  -webkit-appearance: none;
-}
-
-input[type=range]::-moz-range-track {
-  @include track;
-}
-
-input[type=range]::-moz-range-thumb {
-  @include thumb;
-}
-
-input[type=range]::-moz-focus-outer {
-  border: none;
-}
-
-input[type=range]::-ms-track {
-  width: 100%;
-  position: absolute;
-  background: transparent;
-  border: none;
-  color: transparent;
-  top: 0px;
-}
-
-input[type=range]::-ms-fill-lower {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  height: 100%;
-}
-
-input[type=range]::-ms-fill-upper {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  height: 100%;
-}
-
-input[type=range]::-ms-thumb {
-  @include thumb;
-}
-
-input[type-range]::-ms-tooltip {
-  display: none;
-  backface-visibility: hidden;
+  border-right: var(--hint-border);
 }
