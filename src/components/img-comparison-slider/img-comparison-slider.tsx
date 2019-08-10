@@ -1,4 +1,16 @@
-import {Component, h, Listen} from '@stencil/core';
+import {Component, h, Listen, Element} from '@stencil/core';
+
+const inBetween = (actual: number, min: number, max: number): number => {
+  if (actual < min) {
+    return min;
+  }
+
+  if (actual > max) {
+    return max;
+  }
+
+  return actual;
+}
 
 @Component({
   tag: 'img-comparison-slider',
@@ -6,48 +18,81 @@ import {Component, h, Listen} from '@stencil/core';
   shadow: true
 })
 export class ImgComparisonSlider {
+  @Element() el: HTMLElement;
   private after?: HTMLElement;
-  private afterContent?: HTMLElement;
+  private afterImageContainer?: HTMLElement;
   private before?: HTMLElement;
-  private slider?: HTMLInputElement;
   private hint?: HTMLElement;
-  private style?: HTMLStyleElement;
-  private component?: HTMLElement;
+
+  private imageWidth: number;
+  private exposure = 50;
+  private isMouseDown = false;
 
   componentDidRender() {
-    const refreshAfter  = () => {
-      this.after.style.width = `${this.slider.value}%`;
-      this.hint.style.left = `${this.slider.value}%`;
-    };
-
-    this.slider.addEventListener('input', refreshAfter);
-    this.slider.addEventListener('change', refreshAfter);
-    refreshAfter();
-
-    this.slider.addEventListener('focus', () => {
-      this.component.classList.add('focused');
-    });
-
-    this.slider.addEventListener('blur', () => {
-      this.component.classList.remove('focused');
-    });
-
-    this.style.innerHTML = `
-      .slider::-ms-thumb {
-        height: ${this.before.offsetHeight}px !important;
-      }
-    `
-
+    this.slide(0);
     this.updateAfterWidth();
+    this.el.setAttribute('tabindex', '0');
+  }
+
+  slide(increment = 0) {
+    this.exposure = inBetween(this.exposure + increment, 0, 100);
+    this.after.style.width = `${this.exposure}%`;
+  }
+
+  @Listen('keydown')
+  onKeyDown(e: KeyboardEvent) {
+    if (e.key === 'ArrowLeft') {
+      this.slide(-1);
+      return;
+    }
+
+    if (e.key === 'ArrowRight') {
+      this.slide(1);
+      return;
+    }
+  }
+
+  @Listen('touchstart')
+  @Listen('mousedown')
+  onMouseDown(e: MouseEvent) {
+    this.isMouseDown = true;
+    this.slideToEvent(e);
+  }
+
+  @Listen('touchend')
+  @Listen('mouseup')
+  onMouseUp(e: MouseEvent) {
+    this.isMouseDown = false;
+    this.slideToEvent(e);
+  }
+
+  @Listen('mousemove')
+  @Listen('touchmove')
+  onMouseMove(e: MouseEvent) {
+    if (this.isMouseDown) {
+      this.slideToEvent(e);
+    }
+  }
+
+  @Listen('mouseleave')
+  onMouseLeave() {
+    this.isMouseDown = false;
   }
 
   @Listen('resize', {target: 'window'})
   updateAfterWidth() {
-    this.afterContent.style.width = `${this.component.offsetWidth}px`;
+    this.imageWidth = this.el.offsetWidth;
+    this.afterImageContainer.style.width = `${this.el.offsetWidth}px`;
+  }
+
+  slideToEvent(e: MouseEvent) {
+    const x = e.pageX - this.el.offsetLeft;
+    this.exposure = (x / this.imageWidth) * 100;
+    this.slide();
   }
 
   render() {
-    return <div class="component" ref={el => this.component = el as HTMLElement}>
+    return <div>
       <div ref={el => this.before = el as HTMLElement}>
         <slot name="before"></slot>
       </div>
@@ -55,20 +100,11 @@ export class ImgComparisonSlider {
         class="after"
         ref={el => this.after = el as HTMLElement}
       >
-        <div ref={el => this.afterContent = el as HTMLElement}>
+        <div ref={el => this.afterImageContainer = el as HTMLElement}>
           <slot name="after"></slot>
         </div>
       </div>
-      <input
-        type="range"
-        min="0"
-        max="100"
-        step="0.5"
-        class="slider"
-        ref={el => this.slider = el as HTMLInputElement}
-      />
       <div class="hint" ref={el => this.hint = el as HTMLElement}></div>
-      <style type="text/css" ref={el => this.style = el as HTMLStyleElement}></style>
     </div>;
   }
 }
