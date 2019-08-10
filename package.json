@@ -11,7 +11,8 @@
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/img-comparison-slider.js",
   "files": [
-    "dist/img-comparison-slider"
+    "dist",
+    "loader"
   ],
   "scripts": {
     "clean": "rimraf .stencil dist loader www",
