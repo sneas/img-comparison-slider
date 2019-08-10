@@ -4,7 +4,7 @@
   --divider-width: 1px;
   --hint-size: 40px;
   --hint-bg-color: #d7d7d7;
-  --hint-border: 2px solid #d7d7d7;
+  --hint-border: 1px solid #d7d7d7;
   --hint-opacity: 0.5;
   --hint-opacity-hover: 0;
 
@@ -12,13 +12,18 @@
   display: inline-block;
   font-size: 0;
   overflow: hidden;
+  outline: none;
 }
 
 :host(:focus) {
-  border: 1px solid Red;
-
   .hint {
-    border: 1px solid Red;
+    transform: rotate(45deg) scale(1.5);
+  }
+}
+
+:host(:hover) {
+  .hint {
+    opacity: 0;
   }
 }
 
@@ -63,4 +68,5 @@
   top: 0;
   bottom: 0;
   overflow: hidden;
+  border-right: var(--hint-border);
 }

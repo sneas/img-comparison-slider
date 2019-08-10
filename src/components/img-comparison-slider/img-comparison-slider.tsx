@@ -37,6 +37,7 @@ export class ImgComparisonSlider {
   slide(increment = 0) {
     this.exposure = inBetween(this.exposure + increment, 0, 100);
     this.after.style.width = `${this.exposure}%`;
+    this.hint.style.left = `${this.exposure}%`;
   }
 
   @Listen('keydown')
