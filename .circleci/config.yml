@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest-browsers
+    working_directory: ~/repo
+    branches:
+      only:
+        - master
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore NPM dependencies
+          keys:
+            - npm-{{ checksum "package.json" }}
+            - npm-
+      - run:
+          name: Install NPM dependencies
+          command: npm install
+      - save_cache:
+          name: Save NPM dependencies
+          paths:
+            - ./node_modules/
+          key: npm-{{ checksum "package.json" }}
+      - run:
+          name: Build
+          command: npm run build
+      - run:
+          name: Release
+          command: npm run semantic-release || true
+      - run:
+          name: Publish to GitHub Pages
+          command: sh .circleci/gh-pages.sh

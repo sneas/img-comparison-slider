@@ -1,0 +1,10 @@
+node_modules
+src
+.gitignore
+tsconfig.json
+tsconfig.test.json
+.circleci
+.stencil
+www
+.editorconfig
+stencil.config.ts
