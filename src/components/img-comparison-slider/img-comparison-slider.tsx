@@ -60,10 +60,9 @@ export class ImgComparisonSlider {
   }
 
   @Listen('touchend')
-  @Listen('mouseup')
+  @Listen('mouseup', {target: 'window'})
   onMouseUp(e: MouseEvent) {
     this.isMouseDown = false;
-    this.slideToEvent(e);
   }
 
   @Listen('mousemove')
@@ -72,11 +71,6 @@ export class ImgComparisonSlider {
     if (this.isMouseDown) {
       this.slideToEvent(e);
     }
-  }
-
-  @Listen('mouseleave')
-  onMouseLeave() {
-    this.isMouseDown = false;
   }
 
   @Listen('resize', {target: 'window'})
