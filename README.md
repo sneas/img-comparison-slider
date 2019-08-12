@@ -18,7 +18,8 @@
 ### HTML
 
 ```html
-<script src="https://unpkg.com/img-comparison-slider@^1/img-comparison-slider.js"></script>
+<script type="module" src="https://unpkg.com/img-comparison-slider@^1/dist/img-comparison-slider/img-comparison-slider.esm.js"></script>
+<script nomodule="" src="https://unpkg.com/img-comparison-slider@^1/dist/img-comparison-slider/img-comparison-slider.js"></script>
 
 <img-comparison-slider>
   <img slot="before" src="before.jpg">
