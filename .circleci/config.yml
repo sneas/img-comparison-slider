@@ -24,7 +24,7 @@ jobs:
           key: npm-{{ checksum "package.json" }}
       - run:
           name: Build
-          command: npm run build
+          command: npm run build --prod
       - run:
           name: Release
           command: npm run semantic-release || true

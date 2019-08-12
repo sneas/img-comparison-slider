@@ -17,7 +17,7 @@
   "scripts": {
     "clean": "rimraf .stencil dist loader www",
     "prebuild": "npm run clean",
-    "build": "stencil build --docs",
+    "build": "stencil build",
     "prestart": "npm run clean",
     "start": "stencil build --dev --watch --serve",
     "semantic-release": "semantic-release",
