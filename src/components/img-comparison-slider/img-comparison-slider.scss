@@ -12,14 +12,8 @@
   display: inline-block;
   font-size: 0;
   overflow: hidden;
-  outline: none;
 }
 
-:host(:focus) {
-  .hint {
-    transform: rotate(45deg) scale(1.5);
-  }
-}
 
 :host(:hover) {
   .hint {
@@ -33,6 +27,13 @@
   -moz-user-drag: none;
   -o-user-drag: none;
   user-drag: none;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .component:hover {

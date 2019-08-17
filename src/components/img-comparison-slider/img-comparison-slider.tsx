@@ -38,6 +38,14 @@ export class ImgComparisonSlider {
   private keyboardSlideAnimationTimeoutId: number;
   private animationRequestId: number;
 
+  componentWillLoad() {
+    this.el.querySelectorAll('img').forEach(img => {
+      img.addEventListener('dragstart', (e) => {
+        e.preventDefault();
+      })
+    })
+  }
+
   componentDidRender() {
     this.slide(0);
     this.updateAfterWidth();
