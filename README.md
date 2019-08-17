@@ -12,7 +12,7 @@
 ## Features
 
 * 📱 Looks great on mobile devices
-* ⌨️ Keyboard support
+* ♿️ Keyboard support
 * ☁️ Easy to install
 * 🧩 Web component. Works with HTML, React, Angular, or Vue
 
@@ -21,8 +21,8 @@
 ### HTML
 
 ```html
-<script type="module" src="https://unpkg.com/img-comparison-slider@^1/dist/img-comparison-slider/img-comparison-slider.esm.js"></script>
-<script nomodule="" src="https://unpkg.com/img-comparison-slider@^1/dist/img-comparison-slider/img-comparison-slider.js"></script>
+<script type="module" src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.esm.js"></script>
+<script nomodule="" src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.js"></script>
 
 <img-comparison-slider>
   <img slot="before" src="before.jpg">
@@ -47,8 +47,8 @@ defineImgComparisonSlider(window);
 render() {
     return (
       <img-comparison-slider>
-        <img slot="before" src="before.jpg">
-        <img slot="after" src="after.jpg>
+        <img slot="before" src="before.jpg" />
+        <img slot="after" src="after.jpg" />
       </img-comparison-slider>
     )
 }

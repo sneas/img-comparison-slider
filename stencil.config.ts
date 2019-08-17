@@ -2,7 +2,7 @@ import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 
 export const config: Config = {
-  namespace: 'img-comparison-slider',
+  namespace: 'component',
   outputTargets: [
     {
       type: 'dist',
