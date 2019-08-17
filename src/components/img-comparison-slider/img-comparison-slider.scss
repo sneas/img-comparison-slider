@@ -1,10 +1,7 @@
 :host {
-  --divider-color: #dedede;
-  --divider-color-focus: #fbfbfb;
-  --divider-width: 1px;
+  --divider: 1px solid #d7d7d7;
   --hint-size: 40px;
   --hint-bg-color: #d7d7d7;
-  --hint-border: 1px solid #d7d7d7;
   --hint-opacity: 0.5;
   --hint-opacity-hover: 0;
 
@@ -15,7 +12,7 @@
 }
 
 
-:host(:hover) {
+:host(:hover), :host(:focus) {
   .hint {
     opacity: 0;
   }
@@ -51,7 +48,6 @@
   margin-top: calc(var(--hint-size) / (-2));
   margin-left: calc(var(--hint-size) / (-2));
   transition: opacity 1s, transform 1s;
-  border: var(--hint-border);
   box-sizing: border-box;
   box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
   pointer-events: none;
@@ -69,5 +65,5 @@
   top: 0;
   bottom: 0;
   overflow: hidden;
-  border-right: var(--hint-border);
+  border-right: var(--divider);
 }
