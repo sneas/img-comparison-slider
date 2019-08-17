@@ -11,10 +11,10 @@
 
 ## Features
 
-* 📱 Looks great on mobile devices
-* ♿️ Keyboard support
-* ☁️ Easy to install
-* 🧩 Web component. Works with HTML, React, Angular, or Vue
+* Looks great on mobile devices
+* Supports keyboard
+* Easy to install
+* Web component. Works with HTML, React, Angular, or Vue
 
 ## Installation
 
