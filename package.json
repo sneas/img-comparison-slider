@@ -14,6 +14,14 @@
     "dist",
     "loader"
   ],
+  "keywords": [
+    "image",
+    "img",
+    "slider",
+    "compare",
+    "comparison",
+    "web-component"
+  ],
   "scripts": {
     "clean": "rimraf .stencil dist loader www",
     "prebuild": "npm run clean",
