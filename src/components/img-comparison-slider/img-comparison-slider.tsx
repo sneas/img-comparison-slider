@@ -10,7 +10,14 @@ const inBetween = (actual: number, min: number, max: number): number => {
   }
 
   return actual;
-}
+};
+
+type SlideKey = 'ArrowLeft' | 'ArrowRight';
+
+const KeySlideOffset: Record<SlideKey, number> = {
+  'ArrowLeft': -1,
+  'ArrowRight': 1,
+};
 
 @Component({
   tag: 'img-comparison-slider',
@@ -28,6 +35,9 @@ export class ImgComparisonSlider {
   private exposure = 50;
   private isMouseDown = false;
 
+  private keyboardSlideAnimationTimeoutId: number;
+  private animationRequestId: number;
+
   componentDidRender() {
     this.slide(0);
     this.updateAfterWidth();
@@ -42,15 +52,31 @@ export class ImgComparisonSlider {
 
   @Listen('keydown')
   onKeyDown(e: KeyboardEvent) {
-    if (e.key === 'ArrowLeft') {
-      this.slide(-1);
+
+    if (this.keyboardSlideAnimationTimeoutId) {
       return;
     }
 
-    if (e.key === 'ArrowRight') {
-      this.slide(1);
+    const key = e.key;
+
+    if (!Object.keys(KeySlideOffset).includes(key)) {
       return;
     }
+
+    this.startSlideAnimation(KeySlideOffset[key as SlideKey]);
+  }
+
+  @Listen('keyup')
+  onKeyUp(e: KeyboardEvent) {
+    if (!this.keyboardSlideAnimationTimeoutId) {
+      return;
+    }
+
+    if (!Object.keys(KeySlideOffset).includes(e.key)) {
+      return;
+    }
+
+    this.stopSlideAnimation();
   }
 
   @Listen('touchstart')
@@ -74,6 +100,11 @@ export class ImgComparisonSlider {
     }
   }
 
+  @Listen('blur')
+  onBlur() {
+    this.stopSlideAnimation();
+  }
+
   @Listen('resize', {target: 'window'})
   updateAfterWidth() {
     this.imageWidth = this.el.offsetWidth;
@@ -84,6 +115,31 @@ export class ImgComparisonSlider {
     const x = e.pageX - this.el.offsetLeft;
     this.exposure = (x / this.imageWidth) * 100;
     this.slide();
+  }
+
+  private startSlideAnimation(offset: number) {
+    const fps = 120;
+    const fraction = 1 * offset;
+
+    const slide = () => {
+      this.keyboardSlideAnimationTimeoutId = window.setTimeout(() => {
+        this.animationRequestId = window.requestAnimationFrame(slide);
+      }, 1000 / fps);
+      this.slide(fraction);
+    }
+
+    slide();
+  }
+
+  private stopSlideAnimation() {
+    if (!this.keyboardSlideAnimationTimeoutId) {
+      return;
+    }
+
+    window.clearTimeout(this.keyboardSlideAnimationTimeoutId);
+    window.cancelAnimationFrame(this.animationRequestId);
+    this.keyboardSlideAnimationTimeoutId = null;
+    this.animationRequestId = null;
   }
 
   render() {
