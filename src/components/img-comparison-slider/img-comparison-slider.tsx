@@ -92,6 +92,7 @@ export class ImgComparisonSlider {
   onMouseDown(e: MouseEvent) {
     this.isMouseDown = true;
     this.slideToEvent(e);
+    this.el.focus();
   }
 
   @Listen('touchend')

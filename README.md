@@ -67,4 +67,4 @@ Example:
 | `--hint-size` | Size of hint arrows at the middle of divider | `40px` |
 | `--hint-color` | Color of hint arrows at the middle of divider | `#d7d7d7` |
 | `--hint-opacity` | Opacity of hint arrows | `0.5` |
-| `--hint-opacity-active` | On hover/focus opacity of hint arrows | `0` |
+| `--hint-opacity-active` | On focus opacity of hint arrows | `0` |

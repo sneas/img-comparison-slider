@@ -12,7 +12,7 @@
 }
 
 
-:host(:hover), :host(:focus) {
+:host(:focus) {
   .hint {
     opacity: 0;
   }
