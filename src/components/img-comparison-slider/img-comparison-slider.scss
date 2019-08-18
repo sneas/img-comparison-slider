@@ -1,9 +1,9 @@
 :host {
   --divider: 1px solid #d7d7d7;
   --hint-size: 40px;
-  --hint-bg-color: #d7d7d7;
+  --hint-color: #d7d7d7;
   --hint-opacity: 0.5;
-  --hint-opacity-hover: 0;
+  --hint-opacity-active: 0;
 
   position: relative;
   display: inline-block;
@@ -35,7 +35,7 @@
 
 .component:hover {
   .hint {
-    opacity: var(--hint-opacity-hover);
+    opacity: var(--hint-opacity-active);
   }
 }
 
@@ -43,7 +43,7 @@
   position: absolute;
   width: var(--hint-size);
   height: var(--hint-size);
-  background-color: var(--hint-bg-color);
+  background-color: var(--hint-color);
   top: 50%;
   margin-top: calc(var(--hint-size) / (-2));
   margin-left: calc(var(--hint-size) / (-2));

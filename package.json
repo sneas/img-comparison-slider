@@ -1,7 +1,7 @@
 {
   "name": "img-comparison-slider",
   "version": "2.1.0",
-  "description": "Stencil Component Starter",
+  "description": "Slider component to compare images before and after",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "es2015": "dist/esm/index.mjs",
