@@ -23,7 +23,7 @@
 ```html
 <script type="module" src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@latest/dist/collection/styles/before-load.css">
+<link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@latest/dist/collection/styles/initial.css">
 
 <img-comparison-slider>
   <img slot="before" src="before.jpg">
