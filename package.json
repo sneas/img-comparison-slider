@@ -1,6 +1,6 @@
 {
   "name": "img-comparison-slider",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Slider component to compare images before and after",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
