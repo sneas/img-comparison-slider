@@ -27,6 +27,22 @@ This is the best comparison slider because it:
 
 ### HTML
 
+<!--
+```
+<custom-element-demo>
+  <template>
+    <script type="module" src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@latest/dist/collection/styles/initial.css">
+    
+    <img-comparison-slider>
+      <img slot="before" src="https://sneas.github.io/img-comparison-slider/demo/images/before.jpg">
+      <img slot="after" src="https://sneas.github.io/img-comparison-slider/demo/images/after.jpg">
+    </img-comparison-slider>
+  </template>
+</custom-element-demo>
+```
+-->
 ```html
 <script type="module" src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.esm.js"></script>
 <script nomodule="" src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.js"></script>
