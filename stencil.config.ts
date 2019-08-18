@@ -21,7 +21,7 @@ export const config: Config = {
     {
       type: 'www',
       copy: [
-        { src: 'images' }
+        { src: 'demo' }
       ]
     },
     {
