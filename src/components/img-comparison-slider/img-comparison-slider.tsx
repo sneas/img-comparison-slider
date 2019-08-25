@@ -29,7 +29,6 @@ export class ImgComparisonSlider {
   private after?: HTMLElement;
   private afterImageContainer?: HTMLElement;
   private before?: HTMLElement;
-  private hint?: HTMLElement;
 
   private imageWidth: number;
   private exposure = 50;
@@ -37,6 +36,7 @@ export class ImgComparisonSlider {
 
   private keyboardSlideAnimationTimeoutId: number;
   private animationRequestId: number;
+  private transitionTimer: number;
 
   componentWillLoad() {
     this.el.querySelectorAll('img').forEach(img => {
@@ -52,10 +52,26 @@ export class ImgComparisonSlider {
     this.el.setAttribute('tabindex', '0');
   }
 
-  slide(increment = 0) {
+  componentDidUnload() {
+    if (this.transitionTimer) {
+      window.clearTimeout(this.transitionTimer);
+    }
+  }
+
+  slide(increment = 0, transition = false) {
     this.exposure = inBetween(this.exposure + increment, 0, 100);
+
+    if (transition) {
+      const transitionTime = 100;
+      this.after.style.transition = `width ${transitionTime}ms`;
+
+      this.transitionTimer = window.setTimeout(() => {
+        this.after.style.transition = null;
+        this.transitionTimer = null;
+      }, transitionTime)
+    }
+
     this.after.style.width = `${this.exposure}%`;
-    this.hint.style.left = `${this.exposure}%`;
   }
 
   @Listen('keydown')
@@ -91,7 +107,7 @@ export class ImgComparisonSlider {
   @Listen('mousedown')
   onMouseDown(e: MouseEvent) {
     this.isMouseDown = true;
-    this.slideToEvent(e);
+    this.slideToEvent(e, true);
     this.el.focus();
   }
 
@@ -120,10 +136,10 @@ export class ImgComparisonSlider {
     this.afterImageContainer.style.width = `${this.el.offsetWidth}px`;
   }
 
-  slideToEvent(e: MouseEvent) {
+  slideToEvent(e: MouseEvent, transition = false) {
     const x = e.pageX - this.el.offsetLeft;
     this.exposure = (x / this.imageWidth) * 100;
-    this.slide();
+    this.slide(0, transition);
   }
 
   private startSlideAnimation(offset: number) {
@@ -160,11 +176,13 @@ export class ImgComparisonSlider {
         class="after"
         ref={el => this.after = el as HTMLElement}
       >
-        <div ref={el => this.afterImageContainer = el as HTMLElement}>
-          <slot name="after"></slot>
+        <div class="hint"></div>
+        <div class="after-overlay">
+          <div ref={el => this.afterImageContainer = el as HTMLElement}>
+            <slot name="after"></slot>
+          </div>
         </div>
       </div>
-      <div class="hint" ref={el => this.hint = el as HTMLElement}></div>
     </div>;
   }
 }

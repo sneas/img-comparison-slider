@@ -14,7 +14,7 @@
 
 :host(:focus) {
   .hint {
-    opacity: 0;
+    //opacity: 0;
   }
 }
 
@@ -39,14 +39,27 @@
   }
 }
 
+.after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-right: var(--divider);
+
+  .after-overlay {
+    overflow: hidden;
+  }
+}
+
 .hint {
   position: absolute;
   width: var(--hint-size);
   height: var(--hint-size);
   background-color: var(--hint-color);
   top: 50%;
+  right: 0;
   margin-top: calc(var(--hint-size) / (-2));
-  margin-left: calc(var(--hint-size) / (-2));
+  margin-right: calc(var(--hint-size) / (-2));
   transition: opacity 1s, transform 1s;
   box-sizing: border-box;
   box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
@@ -57,13 +70,4 @@
 
 .focused .hint {
   transform: rotate(45deg) scale(1.5);
-}
-
-.after {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  overflow: hidden;
-  border-right: var(--divider);
 }
