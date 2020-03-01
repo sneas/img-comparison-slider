@@ -33,8 +33,8 @@ This is the best comparison slider because it:
     <link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@latest/dist/collection/styles/initial.css">
     
     <img-comparison-slider>
-      <img slot="before" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/before.png">
-      <img slot="after" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/after.png">
+      <img slot="before" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/before.jpg">
+      <img slot="after" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/after.jpg">
     </img-comparison-slider>
   </template>
 </custom-element-demo>
@@ -51,8 +51,8 @@ This is the best comparison slider because it:
 <link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@latest/dist/collection/styles/initial.css">
 
 <img-comparison-slider>
-  <img slot="before" src="before.png">
-  <img slot="after" src="after.png">
+  <img slot="before" src="before.jpg">
+  <img slot="after" src="after.jpg">
 </img-comparison-slider>
 ```
 
