@@ -33,8 +33,8 @@
   },
   "devDependencies": {
     "@semantic-release/git": "^7.0.16",
-    "@stencil/core": "^1.0.7",
-    "@stencil/sass": "^1.0.1",
+    "@stencil/core": "^1.14.0",
+    "@stencil/sass": "^1.3.1",
     "gh-pages": "^2.1.1",
     "rimraf": "^2.6.3",
     "semantic-release": "^15.13.19",
