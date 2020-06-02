@@ -42,7 +42,11 @@ export class ImgComparisonSlider {
     this.el.querySelectorAll('img').forEach(img => {
       img.addEventListener('dragstart', (e) => {
         e.preventDefault();
-      })
+      });
+
+      img.addEventListener('load', () => {
+        this.updateAfterWidth();
+      });
     })
   }
 
