@@ -173,7 +173,7 @@ export class ImgComparisonSlider {
   render() {
     return (
       <div>
-        <div ref={(el) => (this.before = el as HTMLElement)}>
+        <div class="before" ref={(el) => (this.before = el as HTMLElement)}>
           <slot name="before"></slot>
         </div>
         <div class="after" ref={(el) => (this.after = el as HTMLElement)}>

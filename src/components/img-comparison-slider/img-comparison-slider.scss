@@ -38,12 +38,18 @@
   }
 }
 
+.before {
+  position: relative;
+  z-index: -2;
+}
+
 .after {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
   border-right: var(--divider);
+  z-index: -1;
 
   .after-overlay {
     overflow: hidden;
