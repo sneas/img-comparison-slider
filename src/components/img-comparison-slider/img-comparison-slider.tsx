@@ -1,4 +1,4 @@
-import {Component, h, Listen, Element} from '@stencil/core';
+import { Component, h, Listen, Element } from '@stencil/core';
 
 const inBetween = (actual: number, min: number, max: number): number => {
   if (actual < min) {
@@ -15,14 +15,14 @@ const inBetween = (actual: number, min: number, max: number): number => {
 type SlideKey = 'ArrowLeft' | 'ArrowRight';
 
 const KeySlideOffset: Record<SlideKey, number> = {
-  'ArrowLeft': -1,
-  'ArrowRight': 1,
+  ArrowLeft: -1,
+  ArrowRight: 1,
 };
 
 @Component({
   tag: 'img-comparison-slider',
   styleUrl: 'img-comparison-slider.scss',
-  shadow: true
+  shadow: true,
 })
 export class ImgComparisonSlider {
   @Element() el: HTMLElement;
@@ -39,7 +39,7 @@ export class ImgComparisonSlider {
   private transitionTimer: number;
 
   componentWillLoad() {
-    this.el.querySelectorAll('img').forEach(img => {
+    this.el.querySelectorAll('img').forEach((img) => {
       img.addEventListener('dragstart', (e) => {
         e.preventDefault();
       });
@@ -47,7 +47,7 @@ export class ImgComparisonSlider {
       img.addEventListener('load', () => {
         this.updateAfterWidth();
       });
-    })
+    });
   }
 
   componentDidRender() {
@@ -72,7 +72,7 @@ export class ImgComparisonSlider {
       this.transitionTimer = window.setTimeout(() => {
         this.after.style.transition = null;
         this.transitionTimer = null;
-      }, transitionTime)
+      }, transitionTime);
     }
 
     this.after.style.width = `${this.exposure}%`;
@@ -80,7 +80,6 @@ export class ImgComparisonSlider {
 
   @Listen('keydown')
   onKeyDown(e: KeyboardEvent) {
-
     if (this.keyboardSlideAnimationTimeoutId) {
       return;
     }
@@ -116,7 +115,7 @@ export class ImgComparisonSlider {
   }
 
   @Listen('touchend')
-  @Listen('mouseup', {target: 'window'})
+  @Listen('mouseup', { target: 'window' })
   onMouseUp(e: MouseEvent) {
     this.isMouseDown = false;
   }
@@ -134,7 +133,7 @@ export class ImgComparisonSlider {
     this.stopSlideAnimation();
   }
 
-  @Listen('resize', {target: 'window'})
+  @Listen('resize', { target: 'window' })
   updateAfterWidth() {
     this.imageWidth = this.el.offsetWidth;
     this.afterImageContainer.style.width = `${this.el.offsetWidth}px`;
@@ -155,7 +154,7 @@ export class ImgComparisonSlider {
         this.animationRequestId = window.requestAnimationFrame(slide);
       }, 1000 / fps);
       this.slide(fraction);
-    }
+    };
 
     slide();
   }
@@ -172,21 +171,20 @@ export class ImgComparisonSlider {
   }
 
   render() {
-    return <div>
-      <div ref={el => this.before = el as HTMLElement}>
-        <slot name="before"></slot>
-      </div>
-      <div
-        class="after"
-        ref={el => this.after = el as HTMLElement}
-      >
-        <div class="hint"></div>
-        <div class="after-overlay">
-          <div ref={el => this.afterImageContainer = el as HTMLElement}>
-            <slot name="after"></slot>
+    return (
+      <div>
+        <div ref={(el) => (this.before = el as HTMLElement)}>
+          <slot name="before"></slot>
+        </div>
+        <div class="after" ref={(el) => (this.after = el as HTMLElement)}>
+          <div class="hint"></div>
+          <div class="after-overlay">
+            <div ref={(el) => (this.afterImageContainer = el as HTMLElement)}>
+              <slot name="after"></slot>
+            </div>
           </div>
         </div>
       </div>
-    </div>;
+    );
   }
 }

@@ -9,20 +9,20 @@ Slider component to compare images before and after.
 ## Browsers support
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>iOS Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Samsung |
-| --------- | --------- | --------- | --------- | --------- | --------- |
-| IE11 *([limited](docs/ie.md))*, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions| last 2 versions
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IE11 _([limited](docs/ie.md))_, Edge                                                                                                                                                                            | last 2 versions                                                                                                                                                                                                   | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                                                     |
 
 ## Overview
 
 This is the best comparison slider because it:
 
-* Looks great on mobile devices
-* Supports keyboard
-* Responsive
-* Works with plain HTML pages, React, Angular, or Vue
-* Easy to install
-* Lightweight ~7kb
-* Zero dependencies
+- Looks great on mobile devices
+- Supports keyboard
+- Responsive
+- Works with plain HTML pages, React, Angular, or Vue
+- Easy to install
+- Lightweight ~7kb
+- Zero dependencies
 
 <!--
 ```
@@ -31,7 +31,7 @@ This is the best comparison slider because it:
     <script type="module" src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@latest/dist/collection/styles/initial.css">
-    
+
     <img-comparison-slider>
       <img slot="before" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/before.jpg">
       <img slot="after" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/after.jpg">
@@ -46,21 +46,30 @@ This is the best comparison slider because it:
 ### HTML
 
 ```html
-<script type="module" src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.esm.js"></script>
-<script nomodule="" src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@latest/dist/collection/styles/initial.css">
+<script
+  type="module"
+  src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.esm.js"
+></script>
+<script
+  nomodule=""
+  src="https://unpkg.com/img-comparison-slider@latest/dist/component/component.js"
+></script>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/img-comparison-slider@latest/dist/collection/styles/initial.css"
+/>
 
 <img-comparison-slider>
-  <img slot="before" src="before.jpg">
-  <img slot="after" src="after.jpg">
+  <img slot="before" src="before.jpg" />
+  <img slot="after" src="after.jpg" />
 </img-comparison-slider>
 ```
 
 ### Frameworks support
 
-* [React](docs/installation/react.md)
-* [Angular](docs/installation/angular.md)
-* [Vue](docs/installation/vue.md)
+- [React](docs/installation/react.md)
+- [Angular](docs/installation/angular.md)
+- [Vue](docs/installation/vue.md)
 
 ## Styling
 
@@ -79,10 +88,10 @@ Example:
 
 ### Available variables
 
-| Variable | Description | Default value |
-| --- | --- | --- |
-| `--divider` | Vertical line dividing before and after image | `1px solid #d7d7d7` |
-| `--hint-size` | Size of hint arrows at the middle of divider | `40px` |
-| `--hint-color` | Color of hint arrows at the middle of divider | `#d7d7d7` |
-| `--hint-opacity` | Opacity of hint arrows | `0.5` |
-| `--hint-opacity-active` | On focus opacity of hint arrows | `0` |
+| Variable                | Description                                   | Default value       |
+| ----------------------- | --------------------------------------------- | ------------------- |
+| `--divider`             | Vertical line dividing before and after image | `1px solid #d7d7d7` |
+| `--hint-size`           | Size of hint arrows at the middle of divider  | `40px`              |
+| `--hint-color`          | Color of hint arrows at the middle of divider | `#d7d7d7`           |
+| `--hint-opacity`        | Opacity of hint arrows                        | `0.5`               |
+| `--hint-opacity-active` | On focus opacity of hint arrows               | `0`                 |

@@ -2,5 +2,4 @@
 
 Known issues:
 
-* Keyboard is not currently supported
-
+- Keyboard is not currently supported

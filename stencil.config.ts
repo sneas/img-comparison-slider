@@ -6,32 +6,24 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
-      esmLoaderPath: '../loader'
+      esmLoaderPath: '../loader',
     },
     {
       type: 'dist',
-      copy: [
-        { src: 'styles' }
-      ]
+      copy: [{ src: 'styles' }],
     },
     {
       type: 'www',
-      serviceWorker: null // disable service workers
+      serviceWorker: null, // disable service workers
     },
     {
       type: 'www',
-      copy: [
-        { src: 'demo' }
-      ]
+      copy: [{ src: 'demo' }],
     },
     {
       type: 'www',
-      copy: [
-        { src: 'styles' }
-      ]
-    }
+      copy: [{ src: 'styles' }],
+    },
   ],
-  plugins: [
-    sass()
-  ]
+  plugins: [sass()],
 };

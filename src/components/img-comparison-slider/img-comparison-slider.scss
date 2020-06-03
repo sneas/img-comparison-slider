@@ -11,7 +11,6 @@
   overflow: hidden;
 }
 
-
 :host(:focus) {
   .hint {
     opacity: 0;
@@ -62,7 +61,7 @@
   margin-right: calc(var(--hint-size) / (-2));
   transition: opacity 1s, transform 1s;
   box-sizing: border-box;
-  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
   pointer-events: none;
   opacity: var(--hint-opacity);
   transform: rotate(45deg);

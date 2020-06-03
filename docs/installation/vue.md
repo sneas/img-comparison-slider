@@ -6,15 +6,18 @@ npm install --save img-comparison-slider
 
 Steps to reproduce
 
-* importing the node module
-* tell Vue to ignore the custom element tags (see https://vuejs.org/v2/api/#ignoredElements)
-* bind `img-comparison-slider` code to the window object
+- importing the node module
+- tell Vue to ignore the custom element tags (see https://vuejs.org/v2/api/#ignoredElements)
+- bind `img-comparison-slider` code to the window object
 
 ```js
 import Vue from 'vue';
 import App from './App.vue';
 
-import { applyPolyfills, defineCustomElements } from 'img-comparison-slider/loader';
+import {
+  applyPolyfills,
+  defineCustomElements,
+} from 'img-comparison-slider/loader';
 
 Vue.config.productionTip = false;
 
@@ -29,6 +32,6 @@ applyPolyfills().then(() => {
 });
 
 new Vue({
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount('#app');
 ```
