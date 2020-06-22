@@ -18,11 +18,9 @@ This is the best comparison slider because it:
 
 - Looks great on mobile devices
 - Supports keyboard
-- Responsive
+- Is responsive
 - Works with plain HTML pages, React, Angular, or Vue
-- Easy to install
-- Lightweight ~7kb
-- Zero dependencies
+- Has zero dependencies
 
 <!--
 ```
