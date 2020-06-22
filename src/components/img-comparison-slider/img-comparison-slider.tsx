@@ -140,7 +140,7 @@ export class ImgComparisonSlider {
   }
 
   slideToEvent(e: MouseEvent, transition = false) {
-    const x = e.pageX - this.el.offsetLeft;
+    const x = e.pageX - this.el.getBoundingClientRect().left;
     this.exposure = (x / this.imageWidth) * 100;
     this.slide(0, transition);
   }
