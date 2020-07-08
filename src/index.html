@@ -22,10 +22,34 @@
     <div class="container mt-4 mb-4">
       <div class="row justify-content-md-center">
         <div class="col col-lg-10">
+          <h2>Default Slider</h2>
           <figure class="figure">
             <img-comparison-slider>
               <img slot="before" width="100%" src="demo/images/before.jpg" />
               <img slot="after" width="100%" src="demo/images/after.jpg" />
+            </img-comparison-slider>
+          </figure>
+
+          <h2>Custom Slider</h2>
+          <figure class="figure">
+            <style>
+              .slider-with-custom-hint {
+                --hint-size: 50px;
+              }
+
+              .custom-hint {
+                width: 50px;
+                height: 50px;
+              }
+            </style>
+            <img-comparison-slider class="slider-with-custom-hint">
+              <img slot="before" width="100%" src="demo/images/before.jpg" />
+              <img slot="after" width="100%" src="demo/images/after.jpg" />
+              <img
+                slot="hint"
+                class="custom-hint"
+                src="demo/images/custom-hint.svg"
+              />
             </img-comparison-slider>
           </figure>
 

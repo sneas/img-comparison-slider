@@ -12,7 +12,7 @@
 }
 
 :host(:focus) {
-  .hint {
+  .hint-wrapper {
     opacity: 0;
   }
 }
@@ -33,7 +33,7 @@
 }
 
 .component:hover {
-  .hint {
+  .hint-wrapper {
     opacity: var(--hint-opacity-active);
   }
 }
@@ -56,21 +56,27 @@
   }
 }
 
-.hint {
+.hint-wrapper {
   position: absolute;
   width: var(--hint-size);
   height: var(--hint-size);
-  background-color: var(--hint-color);
-  top: 50%;
-  right: 0;
   margin-top: calc(var(--hint-size) / (-2));
   margin-right: calc(var(--hint-size) / (-2));
-  transition: opacity 1s, transform 1s;
-  box-sizing: border-box;
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  top: 50%;
+  right: 0;
   pointer-events: none;
+  box-sizing: border-box;
   opacity: var(--hint-opacity);
+  transition: opacity 1s;
+}
+
+.hint {
+  background-color: var(--hint-color);
+  width: var(--hint-size);
+  height: var(--hint-size);
+  transition: transform 1s;
   transform: rotate(45deg);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
 }
 
 .focused .hint {
