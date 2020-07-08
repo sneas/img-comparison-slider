@@ -177,7 +177,11 @@ export class ImgComparisonSlider {
           <slot name="before"></slot>
         </div>
         <div class="after" ref={(el) => (this.after = el as HTMLElement)}>
-          <div class="hint"></div>
+          <div class="hint-wrapper">
+            <slot name="hint">
+              <div class="hint"></div>
+            </slot>
+          </div>
           <div class="after-overlay">
             <div ref={(el) => (this.afterImageContainer = el as HTMLElement)}>
               <slot name="after"></slot>
