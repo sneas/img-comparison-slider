@@ -13,7 +13,7 @@
 
 :host(:focus) {
   .hint-wrapper {
-    opacity: 0;
+    opacity: var(--hint-opacity-active);
   }
 }
 
