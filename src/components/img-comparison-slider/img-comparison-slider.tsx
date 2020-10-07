@@ -12,6 +12,10 @@ const inBetween = (actual: number, min: number, max: number): number => {
   return actual;
 };
 
+const isMouseEvent = (e: Event): e is MouseEvent => {
+  return 'initMouseEvent' in e;
+};
+
 type SlideKey = 'ArrowLeft' | 'ArrowRight';
 
 const KeySlideOffset: Record<SlideKey, number> = {
@@ -108,7 +112,7 @@ export class ImgComparisonSlider {
 
   @Listen('touchstart')
   @Listen('mousedown')
-  onMouseDown(e: MouseEvent) {
+  onMouseDown(e: MouseEvent | TouchEvent) {
     this.isMouseDown = true;
     this.slideToEvent(e, true);
     this.el.focus();
@@ -116,13 +120,13 @@ export class ImgComparisonSlider {
 
   @Listen('touchend')
   @Listen('mouseup', { target: 'window' })
-  onMouseUp(e: MouseEvent) {
+  onMouseUp(e: MouseEvent | TouchEvent) {
     this.isMouseDown = false;
   }
 
-  @Listen('mousemove')
-  @Listen('touchmove')
-  onMouseMove(e: MouseEvent) {
+  @Listen('mousemove', { passive: false })
+  @Listen('touchmove', { passive: false })
+  onMouseMove(e: MouseEvent | TouchEvent) {
     if (this.isMouseDown) {
       this.slideToEvent(e);
     }
@@ -139,8 +143,10 @@ export class ImgComparisonSlider {
     this.afterImageContainer.style.width = `${this.el.offsetWidth}px`;
   }
 
-  slideToEvent(e: MouseEvent, transition = false) {
-    const x = e.pageX - this.el.getBoundingClientRect().left;
+  slideToEvent(e: MouseEvent | TouchEvent, transition = false) {
+    const x =
+      (isMouseEvent(e) ? e.pageX : e.touches[0].pageX) -
+      this.el.getBoundingClientRect().left;
     this.exposure = (x / this.imageWidth) * 100;
     this.slide(0, transition);
   }
