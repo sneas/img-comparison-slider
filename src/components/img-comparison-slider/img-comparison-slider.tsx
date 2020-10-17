@@ -16,6 +16,16 @@ const isMouseEvent = (e: Event): e is MouseEvent => {
   return 'initMouseEvent' in e;
 };
 
+const getTouchPagePoint = (e: TouchEvent): Point => ({
+  x: e.touches[0].pageX,
+  y: e.touches[0].pageY,
+});
+
+export interface Point {
+  x: number;
+  y: number;
+}
+
 type SlideKey = 'ArrowLeft' | 'ArrowRight';
 
 const KeySlideOffset: Record<SlideKey, number> = {
@@ -110,7 +120,6 @@ export class ImgComparisonSlider {
     this.stopSlideAnimation();
   }
 
-  @Listen('touchstart')
   @Listen('mousedown')
   onMouseDown(e: MouseEvent | TouchEvent) {
     this.isMouseDown = true;
@@ -118,18 +127,56 @@ export class ImgComparisonSlider {
     this.el.focus();
   }
 
-  @Listen('touchend')
   @Listen('mouseup', { target: 'window' })
   onMouseUp(e: MouseEvent | TouchEvent) {
     this.isMouseDown = false;
   }
 
   @Listen('mousemove', { passive: false })
-  @Listen('touchmove', { passive: false })
   onMouseMove(e: MouseEvent | TouchEvent) {
     if (this.isMouseDown) {
       this.slideToEvent(e);
     }
+  }
+
+  touchStartPoint: Point;
+  isTouchComparing = false;
+  hasTouchMoved = false;
+
+  @Listen('touchstart')
+  onTouchStart(e: TouchEvent) {
+    this.touchStartPoint = getTouchPagePoint(e);
+  }
+
+  @Listen('touchmove', { passive: false })
+  onTouchMove(e: TouchEvent) {
+    if (this.isTouchComparing) {
+      this.slideToEvent(e);
+      e.preventDefault();
+      return false;
+    }
+
+    if (!this.hasTouchMoved) {
+      const currentPoint = getTouchPagePoint(e);
+      if (
+        Math.abs(currentPoint.y - this.touchStartPoint.y) <
+        Math.abs(currentPoint.x - this.touchStartPoint.x)
+      ) {
+        this.isTouchComparing = true;
+        this.el.focus();
+        this.slideToEvent(e, true);
+        e.preventDefault();
+        return false;
+      }
+
+      this.hasTouchMoved = true;
+    }
+  }
+
+  @Listen('touchend')
+  touchEnd() {
+    this.isTouchComparing = false;
+    this.hasTouchMoved = false;
   }
 
   @Listen('blur')
