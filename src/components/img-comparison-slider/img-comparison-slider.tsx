@@ -37,6 +37,8 @@ export class ImgComparisonSlider {
   private animationRequestId: number;
   private transitionTimer: number;
 
+  private isFocused = false;
+
   componentWillLoad() {
     this.el.querySelectorAll('img').forEach((img) => {
       img.addEventListener('dragstart', (e) => {
@@ -131,6 +133,10 @@ export class ImgComparisonSlider {
   @Listen('touchstart')
   onTouchStart(e: TouchEvent) {
     this.touchStartPoint = getTouchPagePoint(e);
+
+    if (this.isFocused) {
+      this.slideToPageX(e.touches[0].pageX, true);
+    }
   }
 
   @Listen('touchmove', { passive: false })
@@ -167,6 +173,12 @@ export class ImgComparisonSlider {
   @Listen('blur')
   onBlur() {
     this.stopSlideAnimation();
+    this.isFocused = false;
+  }
+
+  @Listen('focus')
+  onFocus() {
+    this.isFocused = true;
   }
 
   @Listen('resize', { target: 'window' })
