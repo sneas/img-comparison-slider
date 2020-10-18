@@ -1,20 +1,5 @@
 import { Component, h, Listen, Element } from '@stencil/core';
-
-const inBetween = (actual: number, min: number, max: number): number => {
-  if (actual < min) {
-    return min;
-  }
-
-  if (actual > max) {
-    return max;
-  }
-
-  return actual;
-};
-
-const isMouseEvent = (e: Event): e is MouseEvent => {
-  return 'initMouseEvent' in e;
-};
+import { inBetween } from '../../utils/inBetween';
 
 const getTouchPagePoint = (e: TouchEvent): Point => ({
   x: e.touches[0].pageX,
@@ -121,9 +106,9 @@ export class ImgComparisonSlider {
   }
 
   @Listen('mousedown')
-  onMouseDown(e: MouseEvent | TouchEvent) {
+  onMouseDown(e: MouseEvent) {
     this.isMouseDown = true;
-    this.slideToEvent(e, true);
+    this.slideToPageX(e.pageX, true);
     this.el.focus();
   }
 
@@ -133,9 +118,9 @@ export class ImgComparisonSlider {
   }
 
   @Listen('mousemove', { passive: false })
-  onMouseMove(e: MouseEvent | TouchEvent) {
+  onMouseMove(e: MouseEvent) {
     if (this.isMouseDown) {
-      this.slideToEvent(e);
+      this.slideToPageX(e.pageX);
     }
   }
 
@@ -151,7 +136,7 @@ export class ImgComparisonSlider {
   @Listen('touchmove', { passive: false })
   onTouchMove(e: TouchEvent) {
     if (this.isTouchComparing) {
-      this.slideToEvent(e);
+      this.slideToPageX(e.touches[0].pageX);
       e.preventDefault();
       return false;
     }
@@ -164,7 +149,7 @@ export class ImgComparisonSlider {
       ) {
         this.isTouchComparing = true;
         this.el.focus();
-        this.slideToEvent(e, true);
+        this.slideToPageX(e.touches[0].pageX, true);
         e.preventDefault();
         return false;
       }
@@ -190,10 +175,8 @@ export class ImgComparisonSlider {
     this.afterImageContainer.style.width = `${this.el.offsetWidth}px`;
   }
 
-  slideToEvent(e: MouseEvent | TouchEvent, transition = false) {
-    const x =
-      (isMouseEvent(e) ? e.pageX : e.touches[0].pageX) -
-      this.el.getBoundingClientRect().left;
+  slideToPageX(pageX: number, transition = false) {
+    const x = pageX - this.el.getBoundingClientRect().left;
     this.exposure = (x / this.imageWidth) * 100;
     this.slide(0, transition);
   }
