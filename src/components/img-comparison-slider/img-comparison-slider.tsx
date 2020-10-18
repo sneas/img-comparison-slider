@@ -1,15 +1,15 @@
 import { Component, h, Listen, Element } from '@stencil/core';
 import { inBetween } from '../../utils/inBetween';
 
-const getTouchPagePoint = (e: TouchEvent): Point => ({
-  x: e.touches[0].pageX,
-  y: e.touches[0].pageY,
-});
-
 export interface Point {
   x: number;
   y: number;
 }
+
+const getTouchPagePoint = (e: TouchEvent): Point => ({
+  x: e.touches[0].pageX,
+  y: e.touches[0].pageY,
+});
 
 type SlideKey = 'ArrowLeft' | 'ArrowRight';
 
