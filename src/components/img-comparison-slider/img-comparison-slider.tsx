@@ -1,20 +1,15 @@
 import { Component, h, Listen, Element } from '@stencil/core';
+import { inBetween } from '../../utils/inBetween';
 
-const inBetween = (actual: number, min: number, max: number): number => {
-  if (actual < min) {
-    return min;
-  }
+export interface Point {
+  x: number;
+  y: number;
+}
 
-  if (actual > max) {
-    return max;
-  }
-
-  return actual;
-};
-
-const isMouseEvent = (e: Event): e is MouseEvent => {
-  return 'initMouseEvent' in e;
-};
+const getTouchPagePoint = (e: TouchEvent): Point => ({
+  x: e.touches[0].pageX,
+  y: e.touches[0].pageY,
+});
 
 type SlideKey = 'ArrowLeft' | 'ArrowRight';
 
@@ -41,6 +36,8 @@ export class ImgComparisonSlider {
   private keyboardSlideAnimationTimeoutId: number;
   private animationRequestId: number;
   private transitionTimer: number;
+
+  private isFocused = false;
 
   componentWillLoad() {
     this.el.querySelectorAll('img').forEach((img) => {
@@ -110,31 +107,78 @@ export class ImgComparisonSlider {
     this.stopSlideAnimation();
   }
 
-  @Listen('touchstart')
   @Listen('mousedown')
-  onMouseDown(e: MouseEvent | TouchEvent) {
+  onMouseDown(e: MouseEvent) {
     this.isMouseDown = true;
-    this.slideToEvent(e, true);
+    this.slideToPageX(e.pageX, true);
     this.el.focus();
   }
 
-  @Listen('touchend')
   @Listen('mouseup', { target: 'window' })
   onMouseUp(e: MouseEvent | TouchEvent) {
     this.isMouseDown = false;
   }
 
   @Listen('mousemove', { passive: false })
-  @Listen('touchmove', { passive: false })
-  onMouseMove(e: MouseEvent | TouchEvent) {
+  onMouseMove(e: MouseEvent) {
     if (this.isMouseDown) {
-      this.slideToEvent(e);
+      this.slideToPageX(e.pageX);
     }
+  }
+
+  touchStartPoint: Point;
+  isTouchComparing = false;
+  hasTouchMoved = false;
+
+  @Listen('touchstart')
+  onTouchStart(e: TouchEvent) {
+    this.touchStartPoint = getTouchPagePoint(e);
+
+    if (this.isFocused) {
+      this.slideToPageX(e.touches[0].pageX, true);
+    }
+  }
+
+  @Listen('touchmove', { passive: false })
+  onTouchMove(e: TouchEvent) {
+    if (this.isTouchComparing) {
+      this.slideToPageX(e.touches[0].pageX);
+      e.preventDefault();
+      return false;
+    }
+
+    if (!this.hasTouchMoved) {
+      const currentPoint = getTouchPagePoint(e);
+      if (
+        Math.abs(currentPoint.y - this.touchStartPoint.y) <
+        Math.abs(currentPoint.x - this.touchStartPoint.x)
+      ) {
+        this.isTouchComparing = true;
+        this.el.focus();
+        this.slideToPageX(e.touches[0].pageX, true);
+        e.preventDefault();
+        return false;
+      }
+
+      this.hasTouchMoved = true;
+    }
+  }
+
+  @Listen('touchend')
+  touchEnd() {
+    this.isTouchComparing = false;
+    this.hasTouchMoved = false;
   }
 
   @Listen('blur')
   onBlur() {
     this.stopSlideAnimation();
+    this.isFocused = false;
+  }
+
+  @Listen('focus')
+  onFocus() {
+    this.isFocused = true;
   }
 
   @Listen('resize', { target: 'window' })
@@ -143,10 +187,8 @@ export class ImgComparisonSlider {
     this.afterImageContainer.style.width = `${this.el.offsetWidth}px`;
   }
 
-  slideToEvent(e: MouseEvent | TouchEvent, transition = false) {
-    const x =
-      (isMouseEvent(e) ? e.pageX : e.touches[0].pageX) -
-      this.el.getBoundingClientRect().left;
+  slideToPageX(pageX: number, transition = false) {
+    const x = pageX - this.el.getBoundingClientRect().left;
     this.exposure = (x / this.imageWidth) * 100;
     this.slide(0, transition);
   }
