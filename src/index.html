@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
+    <script
+      type="module"
+      src="https://unpkg.com/@sneas/x-ray@latest/dist/component/component.esm.js"
+    ></script>
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
     />
-    <title>img-comparison-slider Demo</title>
-
+    <title>Slider Component For Comparing Two Images</title>
     <script type="module" src="build/component.esm.js"></script>
     <script nomodule src="build/component.js"></script>
     <link rel="stylesheet" href="styles/initial.css" />
@@ -17,51 +20,143 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <style>
+      x-ray {
+        display: block;
+        margin-bottom: 1rem;
+      }
+    </style>
   </head>
   <body>
     <div class="container mt-4 mb-4">
-      <div class="row justify-content-md-center">
-        <div class="col col-lg-10">
-          <h2>Default Slider</h2>
-          <figure class="figure">
-            <img-comparison-slider>
-              <img slot="before" width="100%" src="demo/images/before.jpg" />
-              <img slot="after" width="100%" src="demo/images/after.jpg" />
-            </img-comparison-slider>
-          </figure>
+      <h1>Slider Component For Comparing Two Images</h1>
 
-          <h2>Custom Slider</h2>
-          <figure class="figure">
+      <p>
+        Installation and usage instructions are available on
+        <a href="https://github.com/sneas/img-comparison-slider">GitHub</a>.
+      </p>
+
+      <p>
+        <a
+          class="github-button"
+          href="https://github.com/sneas/img-comparison-slider"
+          data-size="large"
+          aria-label="Star sneas/img-comparison-slider on GitHub"
+          >img-comparison-slider</a
+        >
+      </p>
+
+      <h2>Usage Examples</h2>
+
+      <p>
+        All images in the examples are given <code>width="100%"</code> property
+        to make them responsive.
+      </p>
+
+      <div class="row">
+        <div class="col-12 col-sm-4 col-md-3">
+          <nav class="position-sticky" style="top: 0.5rem;">
+            <a class="d-block mb-2" href="#default">Default settings</a>
+            <a class="d-block mb-2" href="#always-show"
+              >Don't hide slider and make it larger</a
+            >
+            <a class="d-block mb-2" href="#focus"
+              >Change element :focus styles</a
+            >
+            <a class="d-block mb-2" href="#width"
+              >Change spilt line width and remove slider</a
+            >
+            <a class="d-block mb-2" href="#custom-slider">Custom slider</a>
+          </nav>
+        </div>
+        <div class="col-12 col-sm-8 col-md-9">
+          <h3 id="default">Default settings</h3>
+          <x-ray>
+            <img-comparison-slider>
+              <img slot="before" width="100%" src="demo/images/cat.jpg" />
+              <img slot="after" width="100%" src="demo/images/dog.jpg" />
+            </img-comparison-slider>
+          </x-ray>
+
+          <h3 id="always-show">Don't hide slider and make it larger</h3>
+          <x-ray>
+            <style>
+              .slider-example-opacity-and-size {
+                --hint-opacity: 0.5;
+                --hint-opacity-active: 0.5;
+                --hint-size: 60px;
+              }
+            </style>
+            <img-comparison-slider class="slider-example-opacity-and-size">
+              <img
+                slot="before"
+                width="100%"
+                src="demo/images/forest-fall.jpg"
+              />
+              <img
+                slot="after"
+                width="100%"
+                src="demo/images/forest-summer.jpg"
+              />
+            </img-comparison-slider>
+          </x-ray>
+
+          <h3 id="focus">Change element :focus styles</h3>
+          <x-ray>
+            <style>
+              .slider-example-focus:focus {
+                outline: none;
+                box-shadow: 0px 0px 15px 5px rgba(36, 109, 255, 0.5);
+              }
+            </style>
+            <img-comparison-slider class="slider-example-focus">
+              <img slot="before" width="100%" src="demo/images/salad.jpg" />
+              <img slot="after" width="100%" src="demo/images/pizza.jpg" />
+            </img-comparison-slider>
+          </x-ray>
+
+          <h3 id="width">Change spilt line width and remove slider</h3>
+          <x-ray>
+            <style>
+              .slider-example-split-line {
+                --divider: 5px solid #ffa658;
+                --hint-opacity: 0;
+              }
+            </style>
+            <img-comparison-slider class="slider-example-split-line">
+              <img slot="before" width="100%" src="demo/images/tulips.jpg" />
+              <img slot="after" width="100%" src="demo/images/chamomiles.jpg" />
+            </img-comparison-slider>
+          </x-ray>
+
+          <h3 id="custom-slider">Custom slider</h3>
+          <x-ray>
             <style>
               .slider-with-custom-hint {
-                --hint-size: 50px;
+                --hint-size: 100px;
                 --hint-opacity: 0.5;
                 --hint-opacity-active: 0.5;
               }
 
               .custom-hint {
-                width: 50px;
-                height: 50px;
+                width: 100px;
+                height: 100px;
               }
             </style>
             <img-comparison-slider class="slider-with-custom-hint">
-              <img slot="before" width="100%" src="demo/images/before.jpg" />
-              <img slot="after" width="100%" src="demo/images/after.jpg" />
+              <img slot="before" width="100%" src="demo/images/apples.jpg" />
+              <img
+                slot="after"
+                width="100%"
+                src="demo/images/raspberries.jpg"
+              />
               <img
                 slot="hint"
                 class="custom-hint"
                 src="demo/images/custom-hint.svg"
               />
             </img-comparison-slider>
-          </figure>
-
-          <a
-            class="github-button"
-            href="https://github.com/sneas/img-comparison-slider"
-            data-size="large"
-            aria-label="Star sneas/img-comparison-slider on GitHub"
-            >img-comparison-slider</a
-          >
+          </x-ray>
         </div>
       </div>
     </div>

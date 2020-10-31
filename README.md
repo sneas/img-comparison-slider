@@ -6,7 +6,7 @@
 
 Slider component for comparing images (before and after).
 
-Demo: [https://sneas.github.io/img-comparison-slider](https://sneas.github.io/img-comparison-slider)
+Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.github.io/img-comparison-slider)
 
 ## Browsers support
 
