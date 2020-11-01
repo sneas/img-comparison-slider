@@ -1,5 +1,6 @@
 :host {
-  --divider: 1px solid #d7d7d7;
+  --divider-width: 1px;
+  --divider-color: #d7d7d7;
   --hint-size: 40px;
   --hint-color: #d7d7d7;
   --hint-opacity: 0.5;
@@ -48,11 +49,22 @@
   left: 0;
   top: 0;
   bottom: 0;
-  border-right: var(--divider);
   z-index: -1;
 
   .after-overlay {
     overflow: hidden;
+  }
+
+  &:before {
+    content: ' ';
+    position: absolute;
+    display: block;
+    right: calc(var(--divider-width) * -0.5);
+    top: 0;
+    bottom: 0;
+    border-right-width: var(--divider-width);
+    border-right-style: solid;
+    border-right-color: var(--divider-color);
   }
 }
 
