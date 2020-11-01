@@ -93,11 +93,11 @@ Example:
 
 ### Available variables
 
-| Variable                  | Description                                          | Default value |
-| ------------------------- | ---------------------------------------------------- | ------------- |
-| `--divider-width`         | Vertical line dividing before and after image. Width | `1px`         |
-| `--divider-color`         | Vertical line dividing before and after image. Color | `#d7d7d7`     |
-| `--handle-size`           | Size of the handle in the middle of divider          | `40px`        |
-| `--handle-color`          | Color of the handle in the middle of divider         | `#d7d7d7`     |
-| `--handle-opacity`        | Opacity of the handle                                | `0.5`         |
-| `--handle-opacity-active` | On focus opacity of the handle                       | `0`           |
+| Variable                  | Description                                     | Default value |
+| ------------------------- | ----------------------------------------------- | ------------- |
+| `--divider-width`         | Width of the vertical line dividing both images | `1px`         |
+| `--divider-color`         | Color of the vertical line dividing both images | `#d7d7d7`     |
+| `--handle-size`           | Size of the handle in the middle of divider     | `40px`        |
+| `--handle-color`          | Color of the handle in the middle of divider    | `#d7d7d7`     |
+| `--handle-opacity`        | Opacity of the handle                           | `0.5`         |
+| `--handle-opacity-active` | On focus opacity of the handle                  | `0`           |
