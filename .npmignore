@@ -8,3 +8,4 @@ tsconfig.test.json
 www
 .editorconfig
 stencil.config.ts
+.releaserc.js

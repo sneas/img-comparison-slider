@@ -57,7 +57,7 @@ export class ImgComparisonSlider {
     this.el.setAttribute('tabindex', '0');
   }
 
-  componentDidUnload() {
+  disconnectedCallback() {
     if (this.transitionTimer) {
       window.clearTimeout(this.transitionTimer);
     }
