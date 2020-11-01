@@ -90,9 +90,9 @@
           <x-ray>
             <style>
               .slider-example-opacity-and-size {
-                --hint-opacity: 0.5;
-                --hint-opacity-active: 0.5;
-                --hint-size: 60px;
+                --handle-opacity: 0.5;
+                --handle-opacity-active: 0.5;
+                --handle-size: 60px;
               }
             </style>
             <img-comparison-slider class="slider-example-opacity-and-size">
@@ -106,7 +106,7 @@
             <style>
               .slider-example-focus:focus {
                 outline: none;
-                box-shadow: 0px 0px 15px 5px rgba(36, 109, 255, 0.5);
+                box-shadow: 0px 0px 15px 5px rgba(0, 123, 255, 0.5);
               }
             </style>
             <img-comparison-slider class="slider-example-focus">
@@ -119,8 +119,9 @@
           <x-ray>
             <style>
               .slider-example-split-line {
-                --divider: 5px solid #ffa658;
-                --hint-opacity: 0;
+                --divider-width: 4px;
+                --divider-color: #ffa658;
+                --handle-opacity: 0;
               }
             </style>
             <img-comparison-slider class="slider-example-split-line">
@@ -132,18 +133,18 @@
           <h3 id="custom-handle">Custom handle</h3>
           <x-ray>
             <style>
-              .slider-with-custom-hint {
-                --hint-size: 100px;
-                --hint-opacity: 0.5;
-                --hint-opacity-active: 0.5;
+              .slider-with-custom-handle {
+                --handle-size: 100px;
+                --handle-opacity: 0.5;
+                --handle-opacity-active: 0.5;
               }
 
-              .custom-hint {
+              .custom-handle {
                 width: 100px;
                 height: 100px;
               }
             </style>
-            <img-comparison-slider class="slider-with-custom-hint">
+            <img-comparison-slider class="slider-with-custom-handle">
               <img slot="before" width="100%" src="demo/images/apples.jpg" />
               <img
                 slot="after"
@@ -151,9 +152,9 @@
                 src="demo/images/raspberries.jpg"
               />
               <img
-                slot="hint"
-                class="custom-hint"
-                src="demo/images/custom-hint.svg"
+                slot="handle"
+                class="custom-handle"
+                src="demo/images/custom-handle.svg"
               />
             </img-comparison-slider>
           </x-ray>

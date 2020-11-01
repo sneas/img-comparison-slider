@@ -84,18 +84,20 @@ Example:
 ```html
 <style type="text/css">
   img-comparison-slider {
-    --divider: 3px solid #c0c0c0;
-    --hint-opacity: 0.3;
+    --divider-width: 2px;
+    --divider-color: #c0c0c0;
+    --handle-opacity: 0.3;
   }
 </style>
 ```
 
 ### Available variables
 
-| Variable                | Description                                   | Default value       |
-| ----------------------- | --------------------------------------------- | ------------------- |
-| `--divider`             | Vertical line dividing before and after image | `1px solid #d7d7d7` |
-| `--hint-size`           | Size of hint arrows at the middle of divider  | `40px`              |
-| `--hint-color`          | Color of hint arrows at the middle of divider | `#d7d7d7`           |
-| `--hint-opacity`        | Opacity of hint arrows                        | `0.5`               |
-| `--hint-opacity-active` | On focus opacity of hint arrows               | `0`                 |
+| Variable                  | Description                                     | Default value |
+| ------------------------- | ----------------------------------------------- | ------------- |
+| `--divider-width`         | Width of the vertical line dividing both images | `1px`         |
+| `--divider-color`         | Color of the vertical line dividing both images | `#d7d7d7`     |
+| `--handle-size`           | Size of the handle in the middle of divider     | `40px`        |
+| `--handle-color`          | Color of the handle in the middle of divider    | `#d7d7d7`     |
+| `--handle-opacity`        | Opacity of the handle                           | `0.5`         |
+| `--handle-opacity-active` | On focus opacity of the handle                  | `0`           |
