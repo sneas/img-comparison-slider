@@ -29,21 +29,27 @@
   </head>
   <body>
     <div class="container mt-4 mb-4">
-      <figure class="figure">
-        <img-comparison-slider>
-          <img slot="before" width="100%" src="demo/images/before.jpg" />
-          <img slot="after" width="100%" src="demo/images/after.jpg" />
-        </img-comparison-slider>
-      </figure>
+      <div class="row justify-content-md-center">
+        <div class="col-8">
+          <figure class="figure">
+            <style>
+              img-comparison-slider:focus {
+                outline: none;
+                box-shadow: 0px 0px 15px 5px rgba(0, 123, 255, 0.5);
+              }
 
-      <a
-        class="github-button"
-        href="https://github.com/sneas/img-comparison-slider"
-        data-size="large"
-        aria-label="Star sneas/img-comparison-slider on GitHub"
-        >img-comparison-slider</a
-      >
+              img-comparison-slider {
+                --handle-opacity: 0.5;
+                --handle-opacity-active: 0.5;
+              }
+            </style>
+            <img-comparison-slider>
+              <img slot="before" width="100%" src="demo/images/salad.jpg" />
+              <img slot="after" width="100%" src="demo/images/pizza.jpg" />
+            </img-comparison-slider>
+          </figure>
+        </div>
+      </div>
     </div>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>
