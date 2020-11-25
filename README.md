@@ -73,7 +73,7 @@ Because all existing solutions lack at least one of the features:
 
 ### Frameworks support
 
-- [React](docs/installation/react.md)
+- [React](bindings/react/README.md)
 - [Angular](docs/installation/angular.md)
 - [Vue](docs/installation/vue.md)
 

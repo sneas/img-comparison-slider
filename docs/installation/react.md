@@ -1,4 +1,8 @@
-# React
+🥕 For those who don't care about **IE11**:
+[there is a simpler (and lighter)](../../bindings/react)
+way to use `img-comparison-slider` in React applications.
+
+# React App. IE11 Support
 
 ```bash
 yarn add img-comparison-slider
@@ -6,9 +10,12 @@ yarn add img-comparison-slider
 
 ```js
 // index.js
-import { defineCustomElements as defineImgComparisonSlider } from 'img-comparison-slider/loader';
+import {
+  defineCustomElements,
+  applyPolyfills,
+} from 'img-comparison-slider/loader';
 
-defineImgComparisonSlider(window);
+applyPolyfills().then(() => defineCustomElements(window));
 ```
 
 ```jsx

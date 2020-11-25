@@ -16,7 +16,7 @@ Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.gi
 ## Installation
 
 ```
-npm install --save @img-comparison-slider/react
+yarn add @img-comparison-slider/react
 ```
 
 ## Usage
@@ -26,8 +26,12 @@ import { ImgComparisonSlider } from '@img-comparison-slider/react';
 import 'img-comparison-slider/dist/collection/styles/initial.css';
 
 // ...
-<ImgComparisonSlider>
-  <img slot="before" src="before.jpg" />
-  <img slot="after" src="after.jpg" />
-</ImgComparisonSlider>
+render() {
+  return (
+    <ImgComparisonSlider>
+      <img slot="before" src="before.jpg" />
+      <img slot="after" src="after.jpg" />
+    </ImgComparisonSlider>
+  );
+}
 ```
