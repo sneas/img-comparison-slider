@@ -2,6 +2,7 @@
   "name": "img-comparison-slider",
   "version": "3.0.0",
   "description": "Slider component to compare images before and after",
+  "homepage": "https://sneas.github.io/img-comparison-slider",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
   "es2015": "dist/esm/index.mjs",
