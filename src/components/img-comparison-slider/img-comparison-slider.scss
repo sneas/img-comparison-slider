@@ -10,6 +10,7 @@
   display: inline-block;
   font-size: 0;
   overflow: hidden;
+  isolation: isolate;
 }
 
 :host(:focus) {
@@ -31,12 +32,6 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-.component:hover {
-  .handle-wrapper {
-    opacity: var(--handle-opacity-active);
-  }
 }
 
 .before {
