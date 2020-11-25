@@ -29,5 +29,5 @@ import 'img-comparison-slider/dist/collection/styles/initial.css';
 <ImgComparisonSlider>
   <img slot="before" src="before.jpg" />
   <img slot="after" src="after.jpg" />
-</ImgComparisonSlider>;
+</ImgComparisonSlider>
 ```
