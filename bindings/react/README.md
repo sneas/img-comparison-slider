@@ -1,5 +1,7 @@
 # ImgComparisonSlider
 
+[![npm package](https://img.shields.io/npm/v/@img-comparison-slider/react.svg)](https://www.npmjs.com/package/@img-comparison-slider/react)
+
 React wrapper for
 [img-comparison-slider](https://github.com/sneas/img-comparison-slider) component.
 
