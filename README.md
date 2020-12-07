@@ -24,7 +24,7 @@ Because all existing solutions lack at least one of the features:
 - Accessible
 - Responsive
 - jQuery free
-- Compatible with modern frameworks ([React](docs/installation/react.md),
+- Compatible with modern frameworks ([React](bindings/react/README.md),
   [Angular](docs/installation/angular.md),
   [Vue](docs/installation/vue.md))
 - Distributed through CDN or NPM
