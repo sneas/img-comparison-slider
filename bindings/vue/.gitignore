@@ -1,0 +1,4 @@
+src/vue-component-lib/*
+src/components.ts
+dist/*
+package-lock.json
