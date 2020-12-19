@@ -25,7 +25,6 @@ yarn add @img-comparison-slider/react
 
 ```jsx
 import { ImgComparisonSlider } from '@img-comparison-slider/react';
-import 'img-comparison-slider/dist/collection/styles/initial.css';
 
 // ...
 render() {

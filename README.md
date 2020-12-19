@@ -25,9 +25,9 @@ Because all existing solutions lack at least one of the features:
 - jQuery free
 - Compatible with modern frameworks ([React](bindings/react/README.md),
   [Angular](docs/installation/angular.md),
-  [Vue](docs/installation/vue.md))
+  [Vue2](docs/installation/vue.md),
+  [Vue3](bindings/vue/README.md))
 - Distributed through CDN or NPM
-- Zero dependencies
 
 <!--
 ```
@@ -74,7 +74,8 @@ Because all existing solutions lack at least one of the features:
 
 - [React](bindings/react/README.md)
 - [Angular](docs/installation/angular.md)
-- [Vue](docs/installation/vue.md)
+- [Vue2](docs/installation/vue.md)
+- [Vue3](bindings/vue/README.md)
 
 ## Styling
 
