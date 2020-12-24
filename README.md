@@ -38,8 +38,8 @@ Because all existing solutions lack at least one of the features:
     <link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@3/dist/collection/styles/initial.css">
 
     <img-comparison-slider>
-      <img slot="before" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/before.jpg">
-      <img slot="after" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/after.jpg">
+      <img slot="before" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/before.webp">
+      <img slot="after" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/after.webp">
     </img-comparison-slider>
   </template>
 </custom-element-demo>
