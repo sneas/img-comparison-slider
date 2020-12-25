@@ -33,9 +33,17 @@
               </img-comparison-slider>
             </code> </x-ray> <h3 id="focus">Change element :focus styles</h3> <x-ray> <code>
               <style>
+                .slider-example-focus {
+                  /*
+                    The style below isn't necessary.
+                    It has been added for the sake of smoothness.
+                  */
+                  transition: box-shadow 200ms ease-in-out;
+                }
+
                 .slider-example-focus:focus {
                   outline: none;
-                  box-shadow: 0px 0px 15px 5px rgba(0, 123, 255, 0.5);
+                  box-shadow: 0px 0px 15px 5px #0c5d10;
                 }
               </style>
               <img-comparison-slider class="slider-example-focus">
