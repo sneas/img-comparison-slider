@@ -11,6 +11,7 @@
   font-size: 0;
   overflow: hidden;
   isolation: isolate;
+  line-height: 0;
 }
 
 :host(:focus) {
