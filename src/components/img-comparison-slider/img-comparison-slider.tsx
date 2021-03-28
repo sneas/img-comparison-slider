@@ -188,7 +188,7 @@ export class ImgComparisonSlider {
   }
 
   slideToPageX(pageX: number, transition = false) {
-    const x = pageX - this.el.getBoundingClientRect().left;
+    const x = pageX - this.el.getBoundingClientRect().left - window.scrollX;
     this.exposure = (x / this.imageWidth) * 100;
     this.slide(0, transition);
   }
