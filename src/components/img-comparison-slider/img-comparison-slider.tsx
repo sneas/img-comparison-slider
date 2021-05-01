@@ -107,23 +107,36 @@ export class ImgComparisonSlider {
     this.stopSlideAnimation();
   }
 
+  /**
+   * This dynamic window.onmousemove event handler
+   * registers on mousedown and removes on mouse up.
+   * The whole mumbo-jumbo is needed to capture
+   * mouse events outside of component. This provides
+   * better user experience.
+   */
+  private onWindowMouseMove = (e: MouseEvent) => {
+    if (this.isMouseDown) {
+      this.slideToPageX(e.pageX);
+    }
+  };
+
+  private bodyUserSelectStyle = '';
+
   @Listen('mousedown')
   onMouseDown(e: MouseEvent) {
+    window.addEventListener('mousemove', this.onWindowMouseMove);
     this.isMouseDown = true;
     this.slideToPageX(e.pageX, true);
     this.el.focus();
+    this.bodyUserSelectStyle = window.document.body.style.userSelect;
+    window.document.body.style.userSelect = 'none';
   }
 
   @Listen('mouseup', { target: 'window' })
   onMouseUp(e: MouseEvent | TouchEvent) {
     this.isMouseDown = false;
-  }
-
-  @Listen('mousemove', { passive: false })
-  onMouseMove(e: MouseEvent) {
-    if (this.isMouseDown) {
-      this.slideToPageX(e.pageX);
-    }
+    window.document.body.style.userSelect = this.bodyUserSelectStyle;
+    window.removeEventListener('mousemove', this.onWindowMouseMove);
   }
 
   touchStartPoint: Point;
