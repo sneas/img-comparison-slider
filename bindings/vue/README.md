@@ -33,7 +33,7 @@ npm install --save @img-comparison-slider/vue
       style="width: 100%"
       src="https://sneas.github.io/img-comparison-slider/demo/images/dog.jpg"
     />
-    <!-- eslint-disable -->
+    <!-- eslint-enable -->
   </ImgComparisonSlider>
 </template>
 
