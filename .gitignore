@@ -67,3 +67,4 @@ typings/
 dist/
 www/
 loader/
+.DS_Store
