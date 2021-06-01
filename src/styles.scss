@@ -1,47 +1,92 @@
-@import '~highlight.js/scss/vs2015';
+:host {
+  --divider-width: 1px;
+  --divider-color: #d7d7d7;
+  --handle-size: 40px;
+  --handle-color: #d7d7d7;
+  --handle-opacity: 0.5;
+  --handle-opacity-active: 0;
 
-.x-ray__toggle {
-  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  font-size: 0;
+  overflow: hidden;
+  isolation: isolate;
+  line-height: 0;
+}
+
+:host(:focus) {
+  .handle-wrapper {
+    opacity: var(--handle-opacity-active);
+  }
+}
+
+::slotted(img) {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.before {
+  position: relative;
+  z-index: -2;
+}
+
+.after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+
+  .after-overlay {
+    overflow: hidden;
+  }
 
   &:before {
     content: ' ';
-    display: inline-block;
-
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 5px solid currentColor;
-
-    vertical-align: middle;
-    margin-right: 0.7rem;
-    transform: translateY(-2px);
-
-    transition: transform 0.2s ease-out;
-  }
-
-  &.x-ray__toggle--active {
-    &:before {
-      transform: rotate(90deg) translate(-3px, -4px);
-    }
-  }
-
-  &:active,
-  &:focus {
-    outline: none;
+    position: absolute;
+    display: block;
+    right: calc(var(--divider-width) * -0.5);
+    top: 0;
+    bottom: 0;
+    border-right-width: var(--divider-width);
+    border-right-style: solid;
+    border-right-color: var(--divider-color);
   }
 }
 
-.x-ray__code-container {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
+.handle-wrapper {
+  position: absolute;
+  width: var(--handle-size);
+  height: var(--handle-size);
+  margin-top: calc(var(--handle-size) / (-2));
+  margin-right: calc(var(--handle-size) / (-2));
+  top: 50%;
+  right: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  opacity: var(--handle-opacity);
+  transition: opacity 1s;
 }
 
-.x-ray__code-container--visible {
-  max-height: 1000px;
-  transition: max-height 0.15s ease-in;
+.handle {
+  background-color: var(--handle-color);
+  width: var(--handle-size);
+  height: var(--handle-size);
+  transition: transform 1s;
+  transform: rotate(45deg);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
 }
 
-.x-ray__code {
-  margin-bottom: 0;
-  padding: 7px;
+.focused .handle {
+  transform: rotate(45deg) scale(1.5);
 }

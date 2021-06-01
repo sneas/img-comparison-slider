@@ -6,5 +6,5 @@
     "moduleResolution": "node",
     "esModuleInterop": false
   },
-  "exclude": ["src_old", "bindings"]
+  "exclude": ["bindings"]
 }
