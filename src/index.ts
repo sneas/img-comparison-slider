@@ -97,6 +97,8 @@ class ImgComparisonSlider extends HTMLElement {
     });
     this.addEventListener('touchend', () => this.onTouchEnd());
     this.addEventListener('mousedown', (e) => this.onMouseDown(e));
+
+    this.classList.add('rendered');
   }
 
   disconnectedCallback() {

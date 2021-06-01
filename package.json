@@ -22,6 +22,7 @@
     "release-bindings": "./scripts/release-bindings.sh"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^9.0.0",
     "css-loader": "^5.2.6",
     "file-loader": "^6.2.0",
     "gh-pages": "^3.2.0",
