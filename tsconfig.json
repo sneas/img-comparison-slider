@@ -1,17 +1,10 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "allowUnreachableCode": false,
-    "declaration": false,
-    "experimentalDecorators": true,
-    "noImplicitAny": true,
-    "lib": ["dom", "es2017"],
+    "outDir": "./dist/",
+    "module": "es6",
+    "target": "es6",
     "moduleResolution": "node",
-    "module": "esnext",
-    "target": "es2017",
-    "jsx": "react",
-    "jsxFactory": "h"
+    "esModuleInterop": false
   },
-  "include": ["src", "types/jsx.d.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["src_old", "bindings"]
 }

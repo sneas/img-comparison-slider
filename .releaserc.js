@@ -1,6 +1,6 @@
 module.exports = {
   ci: true,
-  branches: ['master'],
+  branches: ['main'],
   plugins: [
     [
       '@semantic-release/commit-analyzer',
@@ -20,12 +20,6 @@ module.exports = {
         assets: ['package.json', 'package-lock.json'],
         message:
           'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
-      },
-    ],
-    [
-      '@semantic-release/exec',
-      {
-        successCmd: 'npm run release-bindings',
       },
     ],
   ],

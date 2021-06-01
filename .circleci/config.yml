@@ -24,10 +24,13 @@ jobs:
           key: npm-{{ checksum "package.json" }}
       - run:
           name: Build
-          command: npm run build --prod
+          command: npm run build
       - run:
           name: Release
-          command: npm run semantic-release || true
+          command: npx semantic-release || true
+      - run:
+          name: Build Demo
+          command: npm run demo
       - run:
           name: Publish to GitHub Pages
           command: sh .circleci/gh-pages.sh

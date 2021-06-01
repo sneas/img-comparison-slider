@@ -1,0 +1,47 @@
+@import '~highlight.js/scss/vs2015';
+
+.x-ray__toggle {
+  cursor: pointer;
+
+  &:before {
+    content: ' ';
+    display: inline-block;
+
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid currentColor;
+
+    vertical-align: middle;
+    margin-right: 0.7rem;
+    transform: translateY(-2px);
+
+    transition: transform 0.2s ease-out;
+  }
+
+  &.x-ray__toggle--active {
+    &:before {
+      transform: rotate(90deg) translate(-3px, -4px);
+    }
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+.x-ray__code-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.x-ray__code-container--visible {
+  max-height: 1000px;
+  transition: max-height 0.15s ease-in;
+}
+
+.x-ray__code {
+  margin-bottom: 0;
+  padding: 7px;
+}
