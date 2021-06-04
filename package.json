@@ -15,6 +15,7 @@
   "scripts": {
     "prebuild": "rimraf ./dist",
     "build": "webpack --env production",
+    "watch": "webpack --watch --env production",
     "start": "webpack serve --env development --open",
     "predemo": "rimraf ./demo",
     "demo": "webpack --env demo",

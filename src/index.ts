@@ -1,5 +1,7 @@
 import styles from './styles.scss';
 import { inBetween } from './inBetween';
+import { isImg } from './isImg';
+import { isSlot } from './isSlot';
 
 const template = document.createElement('template');
 
@@ -42,7 +44,7 @@ const getTouchPagePoint = (e: TouchEvent): Point => ({
   y: e.touches[0].pageY,
 });
 
-class ImgComparisonSlider extends HTMLElement {
+export class ImgComparisonSlider extends HTMLElement {
   beforeElement: HTMLElement;
   afterElement: HTMLElement;
   afterImageContainerElement: HTMLElement;
@@ -70,41 +72,76 @@ class ImgComparisonSlider extends HTMLElement {
     );
   }
 
-  connectedCallback() {
-    this.querySelectorAll('img').forEach((img) => {
-      img.addEventListener('dragstart', (e) => {
-        e.preventDefault();
-      });
+  private connectedCallback() {
+    this.shadowRoot.querySelectorAll('slot').forEach((slot) => {
+      slot.addEventListener('slotchange', (e) => {
+        if (!isSlot(e.target)) {
+          return;
+        }
 
-      img.addEventListener('load', () => {
-        this.updateAfterWidth();
+        e.target.assignedElements().forEach(this.hydrate);
       });
     });
 
-    window.addEventListener('resize', () => this.updateAfterWidth());
+    this.querySelectorAll('img').forEach(this.hydrate);
+
+    window.addEventListener('resize', this.resetWidth);
 
     this.slide(0);
-    this.updateAfterWidth();
     this.setAttribute('tabindex', '0');
 
-    this.addEventListener('keydown', (e) => this.onKeyDown(e));
-    this.addEventListener('keyup', (e) => this.onKeyUp(e));
-    this.addEventListener('focus', () => this.onFocus());
-    this.addEventListener('blur', () => this.onBlur());
-    this.addEventListener('touchstart', (e) => this.onTouchStart(e));
-    this.addEventListener('touchmove', (e) => this.onTouchMove(e), {
+    this.addEventListener('keydown', this.onKeyDown);
+    this.addEventListener('keyup', this.onKeyUp);
+    this.addEventListener('focus', this.onFocus);
+    this.addEventListener('blur', this.onBlur);
+    this.addEventListener('touchstart', this.onTouchStart);
+    this.addEventListener('touchmove', this.onTouchMove, {
       passive: false,
     });
-    this.addEventListener('touchend', () => this.onTouchEnd());
-    this.addEventListener('mousedown', (e) => this.onMouseDown(e));
+    this.addEventListener('touchend', this.onTouchEnd);
+    this.addEventListener('mousedown', this.onMouseDown);
 
+    this.resetWidth();
     this.classList.add('rendered');
   }
 
-  disconnectedCallback() {
+  private disconnectedCallback() {
     if (this.transitionTimer) {
       window.clearTimeout(this.transitionTimer);
     }
+  }
+
+  private hydrate = (element: Element) => {
+    if (!isImg(element)) {
+      return;
+    }
+
+    if (element.classList.contains('hydrated')) {
+      return;
+    }
+
+    element.addEventListener('dragstart', (e) => {
+      e.preventDefault();
+    });
+
+    element.addEventListener('load', this.resetWidth);
+    element.classList.add('hydrated');
+  };
+
+  public slide(increment = 0, transition = false) {
+    this.exposure = inBetween(this.exposure + increment, 0, 100);
+
+    if (transition) {
+      const transitionTime = 100;
+      this.afterElement.style.transition = `width ${transitionTime}ms`;
+
+      this.transitionTimer = window.setTimeout(() => {
+        this.afterElement.style.transition = null;
+        this.transitionTimer = null;
+      }, transitionTime);
+    }
+
+    this.afterElement.style.width = `${this.exposure}%`;
   }
 
   /**
@@ -122,7 +159,7 @@ class ImgComparisonSlider extends HTMLElement {
 
   private bodyUserSelectStyle = '';
 
-  private onMouseDown(e: MouseEvent) {
+  private onMouseDown = (e: MouseEvent) => {
     window.addEventListener('mousemove', this.onWindowMouseMove);
     window.addEventListener('mouseup', this.onWindowMouseUp);
     this.isMouseDown = true;
@@ -130,7 +167,7 @@ class ImgComparisonSlider extends HTMLElement {
     this.focus();
     this.bodyUserSelectStyle = window.document.body.style.userSelect;
     window.document.body.style.userSelect = 'none';
-  }
+  };
 
   private onWindowMouseUp = () => {
     this.isMouseDown = false;
@@ -139,19 +176,19 @@ class ImgComparisonSlider extends HTMLElement {
     window.removeEventListener('mouseup', this.onWindowMouseUp);
   };
 
-  touchStartPoint: Point;
-  isTouchComparing = false;
-  hasTouchMoved = false;
+  private touchStartPoint: Point;
+  private isTouchComparing = false;
+  private hasTouchMoved = false;
 
-  private onTouchStart(e: TouchEvent) {
+  private onTouchStart = (e: TouchEvent) => {
     this.touchStartPoint = getTouchPagePoint(e);
 
     if (this.isFocused) {
       this.slideToPageX(e.touches[0].pageX, true);
     }
-  }
+  };
 
-  private onTouchMove(e: TouchEvent) {
+  private onTouchMove = (e: TouchEvent) => {
     if (this.isTouchComparing) {
       this.slideToPageX(e.touches[0].pageX);
       e.preventDefault();
@@ -173,23 +210,23 @@ class ImgComparisonSlider extends HTMLElement {
 
       this.hasTouchMoved = true;
     }
-  }
+  };
 
-  private onTouchEnd() {
+  private onTouchEnd = () => {
     this.isTouchComparing = false;
     this.hasTouchMoved = false;
-  }
+  };
 
-  private onBlur() {
+  private onBlur = () => {
     this.stopSlideAnimation();
     this.isFocused = false;
-  }
+  };
 
-  private onFocus() {
+  private onFocus = () => {
     this.isFocused = true;
-  }
+  };
 
-  private onKeyDown(e: KeyboardEvent) {
+  private onKeyDown = (e: KeyboardEvent) => {
     if (this.keyboardSlideAnimationTimeoutId) {
       return;
     }
@@ -201,9 +238,9 @@ class ImgComparisonSlider extends HTMLElement {
     }
 
     this.startSlideAnimation(KeySlideOffset[key as SlideKey]);
-  }
+  };
 
-  private onKeyUp(e: KeyboardEvent) {
+  private onKeyUp = (e: KeyboardEvent) => {
     if (!this.keyboardSlideAnimationTimeoutId) {
       return;
     }
@@ -213,23 +250,7 @@ class ImgComparisonSlider extends HTMLElement {
     }
 
     this.stopSlideAnimation();
-  }
-
-  private slide(increment = 0, transition = false) {
-    this.exposure = inBetween(this.exposure + increment, 0, 100);
-
-    if (transition) {
-      const transitionTime = 100;
-      this.afterElement.style.transition = `width ${transitionTime}ms`;
-
-      this.transitionTimer = window.setTimeout(() => {
-        this.afterElement.style.transition = null;
-        this.transitionTimer = null;
-      }, transitionTime);
-    }
-
-    this.afterElement.style.width = `${this.exposure}%`;
-  }
+  };
 
   private slideToPageX(pageX: number, transition = false) {
     const x = pageX - this.getBoundingClientRect().left - window.scrollX;
@@ -262,10 +283,10 @@ class ImgComparisonSlider extends HTMLElement {
     this.animationRequestId = null;
   }
 
-  private updateAfterWidth() {
+  private resetWidth = () => {
     this.imageWidth = this.offsetWidth;
     this.afterImageContainerElement.style.width = `${this.offsetWidth}px`;
-  }
+  };
 }
 
 window.customElements.define('img-comparison-slider', ImgComparisonSlider);
