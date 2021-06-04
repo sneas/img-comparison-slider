@@ -1,5 +1,7 @@
 set -e
 
+ROOT=$PWD
+
 for project in bindings/*/; do
     cd $project
     npm install
@@ -7,4 +9,5 @@ for project in bindings/*/; do
     npm run build
     npm version $npm_package_version
     npm publish
+    cd $ROOT
 done

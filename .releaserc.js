@@ -22,5 +22,12 @@ module.exports = {
           'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
       },
     ],
+    [
+      '@semantic-release/exec',
+      {
+        // Wait for NPM to apply new version before releasing bindings
+        successCmd: 'sleep 10 && npm run release-bindings',
+      },
+    ],
   ],
 };
