@@ -4,7 +4,7 @@
     "module": "es6",
     "target": "es6",
     "moduleResolution": "node",
-    "esModuleInterop": false
+    "declaration": true
   },
-  "exclude": ["bindings"]
+  "exclude": ["bindings", "dist"]
 }

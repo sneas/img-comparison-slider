@@ -34,7 +34,7 @@ const KeySlideOffset: Record<SlideKey, number> = {
   ArrowRight: 1,
 };
 
-export interface Point {
+interface Point {
   x: number;
   y: number;
 }
@@ -44,10 +44,10 @@ const getTouchPagePoint = (e: TouchEvent): Point => ({
   y: e.touches[0].pageY,
 });
 
-export class ImgComparisonSlider extends HTMLElement {
-  beforeElement: HTMLElement;
-  afterElement: HTMLElement;
-  afterImageContainerElement: HTMLElement;
+export class HTMLImgComparisonSliderElement extends HTMLElement {
+  private beforeElement: HTMLElement;
+  private afterElement: HTMLElement;
+  private afterImageContainerElement: HTMLElement;
 
   private imageWidth: number;
   private exposure = 50;
@@ -111,6 +111,11 @@ export class ImgComparisonSlider extends HTMLElement {
     }
   }
 
+  public reset() {
+    this.exposure = 50;
+    this.slide(0);
+  }
+
   private hydrate = (element: Element) => {
     if (!isImg(element)) {
       return;
@@ -128,7 +133,7 @@ export class ImgComparisonSlider extends HTMLElement {
     element.classList.add('hydrated');
   };
 
-  public slide(increment = 0, transition = false) {
+  private slide(increment = 0, transition = false) {
     this.exposure = inBetween(this.exposure + increment, 0, 100);
 
     if (transition) {
@@ -144,14 +149,15 @@ export class ImgComparisonSlider extends HTMLElement {
     this.afterElement.style.width = `${this.exposure}%`;
   }
 
-  /**
-   * This dynamic window.onmousemove event handler
-   * registers on mousedown and removes on mouse up.
-   * The whole mumbo-jumbo is needed to capture
-   * mouse events outside of component. This provides
-   * better user experience.
-   */
   private onWindowMouseMove = (e: MouseEvent) => {
+    /**
+     * This dynamic window.onmousemove event handler
+     * registers on mousedown and removes on mouse up.
+     * The whole mumbo-jumbo is needed to capture
+     * mouse events outside of component. This provides
+     * better user experience.
+     */
+
     if (this.isMouseDown) {
       this.slideToPageX(e.pageX);
     }
@@ -289,4 +295,7 @@ export class ImgComparisonSlider extends HTMLElement {
   };
 }
 
-window.customElements.define('img-comparison-slider', ImgComparisonSlider);
+window.customElements.define(
+  'img-comparison-slider',
+  HTMLImgComparisonSliderElement
+);
