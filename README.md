@@ -27,7 +27,7 @@ Because all existing solutions lack at least one of the features:
 ```
 <custom-element-demo>
   <template>
-    <script defer src="https://unpkg.com/img-comparison-slider@4"></script>
+    <script defer src="https://unpkg.com/img-comparison-slider@4/dist/index.js"></script>
     <link
       rel="stylesheet"
       href="https://unpkg.com/img-comparison-slider@4/dist/styles.css"
@@ -47,7 +47,10 @@ Because all existing solutions lack at least one of the features:
 ### HTML
 
 ```html
-<script defer src="https://unpkg.com/img-comparison-slider@4"></script>
+<script
+  defer
+  src="https://unpkg.com/img-comparison-slider@4/dist/index.js"
+></script>
 <link
   rel="stylesheet"
   href="https://unpkg.com/img-comparison-slider@4/dist/styles.css"
