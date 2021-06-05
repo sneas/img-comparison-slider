@@ -49,6 +49,9 @@ const demoConfig = {
       filename: 'index.html',
       inject: true,
     }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'public/static', to: '' }],
+    }),
   ],
   output: {
     path: path.resolve(__dirname, 'demo'),
