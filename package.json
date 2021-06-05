@@ -20,11 +20,12 @@
     "start": "webpack serve --env development --open",
     "predemo": "rimraf ./demo",
     "demo": "webpack --env demo",
-    "gh": "gh-pages -d www",
+    "gh": "gh-pages -d demo",
     "release-bindings": "./scripts/release-bindings.sh"
   },
   "devDependencies": {
     "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
     "copy-webpack-plugin": "^9.0.0",
     "css-loader": "^5.2.6",
     "file-loader": "^6.2.0",
