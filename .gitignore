@@ -65,6 +65,6 @@ typings/
 .vscode
 
 dist/
-demo/
+/demo/
 loader/
 .DS_Store
