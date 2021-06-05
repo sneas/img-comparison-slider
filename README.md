@@ -27,9 +27,11 @@ Because all existing solutions lack at least one of the features:
 ```
 <custom-element-demo>
   <template>
-    <script type="module" src="https://unpkg.com/img-comparison-slider@3/dist/component/component.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/img-comparison-slider@3/dist/component/component.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/img-comparison-slider@3/dist/collection/styles/initial.css">
+    <script defer src="https://unpkg.com/img-comparison-slider@4/dist/index.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/img-comparison-slider@4/dist/styles.css"
+    />
 
     <img-comparison-slider>
       <img slot="before" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/before.webp">
@@ -46,16 +48,12 @@ Because all existing solutions lack at least one of the features:
 
 ```html
 <script
-  type="module"
-  src="https://unpkg.com/img-comparison-slider@3/dist/component/component.esm.js"
-></script>
-<script
-  nomodule=""
-  src="https://unpkg.com/img-comparison-slider@3/dist/component/component.js"
+  defer
+  src="https://unpkg.com/img-comparison-slider@4/dist/index.js"
 ></script>
 <link
   rel="stylesheet"
-  href="https://unpkg.com/img-comparison-slider@3/dist/collection/styles/initial.css"
+  href="https://unpkg.com/img-comparison-slider@4/dist/styles.css"
 />
 
 <img-comparison-slider>

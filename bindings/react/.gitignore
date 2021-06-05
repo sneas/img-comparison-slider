@@ -1,4 +1,2 @@
-src/react-component-lib/*
-src/components.ts
 dist/*
 package-lock.json

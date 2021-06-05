@@ -1,45 +1,37 @@
-import typescript from 'rollup-plugin-typescript2';
+import ts from 'rollup-plugin-typescript2';
 import pkg from './package.json';
-import commonjs from 'rollup-plugin-commonjs';
-import { terser } from 'rollup-plugin-terser';
 
-export default {
-  input: 'src/index.ts',
-  output: [
-    {
+function createEntry(options) {
+  const config = {
+    input: './src/index.ts',
+    external: ['vue'],
+    output: {
       name: 'ImgComparisonSlider',
-      file: 'dist/index.esm.js',
-      format: 'esm',
-      sourcemap: true,
-    },
-    {
-      name: 'ImgComparisonSlider',
-      file: 'dist/index.umd.js',
-      format: 'umd',
-      sourcemap: true,
+      file: options.file,
+      format: options.format,
+      exports: 'named',
       globals: {
-        'vue-property-decorator': 'vuePropertyDecorator',
+        vue: 'Vue',
       },
     },
-  ],
-  external: [
-    ...Object.keys(pkg.dependencies || {}),
-    'tslib',
-    'vue',
-    'vuex',
-    'vuex-class',
-    'vuetify',
-    'vuetify/lib',
-  ],
-  plugins: [
-    typescript({
-      typescript: require('typescript'),
-      objectHashIgnoreUnknownHack: true,
-      module: 'es6',
-      tsconfig: 'tsconfig.json',
-      tsconfigOverride: { exclude: ['node_modules', 'src/main.ts', 'tests'] },
-    }),
-    commonjs(),
-    terser(),
-  ],
-};
+    plugins: [
+      ts({
+        check: options.format === 'es',
+        tsconfigOverride: {
+          compilerOptions: {
+            declaration: options.format === 'es',
+          },
+          exclude: ['src', 'example'],
+        },
+      }),
+    ],
+  };
+
+  return config;
+}
+
+export default [
+  createEntry({ format: 'iife', file: pkg.browser }),
+  createEntry({ format: 'es', file: pkg.module }),
+  createEntry({ format: 'cjs', file: pkg.main }),
+];

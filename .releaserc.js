@@ -25,7 +25,8 @@ module.exports = {
     [
       '@semantic-release/exec',
       {
-        successCmd: 'npm run release-bindings',
+        // Wait for NPM to apply new version before releasing bindings
+        successCmd: 'sleep 10 && npm run release-bindings',
       },
     ],
   ],

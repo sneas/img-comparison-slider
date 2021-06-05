@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
+    <link rel="stylesheet" href="styles.css" />
     <script defer src="https://unpkg.com/@sneas/x-ray@3/dist/index.js"></script>
     <meta charset="utf-8" />
     <meta
@@ -13,9 +14,6 @@
       type="image/svg+xml"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%220%22 fill=%22%2383a5d5%22></rect><path fill=%22%23fff%22 d=%22M54.22 18.01L54.22 81.99L45.78 81.99L45.78 18.01L54.22 18.01Z%22></path></svg>"
     />
-    <script type="module" src="build/component.esm.js"></script>
-    <script nomodule src="build/component.js"></script>
-    <link rel="stylesheet" href="styles/initial.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -79,24 +77,27 @@
         </div>
         <div class="col-12 col-sm-8 col-md-9">
           <h3 id="default">Default settings</h3>
+          <!-- htmlmin:ignore -->
           <x-ray>
             <code>
               <img-comparison-slider>
                 <img
                   slot="before"
                   width="100%"
-                  src="demo/images/forest-fall.webp"
+                  src="<%=require('./images/forest-fall.webp')%>"
                 />
                 <img
                   slot="after"
                   width="100%"
-                  src="demo/images/forest-summer.webp"
+                  src="<%=require('./images/forest-summer.webp')%>"
                 />
               </img-comparison-slider>
             </code>
           </x-ray>
+          <!-- htmlmin:ignore -->
 
           <h3 id="always-show">Don't hide handle and make it larger</h3>
+          <!-- htmlmin:ignore -->
           <x-ray>
             <code>
               <style>
@@ -107,14 +108,24 @@
                 }
               </style>
               <img-comparison-slider class="slider-example-opacity-and-size">
-                <img slot="before" width="100%" src="demo/images/cat.webp" />
-                <img slot="after" width="100%" src="demo/images/dog.webp" />
+                <img
+                  slot="before"
+                  width="100%"
+                  src="<%=require('./images/cat.webp')%>"
+                />
+                <img
+                  slot="after"
+                  width="100%"
+                  src="<%=require('./images/dog.webp')%>"
+                />
               </img-comparison-slider>
             </code>
           </x-ray>
+          <!-- htmlmin:ignore -->
 
           <h3 id="relative-size">Relative size handle</h3>
           <p>Resize the window to see it in action.</p>
+          <!-- htmlmin:ignore -->
           <x-ray>
             <code>
               <style>
@@ -128,14 +139,20 @@
                 <img
                   slot="before"
                   width="100%"
-                  src="demo/images/sunflower.webp"
+                  src="<%=require('./images/sunflower.webp')%>"
                 />
-                <img slot="after" width="100%" src="demo/images/gerber.webp" />
+                <img
+                  slot="after"
+                  width="100%"
+                  src="<%=require('./images/gerber.webp')%>"
+                />
               </img-comparison-slider>
             </code>
           </x-ray>
+          <!-- htmlmin:ignore -->
 
           <h3 id="focus">Change element :focus styles</h3>
+          <!-- htmlmin:ignore -->
           <x-ray>
             <code>
               <style>
@@ -153,13 +170,23 @@
                 }
               </style>
               <img-comparison-slider class="slider-example-focus">
-                <img slot="before" width="100%" src="demo/images/salad.webp" />
-                <img slot="after" width="100%" src="demo/images/pizza.webp" />
+                <img
+                  slot="before"
+                  width="100%"
+                  src="<%=require('./images/salad.webp')%>"
+                />
+                <img
+                  slot="after"
+                  width="100%"
+                  src="<%=require('./images/pizza.webp')%>"
+                />
               </img-comparison-slider>
             </code>
           </x-ray>
+          <!-- htmlmin:ignore -->
 
           <h3 id="custom-handle">Custom handle</h3>
+          <!-- htmlmin:ignore -->
           <x-ray>
             <code>
               <style>
@@ -175,25 +202,31 @@
                 }
               </style>
               <img-comparison-slider class="slider-with-custom-handle">
-                <img slot="before" width="100%" src="demo/images/apples.webp" />
+                <img
+                  slot="before"
+                  width="100%"
+                  src="<%=require('./images/apples.webp')%>"
+                />
                 <img
                   slot="after"
                   width="100%"
-                  src="demo/images/raspberries.webp"
+                  src="<%=require('./images/raspberries.webp')%>"
                 />
                 <img
                   slot="handle"
                   class="custom-handle"
-                  src="demo/images/chevron-handle.svg"
+                  src="<%=require('./images/chevron-handle.svg')%>"
                 />
               </img-comparison-slider>
             </code>
           </x-ray>
+          <!-- htmlmin:ignore -->
 
           <h3 id="custom-handle-with-relative-size">
             Custom relative size handle
           </h3>
           <p>Resize the window to see it in action.</p>
+          <!-- htmlmin:ignore -->
           <x-ray>
             <code>
               <style>
@@ -212,19 +245,25 @@
                 <img
                   slot="before"
                   width="100%"
-                  src="demo/images/sunrise.webp"
+                  src="<%=require('./images/sunrise.webp')%>"
                 />
-                <img slot="after" width="100%" src="demo/images/sunset.webp" />
+                <img
+                  slot="after"
+                  width="100%"
+                  src="<%=require('./images/sunset.webp')%>"
+                />
                 <img
                   slot="handle"
                   class="custom-relative-handle"
-                  src="demo/images/arrows-handle.svg"
+                  src="<%=require('./images/arrows-handle.svg')%>"
                 />
               </img-comparison-slider>
             </code>
           </x-ray>
+          <!-- htmlmin:ignore -->
 
           <h3 id="width">No handle and change spilt line width</h3>
+          <!-- htmlmin:ignore -->
           <x-ray>
             <code>
               <style>
@@ -235,15 +274,20 @@
                 }
               </style>
               <img-comparison-slider class="slider-example-split-line">
-                <img slot="before" width="100%" src="demo/images/tulips.webp" />
+                <img
+                  slot="before"
+                  width="100%"
+                  src="<%=require('./images/tulips.webp')%>"
+                />
                 <img
                   slot="after"
                   width="100%"
-                  src="demo/images/chamomiles.webp"
+                  src="<%=require('./images/chamomiles.webp')%>"
                 />
               </img-comparison-slider>
             </code>
           </x-ray>
+          <!-- htmlmin:ignore -->
         </div>
       </div>
     </div>

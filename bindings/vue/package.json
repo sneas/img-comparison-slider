@@ -8,6 +8,7 @@
   },
   "module": "./dist/index.esm.js",
   "main": "./dist/index.umd.js",
+  "browser": "./dist/index.browser.js",
   "files": [
     "dist/"
   ],
