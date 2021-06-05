@@ -1,13 +1,26 @@
-<!doctype html><html dir="ltr" lang="en"><head> <script defer="" src="https://unpkg.com/@sneas/x-ray@3/dist/index.js"></script> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"> <title>Slider Component For Comparing Two Images</title> <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%220%22 fill=%22%2383a5d5%22></rect><path fill=%22%23fff%22 d=%22M54.22 18.01L54.22 81.99L45.78 81.99L45.78 18.01L54.22 18.01Z%22></path></svg>"> <script type="module" src="build/component.esm.js"></script> <script nomodule="" src="build/component.js"></script> <link rel="stylesheet" href="styles/initial.css"> <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> <style>x-ray {
+<!doctype html><html dir="ltr" lang="en"><head><link rel="stylesheet" href="styles.css"/><script defer="defer" src="https://unpkg.com/@sneas/x-ray@3/dist/index.js"></script><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"/><title>Slider Component For Comparing Two Images</title><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%220%22 fill=%22%2383a5d5%22></rect><path fill=%22%23fff%22 d=%22M54.22 18.01L54.22 81.99L45.78 81.99L45.78 18.01L54.22 18.01Z%22></path></svg>"/><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/><style>x-ray {
         display: block;
         margin-bottom: 1rem;
-      }</style> </head> <body> <div class="container mt-4 mb-4"> <h1>Slider Component For Comparing Two Images</h1> <p> Installation and usage instructions are available on <a href="https://github.com/sneas/img-comparison-slider">GitHub</a>. </p> <p> <a class="github-button" href="https://github.com/sneas/img-comparison-slider" data-size="large" aria-label="Star sneas/img-comparison-slider on GitHub">img-comparison-slider</a> </p> <h2>Usage Examples</h2> <p> All images in the examples are given <code>width="100%"</code> property
-        to make them responsive. </p> <div class="row"> <div class="col-12 col-sm-4 col-md-3 mb-4"> <nav class="position-sticky" style="top: 0.5rem;"> <a class="d-block mb-2" href="#default">Default settings</a> <a class="d-block mb-2" href="#always-show">Don't hide handle and make it larger</a> <a class="d-block mb-2" href="#relative-size">Relative size handle</a> <a class="d-block mb-2" href="#focus">Change element :focus styles</a> <a class="d-block mb-2" href="#custom-handle">Custom handle</a> <a class="d-block mb-2" href="#custom-handle-with-relative-size">Custom relative size handle</a> <a class="d-block" href="#width">No handle and change spilt line width</a> </nav> </div> <div class="col-12 col-sm-8 col-md-9"> <h3 id="default">Default settings</h3> <x-ray> <code>
+      }</style><script defer="defer" src="index.js"></script></head><body><div class="container mt-4 mb-4"><h1>Slider Component For Comparing Two Images</h1><p>Installation and usage instructions are available on <a href="https://github.com/sneas/img-comparison-slider">GitHub</a>.</p><p><a class="github-button" href="https://github.com/sneas/img-comparison-slider" data-size="large" aria-label="Star sneas/img-comparison-slider on GitHub">img-comparison-slider</a></p><h2>Usage Examples</h2><p>All images in the examples are given <code>width="100%"</code> property to make them responsive.</p><div class="row"><div class="col-12 col-sm-4 col-md-3 mb-4"><nav class="position-sticky" style="top: 0.5rem"><a class="d-block mb-2" href="#default">Default settings</a> <a class="d-block mb-2" href="#always-show">Don't hide handle and make it larger</a> <a class="d-block mb-2" href="#relative-size">Relative size handle</a> <a class="d-block mb-2" href="#focus">Change element :focus styles</a> <a class="d-block mb-2" href="#custom-handle">Custom handle</a> <a class="d-block mb-2" href="#custom-handle-with-relative-size">Custom relative size handle</a> <a class="d-block" href="#width">No handle and change spilt line width</a></nav></div><div class="col-12 col-sm-8 col-md-9"><h3 id="default">Default settings</h3>
+          <x-ray>
+            <code>
               <img-comparison-slider>
-                <img slot="before" width="100%" src="demo/images/forest-fall.webp">
-                <img slot="after" width="100%" src="demo/images/forest-summer.webp">
+                <img
+                  slot="before"
+                  width="100%"
+                  src="images/forest-fall.webp"
+                />
+                <img
+                  slot="after"
+                  width="100%"
+                  src="images/forest-summer.webp"
+                />
               </img-comparison-slider>
-            </code> </x-ray> <h3 id="always-show">Don't hide handle and make it larger</h3> <x-ray> <code>
+            </code>
+          </x-ray>
+          <h3 id="always-show">Don't hide handle and make it larger</h3>
+          <x-ray>
+            <code>
               <style>
                 .slider-example-opacity-and-size {
                   --handle-opacity: 0.5;
@@ -16,10 +29,22 @@
                 }
               </style>
               <img-comparison-slider class="slider-example-opacity-and-size">
-                <img slot="before" width="100%" src="demo/images/cat.webp">
-                <img slot="after" width="100%" src="demo/images/dog.webp">
+                <img
+                  slot="before"
+                  width="100%"
+                  src="images/cat.webp"
+                />
+                <img
+                  slot="after"
+                  width="100%"
+                  src="images/dog.webp"
+                />
               </img-comparison-slider>
-            </code> </x-ray> <h3 id="relative-size">Relative size handle</h3> <p>Resize the window to see it in action.</p> <x-ray> <code>
+            </code>
+          </x-ray>
+          <h3 id="relative-size">Relative size handle</h3><p>Resize the window to see it in action.</p>
+          <x-ray>
+            <code>
               <style>
                 .slider-example-relative-size {
                   --handle-opacity: 0.5;
@@ -28,10 +53,22 @@
                 }
               </style>
               <img-comparison-slider class="slider-example-relative-size">
-                <img slot="before" width="100%" src="demo/images/sunflower.webp">
-                <img slot="after" width="100%" src="demo/images/gerber.webp">
+                <img
+                  slot="before"
+                  width="100%"
+                  src="images/sunflower.webp"
+                />
+                <img
+                  slot="after"
+                  width="100%"
+                  src="images/gerber.webp"
+                />
               </img-comparison-slider>
-            </code> </x-ray> <h3 id="focus">Change element :focus styles</h3> <x-ray> <code>
+            </code>
+          </x-ray>
+          <h3 id="focus">Change element :focus styles</h3>
+          <x-ray>
+            <code>
               <style>
                 .slider-example-focus {
                   /*
@@ -47,10 +84,22 @@
                 }
               </style>
               <img-comparison-slider class="slider-example-focus">
-                <img slot="before" width="100%" src="demo/images/salad.webp">
-                <img slot="after" width="100%" src="demo/images/pizza.webp">
+                <img
+                  slot="before"
+                  width="100%"
+                  src="images/salad.webp"
+                />
+                <img
+                  slot="after"
+                  width="100%"
+                  src="images/pizza.webp"
+                />
               </img-comparison-slider>
-            </code> </x-ray> <h3 id="custom-handle">Custom handle</h3> <x-ray> <code>
+            </code>
+          </x-ray>
+          <h3 id="custom-handle">Custom handle</h3>
+          <x-ray>
+            <code>
               <style>
                 .slider-with-custom-handle {
                   --handle-size: 100px;
@@ -64,11 +113,27 @@
                 }
               </style>
               <img-comparison-slider class="slider-with-custom-handle">
-                <img slot="before" width="100%" src="demo/images/apples.webp">
-                <img slot="after" width="100%" src="demo/images/raspberries.webp">
-                <img slot="handle" class="custom-handle" src="demo/images/chevron-handle.svg">
+                <img
+                  slot="before"
+                  width="100%"
+                  src="images/apples.webp"
+                />
+                <img
+                  slot="after"
+                  width="100%"
+                  src="images/raspberries.webp"
+                />
+                <img
+                  slot="handle"
+                  class="custom-handle"
+                  src="images/chevron-handle.svg"
+                />
               </img-comparison-slider>
-            </code> </x-ray> <h3 id="custom-handle-with-relative-size"> Custom relative size handle </h3> <p>Resize the window to see it in action.</p> <x-ray> <code>
+            </code>
+          </x-ray>
+          <h3 id="custom-handle-with-relative-size">Custom relative size handle</h3><p>Resize the window to see it in action.</p>
+          <x-ray>
+            <code>
               <style>
                 .slider-with-custom-relative-handle {
                   --handle-size: clamp(10px, 8.5vw, 100px);
@@ -82,11 +147,27 @@
                 }
               </style>
               <img-comparison-slider class="slider-with-custom-relative-handle">
-                <img slot="before" width="100%" src="demo/images/sunrise.webp">
-                <img slot="after" width="100%" src="demo/images/sunset.webp">
-                <img slot="handle" class="custom-relative-handle" src="demo/images/arrows-handle.svg">
+                <img
+                  slot="before"
+                  width="100%"
+                  src="images/sunrise.webp"
+                />
+                <img
+                  slot="after"
+                  width="100%"
+                  src="images/sunset.webp"
+                />
+                <img
+                  slot="handle"
+                  class="custom-relative-handle"
+                  src="images/arrows-handle.svg"
+                />
               </img-comparison-slider>
-            </code> </x-ray> <h3 id="width">No handle and change spilt line width</h3> <x-ray> <code>
+            </code>
+          </x-ray>
+          <h3 id="width">No handle and change spilt line width</h3>
+          <x-ray>
+            <code>
               <style>
                 .slider-example-split-line {
                   --divider-width: 4px;
@@ -95,7 +176,17 @@
                 }
               </style>
               <img-comparison-slider class="slider-example-split-line">
-                <img slot="before" width="100%" src="demo/images/tulips.webp">
-                <img slot="after" width="100%" src="demo/images/chamomiles.webp">
+                <img
+                  slot="before"
+                  width="100%"
+                  src="images/tulips.webp"
+                />
+                <img
+                  slot="after"
+                  width="100%"
+                  src="images/chamomiles.webp"
+                />
               </img-comparison-slider>
-            </code> </x-ray> </div> </div> </div> <script async="" defer="" src="https://buttons.github.io/buttons.js"></script> </body></html>
+            </code>
+          </x-ray>
+          </div></div></div><script async defer="defer" src="https://buttons.github.io/buttons.js"></script></body></html>

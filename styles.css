@@ -1,0 +1,7 @@
+img-comparison-slider {
+  visibility: hidden;
+}
+
+img-comparison-slider.rendered {
+  visibility: inherit;
+}
