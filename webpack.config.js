@@ -15,7 +15,17 @@ const commonConfig = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: ['css-loader', 'sass-loader'],
+        use: [
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: false,
+            },
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
       },
       {
         test: /images\/.+\.(webp|svg)$/i,
