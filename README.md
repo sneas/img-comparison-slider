@@ -14,7 +14,7 @@ Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.gi
 - Mobile friendly
 - Accessible
 - Responsive
-- Compact - 7KB minified
+- Compact - 7.2 kB minified (2.8 kB when gzipped)
 - Compatible with modern frameworks ([React](bindings/react/README.md),
   [Angular](docs/installation/angular.md),
   [Vue2](docs/installation/vue.md),
