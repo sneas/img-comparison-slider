@@ -9,14 +9,12 @@ Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.gi
 
 ![Example](docs/example.gif)
 
-## Why yet another slider?
-
-Because all existing solutions lack at least one of the features:
+## Key Features
 
 - Mobile friendly
 - Accessible
 - Responsive
-- jQuery free
+- Compact - 7KB minified
 - Compatible with modern frameworks ([React](bindings/react/README.md),
   [Angular](docs/installation/angular.md),
   [Vue2](docs/installation/vue.md),
@@ -62,7 +60,7 @@ Because all existing solutions lack at least one of the features:
 </img-comparison-slider>
 ```
 
-### Frameworks support
+### Frameworks Support
 
 - [React](bindings/react/README.md)
 - [Angular](docs/installation/angular.md)
