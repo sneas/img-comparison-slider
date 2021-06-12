@@ -1,3 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="17" height="6" viewBox="-8 -3 17 6">
-  <path stroke="#fff" d="M -5 -2 L -7 0 L -5 2 L -5 -2 M 6 -2 L 8 0 L 6 2" stroke-width="1" fill="#fff" vector-effect="non-scaling-stroke" />
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="50"
+  viewBox="-8 -3 16 6"
+>
+  <path
+    stroke="#fff"
+    d="M -5 -2 L -7 0 L -5 2 M 5 -2 L 7 0 L 5 2"
+    stroke-width="1"
+    fill="#fff"
+    vector-effect="non-scaling-stroke"
+  />
 </svg>

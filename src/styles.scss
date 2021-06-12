@@ -43,23 +43,12 @@
   .after-overlay {
     overflow: hidden;
   }
-
-  &:before {
-    content: ' ';
-    position: absolute;
-    display: block;
-    right: calc(var(--divider-width) * -0.5);
-    top: 0;
-    bottom: 0;
-    border-right-width: var(--divider-width);
-    border-right-style: solid;
-    border-right-color: var(--divider-color);
-  }
 }
 
 .handle-container {
+  transform: translateX(50%);
   position: absolute;
-  width: 100%;
+  right: 0;
   height: 100%;
   display: flex;
   align-items: flex-end;
@@ -67,10 +56,32 @@
   flex-direction: column;
 }
 
-.handle-wrapper {
-  transform: translateX(50%);
+.divider {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &:after {
+    content: ' ';
+    display: block;
+    height: 100%;
+    border-left-width: var(--divider-width);
+    border-left-style: solid;
+    border-left-color: var(--divider-color);
+  }
+}
+
+.handle {
   pointer-events: none;
   box-sizing: border-box;
+  margin-left: 1px;
+  transform: translateX(-0.5px);
 }
 
 .default-handle {
