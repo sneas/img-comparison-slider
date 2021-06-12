@@ -58,7 +58,7 @@
           <nav class="position-sticky" style="top: 0.5rem">
             <a class="d-block mb-2" href="#default">Default settings</a>
             <a class="d-block mb-2" href="#always-show"
-              >Don't hide handle and make it larger</a
+              >Make handle larger and change opacity</a
             >
             <a class="d-block mb-2" href="#relative-size"
               >Relative size handle</a
@@ -67,8 +67,8 @@
               >Change element :focus styles</a
             >
             <a class="d-block mb-2" href="#custom-handle">Custom handle</a>
-            <a class="d-block mb-2" href="#custom-handle-with-relative-size"
-              >Custom relative size handle</a
+            <a class="d-block mb-2" href="#custom-handle-with-animation"
+              >Custom handle with hover animation</a
             >
             <a class="d-block" href="#width"
               >No handle and change spilt line width</a
@@ -96,15 +96,14 @@
           </x-ray>
           <!-- htmlmin:ignore -->
 
-          <h3 id="always-show">Don't hide handle and make it larger</h3>
+          <h3 id="always-show">Make handle larger and change opacity</h3>
           <!-- htmlmin:ignore -->
           <x-ray>
             <code>
               <style>
                 .slider-example-opacity-and-size {
-                  --handle-opacity: 0.5;
-                  --handle-opacity-active: 0.5;
-                  --handle-size: 60px;
+                  --default-handle-opacity: 0.5;
+                  --default-handle-width: 100px;
                 }
               </style>
               <img-comparison-slider class="slider-example-opacity-and-size">
@@ -130,9 +129,7 @@
             <code>
               <style>
                 .slider-example-relative-size {
-                  --handle-opacity: 0.5;
-                  --handle-opacity-active: 0.5;
-                  --handle-size: clamp(10px, 5vw, 50px);
+                  --default-handle-width: clamp(40px, 10vw, 200px);
                 }
               </style>
               <img-comparison-slider class="slider-example-relative-size">
@@ -186,22 +183,15 @@
           <!-- htmlmin:ignore -->
 
           <h3 id="custom-handle">Custom handle</h3>
+          <p>
+            Add <code>slot="handle"</code> attribute to any tag inside
+            <code>&lt;img-comparison-slider&gt;</code> and it will become a
+            handle. In this example we use <code>&lt;svg&gt;</code>.
+          </p>
           <!-- htmlmin:ignore -->
           <x-ray>
             <code>
-              <style>
-                .slider-with-custom-handle {
-                  --handle-size: 100px;
-                  --handle-opacity: 0.5;
-                  --handle-opacity-active: 0.5;
-                }
-
-                .custom-handle {
-                  width: var(--handle-size);
-                  height: var(--handle-size);
-                }
-              </style>
-              <img-comparison-slider class="slider-with-custom-handle">
+              <img-comparison-slider>
                 <img
                   slot="before"
                   width="100%"
@@ -212,36 +202,41 @@
                   width="100%"
                   src="<%=require('./images/raspberries.webp')%>"
                 />
-                <img
+                <svg
                   slot="handle"
-                  class="custom-handle"
-                  src="<%=require('./images/chevron-handle.svg')%>"
-                />
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="99"
+                  viewBox="-8 -3 17 6"
+                >
+                  <path
+                    stroke="#fff"
+                    d="M -5 -2 L -7 0 L -5 2 L -5 -2 M 6 -2 L 8 0 L 6 2"
+                    stroke-width="1"
+                    fill="#fff"
+                    vector-effect="non-scaling-stroke"
+                  />
+                </svg>
               </img-comparison-slider>
             </code>
           </x-ray>
           <!-- htmlmin:ignore -->
 
-          <h3 id="custom-handle-with-relative-size">
-            Custom relative size handle
+          <h3 id="custom-handle-with-animation">
+            Custom handle with hover animation
           </h3>
-          <p>Resize the window to see it in action.</p>
           <!-- htmlmin:ignore -->
           <x-ray>
             <code>
               <style>
-                .slider-with-custom-relative-handle {
-                  --handle-size: clamp(10px, 8.5vw, 100px);
-                  --handle-opacity: 0.4;
-                  --handle-opacity-active: 0.4;
+                .custom-animated-handle {
+                  transition: transform 0.2s;
                 }
 
-                .custom-relative-handle {
-                  width: var(--handle-size);
-                  height: var(--handle-size);
+                .slider-with-animated-handle:hover .custom-animated-handle {
+                  transform: scale(1.2);
                 }
               </style>
-              <img-comparison-slider class="slider-with-custom-relative-handle">
+              <img-comparison-slider class="slider-with-animated-handle">
                 <img
                   slot="before"
                   width="100%"
@@ -252,11 +247,21 @@
                   width="100%"
                   src="<%=require('./images/sunset.webp')%>"
                 />
-                <img
+                <svg
                   slot="handle"
-                  class="custom-relative-handle"
-                  src="<%=require('./images/arrows-handle.svg')%>"
-                />
+                  class="custom-animated-handle"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="99"
+                  viewBox="-8 -3 17 6"
+                >
+                  <path
+                    stroke="#fff"
+                    d="M -5 -2 L -7 0 L -5 2 L -5 -2 M 6 -2 L 8 0 L 6 2"
+                    stroke-width="1"
+                    fill="#fff"
+                    vector-effect="non-scaling-stroke"
+                  />
+                </svg>
               </img-comparison-slider>
             </code>
           </x-ray>
@@ -270,7 +275,7 @@
                 .slider-example-split-line {
                   --divider-width: 4px;
                   --divider-color: #ffa658;
-                  --handle-opacity: 0;
+                  --default-handle-opacity: 0;
                 }
               </style>
               <img-comparison-slider class="slider-example-split-line">

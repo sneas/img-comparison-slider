@@ -78,18 +78,17 @@ Example:
   img-comparison-slider {
     --divider-width: 2px;
     --divider-color: #c0c0c0;
-    --handle-opacity: 0.3;
+    --default-handle-opacity: 0.3;
   }
 </style>
 ```
 
 ### Available variables
 
-| Variable                  | Description                                     | Default value |
-| ------------------------- | ----------------------------------------------- | ------------- |
-| `--divider-width`         | Width of the vertical line dividing both images | `1px`         |
-| `--divider-color`         | Color of the vertical line dividing both images | `#d7d7d7`     |
-| `--handle-size`           | Size of the handle in the middle of divider     | `40px`        |
-| `--handle-color`          | Color of the handle in the middle of divider    | `#d7d7d7`     |
-| `--handle-opacity`        | Opacity of the handle                           | `0.5`         |
-| `--handle-opacity-active` | On focus opacity of the handle                  | `0`           |
+| Variable                   | Description                                     | Default value |
+| -------------------------- | ----------------------------------------------- | ------------- |
+| `--divider-width`          | Width of the vertical line dividing both images | `1px`         |
+| `--divider-color`          | Color of the vertical line dividing both images | `#fff`        |
+| `--default-handle-width`   | Width of the default handle                     | `50px`        |
+| `--default-handle-color`   | Color of the default handle                     | `#fff`        |
+| `--default-handle-opacity` | Opacity of the default handle                   | `1`           |
