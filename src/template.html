@@ -1,0 +1,29 @@
+<div class="before" id="before">
+  <slot name="before"></slot>
+</div>
+<div class="after" id="after">
+  <div class="handle-container">
+    <div class="handle-wrapper">
+      <slot name="handle">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="default-handle"
+          width="50"
+          viewBox="-8 -3 16 6"
+        >
+          <path
+            d="M -5 -2 L -7 0 L -5 2 M 5 -2 L 7 0 L 5 2"
+            fill="none"
+            vector-effect="non-scaling-stroke"
+            stroke="#fff"
+          />
+        </svg>
+      </slot>
+    </div>
+  </div>
+  <div class="after-overlay">
+    <div id="afterImageContainer">
+      <slot name="after"></slot>
+    </div>
+  </div>
+</div>

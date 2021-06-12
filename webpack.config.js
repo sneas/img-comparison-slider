@@ -35,6 +35,10 @@ const commonConfig = {
           esModule: false,
         },
       },
+      {
+        test: /src\/.+\.html/,
+        loader: 'html-loader',
+      },
     ],
   },
   resolve: {
