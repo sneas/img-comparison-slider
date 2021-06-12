@@ -14,7 +14,7 @@ Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.gi
 - Mobile friendly
 - Accessible
 - Responsive
-- Compact - 7.2 kB minified (2.8 kB when gzipped)
+- Compact - less than 9 kB minified (Or less than 3 kB when gzipped)
 - Compatible with modern frameworks ([React](bindings/react/README.md),
   [Angular](docs/installation/angular.md),
   [Vue2](docs/installation/vue.md),
@@ -69,7 +69,9 @@ Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.gi
 
 ## Styling
 
-The component could be styled with the help of CSS3 variables.
+Some styling techniques and ideas could be, possibly, found in the [demo](https://sneas.github.io/img-comparison-slider).
+
+The component items such as default handle or divider could be styled with the help of CSS3 variables.
 
 Example:
 
@@ -92,3 +94,7 @@ Example:
 | `--default-handle-width`   | Width of the default handle                     | `50px`        |
 | `--default-handle-color`   | Color of the default handle                     | `#fff`        |
 | `--default-handle-opacity` | Opacity of the default handle                   | `1`           |
+
+### Handle
+
+The component's handle could be changed by assigning `slot="handle"` attribute to any element inside `img-comparison-slider`.
