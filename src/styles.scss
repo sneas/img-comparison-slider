@@ -1,10 +1,9 @@
 :host {
   --divider-width: 1px;
-  --divider-color: #d7d7d7;
-  --handle-size: 40px;
-  --handle-color: #d7d7d7;
-  --handle-opacity: 0.5;
-  --handle-opacity-active: 0;
+  --divider-color: #fff;
+  --default-handle-width: 50px;
+  --default-handle-color: #fff;
+  --default-handle-opacity: 1;
 
   position: relative;
   display: inline-block;
@@ -12,12 +11,6 @@
   overflow: hidden;
   isolation: isolate;
   line-height: 0;
-}
-
-:host(:focus) {
-  .handle-wrapper {
-    opacity: var(--handle-opacity-active);
-  }
 }
 
 ::slotted(img) {
@@ -50,41 +43,55 @@
   .after-overlay {
     overflow: hidden;
   }
+}
 
-  &:before {
+.handle-container {
+  transform: translateX(50%);
+  position: absolute;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.divider {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  &:after {
     content: ' ';
-    position: absolute;
     display: block;
-    right: calc(var(--divider-width) * -0.5);
-    top: 0;
-    bottom: 0;
-    border-right-width: var(--divider-width);
-    border-right-style: solid;
-    border-right-color: var(--divider-color);
+    height: 100%;
+    border-left-width: var(--divider-width);
+    border-left-style: solid;
+    border-left-color: var(--divider-color);
   }
 }
 
-.handle-wrapper {
-  position: absolute;
-  width: var(--handle-size);
-  height: var(--handle-size);
-  margin-top: calc(var(--handle-size) / (-2));
-  margin-right: calc(var(--handle-size) / (-2));
-  top: 50%;
-  right: 0;
+.handle {
   pointer-events: none;
   box-sizing: border-box;
-  opacity: var(--handle-opacity);
-  transition: opacity 1s;
+  margin-left: 1px;
+  transform: translateX(-0.5px);
 }
 
-.handle {
-  background-color: var(--handle-color);
-  width: var(--handle-size);
-  height: var(--handle-size);
-  transition: transform 1s;
-  transform: rotate(45deg);
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+.default-handle {
+  width: var(--default-handle-width);
+  opacity: var(--default-handle-opacity);
+  transition: all 1s;
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 1));
+  path {
+    stroke: var(--default-handle-color);
+  }
 }
 
 .focused .handle {

@@ -2,30 +2,11 @@ import styles from './styles.scss';
 import { inBetween } from './inBetween';
 import { isImg } from './isImg';
 import { isSlot } from './isSlot';
+import templateHtml from './template.html';
 
-const template = document.createElement('template');
+const templateElement = document.createElement('template');
 
-template.innerHTML = `
-  <style>
-    ${styles}
-  </style>
-
-  <div class="before" id="before">
-    <slot name="before"></slot>
-  </div>
-  <div class="after" id="after">
-    <div class="handle-wrapper">
-      <slot name="handle">
-        <div class="handle"></div>
-      </slot>
-    </div>
-    <div class="after-overlay">
-      <div id="afterImageContainer">
-        <slot name="after"></slot>
-      </div>
-    </div>
-  </div>
-`;
+templateElement.innerHTML = `<style>${styles}</style>${templateHtml}`;
 
 type SlideKey = 'ArrowLeft' | 'ArrowRight';
 
@@ -63,7 +44,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
-    shadowRoot.appendChild(template.content.cloneNode(true));
+    shadowRoot.appendChild(templateElement.content.cloneNode(true));
 
     this.beforeElement = shadowRoot.getElementById('before');
     this.afterElement = shadowRoot.getElementById('after');
