@@ -69,9 +69,9 @@ Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.gi
 
 ## Styling
 
-Some styling techniques and ideas could be, possibly, found in the [demo](https://sneas.github.io/img-comparison-slider).
+Some styling techniques and ideas could be found in the [demo](https://sneas.github.io/img-comparison-slider).
 
-The component items such as default handle or divider could be styled with the help of CSS3 variables.
+The component items such as the default handle or divider could be styled with the help of CSS3 variables.
 
 Example:
 
