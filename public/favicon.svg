@@ -1,0 +1,23 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  class="default-handle"
+  width="16"
+  viewBox="-8 -8 16 16"
+>
+  <style>
+    path {
+      stroke: black;
+    }
+    @media (prefers-color-scheme: dark) {
+      path {
+        stroke: white;
+      }
+    }
+  </style>
+  <path
+    d="M 0 -8 L 0 8 M -5 -2 L -7 0 L -5 2 M 5 -2 L 7 0 L 5 2"
+    fill="none"
+    vector-effect="non-scaling-stroke"
+    stroke="#fff"
+  />
+</svg>

@@ -39,6 +39,13 @@ const commonConfig = {
         test: /src\/.+\.html/,
         loader: 'html-loader',
       },
+      {
+        test: /favicon\.svg?$/,
+        loader: 'file-loader',
+        options: {
+          esModule: false,
+        },
+      },
     ],
   },
   resolve: {
