@@ -66,7 +66,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     this.querySelectorAll('img').forEach(this.hydrate);
 
-    window.addEventListener('resize', this.resetWidth);
+    const resizeObserver = new ResizeObserver(this.resetWidth);
+    resizeObserver.observe(this);
 
     this.slide(0);
     this.setAttribute('tabindex', '0');
