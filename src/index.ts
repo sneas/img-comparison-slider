@@ -1,6 +1,7 @@
 import styles from './styles.scss';
 import { inBetween } from './inBetween';
 import templateHtml from './template.html';
+import { DEFAULT_TABINDEX } from './defaults';
 
 const templateElement = document.createElement('template');
 
@@ -53,7 +54,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
   private connectedCallback() {
     if (!this.hasAttribute('tabindex')) {
-      this.tabIndex = 0;
+      this.tabIndex = DEFAULT_TABINDEX;
     }
 
     this.addEventListener('dragstart', (e) => {

@@ -1,4 +1,5 @@
 import React, { FC, AllHTMLAttributes, PropsWithChildren } from 'react';
+import { DEFAULT_TABINDEX } from '../../../src/defaults';
 
 if (typeof document !== 'undefined') {
   import('img-comparison-slider');
@@ -12,7 +13,15 @@ export const ImgComparisonSlider: FC<ImgComparisonSliderProps> = ({
 }: PropsWithChildren<ImgComparisonSliderProps>) => {
   return React.createElement(
     'img-comparison-slider',
-    Object.assign({}, props),
+    Object.assign(
+      {
+        // Alight tabIndex between the web and React components
+        // this code could be removed when
+        // https://github.com/WICG/webcomponents/issues/762 is resolved.
+        tabIndex: DEFAULT_TABINDEX,
+      },
+      props
+    ),
     children
   );
 };
