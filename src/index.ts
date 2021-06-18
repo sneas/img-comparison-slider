@@ -1,8 +1,7 @@
 import styles from './styles.scss';
 import { inBetween } from './inBetween';
-import { isImg } from './isImg';
-import { isSlot } from './isSlot';
 import templateHtml from './template.html';
+import { TABINDEX, RENDERED_CLASS } from './defaults';
 
 const templateElement = document.createElement('template');
 
@@ -54,22 +53,19 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   private connectedCallback() {
-    this.shadowRoot.querySelectorAll('slot').forEach((slot) => {
-      slot.addEventListener('slotchange', (e) => {
-        if (!isSlot(e.target)) {
-          return;
-        }
+    if (!this.hasAttribute('tabindex')) {
+      this.tabIndex = TABINDEX;
+    }
 
-        e.target.assignedElements().forEach(this.hydrate);
-      });
+    this.addEventListener('dragstart', (e) => {
+      e.preventDefault();
+      return false;
     });
 
-    this.querySelectorAll('img').forEach(this.hydrate);
-
-    window.addEventListener('resize', this.resetWidth);
+    const resizeObserver = new ResizeObserver(this.resetWidth);
+    resizeObserver.observe(this);
 
     this.slide(0);
-    this.setAttribute('tabindex', '0');
 
     this.addEventListener('keydown', this.onKeyDown);
     this.addEventListener('keyup', this.onKeyUp);
@@ -83,7 +79,9 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.addEventListener('mousedown', this.onMouseDown);
 
     this.resetWidth();
-    this.classList.add('rendered');
+    if (!this.classList.contains(RENDERED_CLASS)) {
+      this.classList.add(RENDERED_CLASS);
+    }
   }
 
   private disconnectedCallback() {
@@ -96,23 +94,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.exposure = 50;
     this.slide(0);
   }
-
-  private hydrate = (element: Element) => {
-    if (!isImg(element)) {
-      return;
-    }
-
-    if (element.classList.contains('hydrated')) {
-      return;
-    }
-
-    element.addEventListener('dragstart', (e) => {
-      e.preventDefault();
-    });
-
-    element.addEventListener('load', this.resetWidth);
-    element.classList.add('hydrated');
-  };
 
   private slide(increment = 0, transition = false) {
     this.exposure = inBetween(this.exposure + increment, 0, 100);

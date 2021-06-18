@@ -4,7 +4,6 @@
   "description": "React wrapper for img-comparison-slider",
   "homepage": "https://sneas.github.io/img-comparison-slider",
   "main": "./dist/index.js",
-  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist/"
@@ -17,7 +16,8 @@
   "scripts": {
     "build": "npm run clean && npm run compile",
     "clean": "rimraf dist",
-    "compile": "npm run tsc",
+    "compile": "tsc",
+    "watch": "tsc --watch",
     "tsc": "tsc -p ."
   },
   "devDependencies": {
