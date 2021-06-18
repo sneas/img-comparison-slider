@@ -25,9 +25,9 @@ const getTouchPagePoint = (e: TouchEvent): Point => ({
 });
 
 export class HTMLImgComparisonSliderElement extends HTMLElement {
-  private beforeElement: HTMLElement;
-  private afterElement: HTMLElement;
-  private afterImageContainerElement: HTMLElement;
+  private secondElement: HTMLElement;
+  private firstElement: HTMLElement;
+  private firstImageContainerElement: HTMLElement;
 
   private imageWidth: number;
   private exposure = 50;
@@ -45,10 +45,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: 'open' });
     shadowRoot.appendChild(templateElement.content.cloneNode(true));
 
-    this.beforeElement = shadowRoot.getElementById('before');
-    this.afterElement = shadowRoot.getElementById('after');
-    this.afterImageContainerElement = shadowRoot.getElementById(
-      'afterImageContainer'
+    this.secondElement = shadowRoot.getElementById('second');
+    this.firstElement = shadowRoot.getElementById('first');
+    this.firstImageContainerElement = shadowRoot.getElementById(
+      'firstImageContainer'
     );
   }
 
@@ -82,6 +82,14 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     if (!this.classList.contains(RENDERED_CLASS)) {
       this.classList.add(RENDERED_CLASS);
     }
+
+    if (this.querySelectorAll('[slot="before"], [slot="after"]').length > 0) {
+      console.warn(
+        '<img-comparison-slider>: ' +
+          'slot names "before" and "after" are deprecated and soon won\'t be supported. ' +
+          'Please use slot="first" instead of slot="after", and slot="second" instead of slot="before".'
+      );
+    }
   }
 
   private disconnectedCallback() {
@@ -100,15 +108,15 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     if (transition) {
       const transitionTime = 100;
-      this.afterElement.style.transition = `width ${transitionTime}ms`;
+      this.firstElement.style.transition = `width ${transitionTime}ms`;
 
       this.transitionTimer = window.setTimeout(() => {
-        this.afterElement.style.transition = null;
+        this.firstElement.style.transition = null;
         this.transitionTimer = null;
       }, transitionTime);
     }
 
-    this.afterElement.style.width = `${this.exposure}%`;
+    this.firstElement.style.width = `${this.exposure}%`;
   }
 
   private onWindowMouseMove = (e: MouseEvent) => {
@@ -253,7 +261,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
   private resetWidth = () => {
     this.imageWidth = this.offsetWidth;
-    this.afterImageContainerElement.style.width = `${this.offsetWidth}px`;
+    this.firstImageContainerElement.style.width = `${this.offsetWidth}px`;
   };
 }
 

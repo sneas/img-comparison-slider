@@ -28,21 +28,21 @@
   user-select: none;
 }
 
-.before {
-  position: relative;
-  z-index: -2;
-}
-
-.after {
+.first {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
   z-index: -1;
 
-  .after-overlay {
+  .first-overlay {
     overflow: hidden;
   }
+}
+
+.second {
+  position: relative;
+  z-index: -2;
 }
 
 .handle-container {
