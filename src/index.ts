@@ -52,6 +52,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   private connectedCallback() {
+    if (!this.hasAttribute('tabindex')) {
+      this.tabIndex = 0;
+    }
+
     this.addEventListener('dragstart', (e) => {
       e.preventDefault();
       return false;
@@ -61,7 +65,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     resizeObserver.observe(this);
 
     this.slide(0);
-    this.setAttribute('tabindex', '0');
 
     this.addEventListener('keydown', this.onKeyDown);
     this.addEventListener('keyup', this.onKeyUp);
