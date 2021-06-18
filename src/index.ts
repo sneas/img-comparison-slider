@@ -1,7 +1,7 @@
 import styles from './styles.scss';
 import { inBetween } from './inBetween';
 import templateHtml from './template.html';
-import { DEFAULT_TABINDEX } from './defaults';
+import { TABINDEX, RENDERED_CLASS } from './defaults';
 
 const templateElement = document.createElement('template');
 
@@ -54,7 +54,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
   private connectedCallback() {
     if (!this.hasAttribute('tabindex')) {
-      this.tabIndex = DEFAULT_TABINDEX;
+      this.tabIndex = TABINDEX;
     }
 
     this.addEventListener('dragstart', (e) => {
@@ -79,7 +79,9 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.addEventListener('mousedown', this.onMouseDown);
 
     this.resetWidth();
-    this.classList.add('rendered');
+    if (!this.classList.contains(RENDERED_CLASS)) {
+      this.classList.add(RENDERED_CLASS);
+    }
   }
 
   private disconnectedCallback() {
