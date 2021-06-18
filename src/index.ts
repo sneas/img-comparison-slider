@@ -1,7 +1,5 @@
 import styles from './styles.scss';
 import { inBetween } from './inBetween';
-import { isImg } from './isImg';
-import { isSlot } from './isSlot';
 import templateHtml from './template.html';
 
 const templateElement = document.createElement('template');
@@ -54,17 +52,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   private connectedCallback() {
-    this.shadowRoot.querySelectorAll('slot').forEach((slot) => {
-      slot.addEventListener('slotchange', (e) => {
-        if (!isSlot(e.target)) {
-          return;
-        }
-
-        e.target.assignedElements().forEach(this.hydrate);
-      });
+    this.addEventListener('dragstart', (e) => {
+      e.preventDefault();
+      return false;
     });
-
-    this.querySelectorAll('img').forEach(this.hydrate);
 
     const resizeObserver = new ResizeObserver(this.resetWidth);
     resizeObserver.observe(this);
@@ -97,23 +88,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.exposure = 50;
     this.slide(0);
   }
-
-  private hydrate = (element: Element) => {
-    if (!isImg(element)) {
-      return;
-    }
-
-    if (element.classList.contains('hydrated')) {
-      return;
-    }
-
-    element.addEventListener('dragstart', (e) => {
-      e.preventDefault();
-    });
-
-    element.addEventListener('load', this.resetWidth);
-    element.classList.add('hydrated');
-  };
 
   private slide(increment = 0, transition = false) {
     this.exposure = inBetween(this.exposure + increment, 0, 100);
