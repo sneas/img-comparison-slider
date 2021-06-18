@@ -15,7 +15,7 @@ export const ImgComparisonSlider: FC<ImgComparisonSliderProps> = ({
     Object.assign(
       {
         class: props.className ? `${props.className} rendered` : 'rendered',
-        // Alight tabIndex between the web and React components
+        // Align tabIndex between the web and React components
         // this code could be removed when
         // https://github.com/WICG/webcomponents/issues/762 is resolved.
         tabIndex: 0,
