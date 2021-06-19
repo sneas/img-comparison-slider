@@ -25,15 +25,15 @@ Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.gi
 ```
 <custom-element-demo>
   <template>
-    <script defer src="https://unpkg.com/img-comparison-slider@5/dist/index.js"></script>
+    <script defer src="https://unpkg.com/img-comparison-slider@6/dist/index.js"></script>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/img-comparison-slider@5/dist/styles.css"
+      href="https://unpkg.com/img-comparison-slider@6/dist/styles.css"
     />
 
     <img-comparison-slider>
-      <img slot="before" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/before.webp">
-      <img slot="after" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/after.webp">
+      <img slot="first" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/before.webp">
+      <img slot="second" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/after.webp">
     </img-comparison-slider>
   </template>
 </custom-element-demo>
@@ -47,16 +47,16 @@ Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.gi
 ```html
 <script
   defer
-  src="https://unpkg.com/img-comparison-slider@5/dist/index.js"
+  src="https://unpkg.com/img-comparison-slider@6/dist/index.js"
 ></script>
 <link
   rel="stylesheet"
-  href="https://unpkg.com/img-comparison-slider@5/dist/styles.css"
+  href="https://unpkg.com/img-comparison-slider@6/dist/styles.css"
 />
 
 <img-comparison-slider>
-  <img slot="before" src="before.jpg" />
-  <img slot="after" src="after.jpg" />
+  <img slot="first" src="before.jpg" />
+  <img slot="second" src="after.jpg" />
 </img-comparison-slider>
 ```
 
