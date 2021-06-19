@@ -11,6 +11,8 @@
   overflow: hidden;
   isolation: isolate;
   line-height: 0;
+  // ToDo: remove this style and fix rtl behaviour
+  direction: ltr;
 }
 
 ::slotted(img) {
