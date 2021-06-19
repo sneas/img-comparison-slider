@@ -24,8 +24,8 @@ import { ImgComparisonSlider } from '@img-comparison-slider/react';
 render() {
   return (
     <ImgComparisonSlider>
-      <img slot="before" src="before.jpg" />
-      <img slot="after" src="after.jpg" />
+      <img slot="first" src="https://sneas.github.io/img-comparison-slider/demo/images/before.webp" />
+      <img slot="second" src="https://sneas.github.io/img-comparison-slider/demo/images/after.webp" />
     </ImgComparisonSlider>
   );
 }

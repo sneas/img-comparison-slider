@@ -24,14 +24,14 @@ npm install --save @img-comparison-slider/vue
   <ImgComparisonSlider>
     <!-- eslint-disable -->
     <img
-      slot="before"
+      slot="first"
       style="width: 100%"
-      src="https://sneas.github.io/img-comparison-slider/demo/images/cat.jpg"
+      src="https://sneas.github.io/img-comparison-slider/demo/images/before.webp"
     />
     <img
-      slot="after"
+      slot="second"
       style="width: 100%"
-      src="https://sneas.github.io/img-comparison-slider/demo/images/dog.jpg"
+      src="https://sneas.github.io/img-comparison-slider/demo/images/after.webp"
     />
     <!-- eslint-enable -->
   </ImgComparisonSlider>
