@@ -25,9 +25,9 @@ const getTouchPagePoint = (e: TouchEvent): Point => ({
 });
 
 export class HTMLImgComparisonSliderElement extends HTMLElement {
-  private secondElement: HTMLElement;
   private firstElement: HTMLElement;
   private firstImageContainerElement: HTMLElement;
+  private secondElement: HTMLElement;
 
   private imageWidth: number;
   private exposure = 50;
@@ -45,11 +45,11 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: 'open' });
     shadowRoot.appendChild(templateElement.content.cloneNode(true));
 
-    this.secondElement = shadowRoot.getElementById('second');
     this.firstElement = shadowRoot.getElementById('first');
     this.firstImageContainerElement = shadowRoot.getElementById(
       'firstImageContainer'
     );
+    this.secondElement = shadowRoot.getElementById('second');
   }
 
   private connectedCallback() {
