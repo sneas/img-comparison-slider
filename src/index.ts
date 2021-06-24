@@ -108,15 +108,21 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     if (transition) {
       const transitionTime = 100;
-      this.firstElement.style.transition = `width ${transitionTime}ms`;
+      this.firstElement.style.setProperty(
+        '--transition-time',
+        `${transitionTime}ms`
+      );
 
       this.transitionTimer = window.setTimeout(() => {
-        this.firstElement.style.transition = null;
+        this.firstElement.style.setProperty('--transition-time', `0ms`);
         this.transitionTimer = null;
       }, transitionTime);
     }
 
-    this.firstElement.style.width = `${this.exposure}%`;
+    this.firstElement.style.setProperty(
+      '--exposure',
+      `${100 - this.exposure}%`
+    );
   }
 
   private onWindowMouseMove = (e: MouseEvent) => {
@@ -261,7 +267,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
   private resetWidth = () => {
     this.imageWidth = this.offsetWidth;
-    this.firstImageContainerElement.style.width = `${this.offsetWidth}px`;
   };
 }
 

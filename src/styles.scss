@@ -37,6 +37,17 @@
   bottom: 0;
   z-index: -1;
 
+  --exposure: 50%;
+  --transition-time: 0ms;
+
+  transform: translateX(calc(var(--exposure) * -1));
+  transition: transform var(--transition-time);
+
+  .first-image {
+    transform: translateX(var(--exposure));
+    transition: transform var(--transition-time);
+  }
+
   .first-overlay {
     overflow: hidden;
   }
@@ -56,6 +67,7 @@
   align-items: flex-end;
   justify-content: center;
   flex-direction: column;
+  z-index: 1;
 }
 
 .divider {
