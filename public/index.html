@@ -68,6 +68,10 @@
             <a class="d-block" href="#width"
               >No handle and change spilt line width</a
             >
+
+            <a class="d-block" href="#before-and-after-labels"
+              >Before and after labels</a
+            >
           </nav>
         </div>
         <div class="col-12 col-sm-8 col-md-9">
@@ -300,6 +304,60 @@
                   width="100%"
                   src="<%=require('./images/maple-blurred.webp')%>"
                 />
+              </img-comparison-slider>
+            </code>
+          </x-ray>
+          <!-- htmlmin:ignore -->
+
+          <h3 id="before-and-after-labels">Before and after labels</h3>
+          <p>
+            Slots <code>before</code> and <code>after</code> should not
+            necessarily be of <code>&lt;img&gt;</code> tag. They could be of
+            arbitrary HTML. Let's use it to our advantage and create
+            good-looking semantic-friendly labels.
+          </p>
+          <!-- htmlmin:ignore -->
+          <x-ray>
+            <code>
+              <style>
+                .before,
+                .after {
+                  margin: 0;
+                }
+
+                .before figcaption,
+                .after figcaption {
+                  background: #fff;
+                  border: 1px solid #c0c0c0;
+                  border-radius: 12px;
+                  color: #2e3452;
+                  opacity: 0.8;
+                  padding: 12px;
+                  position: absolute;
+                  top: 50%;
+                  transform: translateY(-50%);
+                }
+
+                .before figcaption {
+                  left: 12px;
+                }
+
+                .after figcaption {
+                  right: 12px;
+                }
+              </style>
+              <img-comparison-slider>
+                <figure slot="first" class="before">
+                  <img width="100%" src="<%=require('./images/basil.webp')%>" />
+                  <figcaption>Before</figcaption>
+                </figure>
+                <figure slot="second" class="after">
+                  <img
+                    width="100%"
+                    src="<%=require('./images/basil-blurred.webp')%>"
+                  />
+                  <figcaption>After</figcaption>
+                </figure>
               </img-comparison-slider>
             </code>
           </x-ray>
