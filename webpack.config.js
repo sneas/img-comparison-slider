@@ -63,12 +63,13 @@ const commonConfig = {
   ],
 };
 
-const demoConfig = {
+const demoConfig = ({ favicon = 'public/favicon.svg' } = {}) => ({
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html',
       inject: true,
+      favicon,
     }),
     new CopyWebpackPlugin({
       patterns: [{ from: 'public/static', to: '' }],
@@ -77,7 +78,11 @@ const demoConfig = {
   output: {
     path: path.resolve(__dirname, 'demo'),
   },
-};
+  devServer: {
+    host: '0.0.0.0',
+    useLocalIp: true,
+  },
+});
 
 const devConfig = {
   mode: 'development',
@@ -88,9 +93,13 @@ const prodConfig = {};
 module.exports = (env) => {
   switch (true) {
     case env.development:
-      return merge(commonConfig, demoConfig, devConfig);
+      return merge(
+        commonConfig,
+        demoConfig({ favicon: 'public/favicon-dev.svg' }),
+        devConfig
+      );
     case env.demo:
-      return merge(commonConfig, demoConfig);
+      return merge(commonConfig, demoConfig());
     case env.production:
       return merge(commonConfig, prodConfig);
     default:
