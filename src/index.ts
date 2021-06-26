@@ -245,22 +245,22 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   private startSlideAnimation(offset: number) {
-    let lastTimestamp: number = Date.now();
-    const slide = () => {
-      if (!this.isAnimating) {
-        return;
+    let lastTimestamp: number = null;
+    const slide = (now: number) => {
+      if (lastTimestamp === null) {
+        lastTimestamp = now;
       }
-      const now = Date.now(),
-        delta = now - lastTimestamp,
+
+      const delta = now - lastTimestamp,
         distance = (delta / slideAnimationTimout) * offset;
-
       this.slide(distance);
-
-      lastTimestamp = now;
-      window.requestAnimationFrame(slide);
+      if (this.isAnimating) {
+        window.requestAnimationFrame(slide);
+        lastTimestamp = now;
+      }
     };
 
-    slide();
+    window.requestAnimationFrame(slide);
   }
 
   private stopSlideAnimation() {
