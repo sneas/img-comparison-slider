@@ -24,6 +24,9 @@ const getTouchPagePoint = (e: TouchEvent): Point => ({
   y: e.touches[0].pageY,
 });
 
+const slideAnimationFps = 100;
+const slideAnimationTimout = 1000 / slideAnimationFps;
+
 export class HTMLImgComparisonSliderElement extends HTMLElement {
   private firstElement: HTMLElement;
   private firstImageContainerElement: HTMLElement;
@@ -215,7 +218,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     const key = e.key;
 
-    if (!Object.keys(KeySlideOffset).includes(key)) {
+    if (KeySlideOffset[key] === undefined) {
       return;
     }
 
@@ -241,14 +244,16 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   private startSlideAnimation(offset: number) {
-    const fps = 120;
-    const fraction = 1 * offset;
-
     const slide = () => {
-      this.keyboardSlideAnimationTimeoutId = window.setTimeout(() => {
-        this.animationRequestId = window.requestAnimationFrame(slide);
-      }, 1000 / fps);
-      this.slide(fraction);
+      this.keyboardSlideAnimationTimeoutId = window.setTimeout(
+        onSlideTimeout,
+        slideAnimationTimout
+      );
+      this.slide(offset);
+    };
+
+    const onSlideTimeout = () => {
+      this.animationRequestId = window.requestAnimationFrame(slide);
     };
 
     slide();
