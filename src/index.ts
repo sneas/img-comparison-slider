@@ -24,6 +24,9 @@ const getTouchPagePoint = (e: TouchEvent): Point => ({
   y: e.touches[0].pageY,
 });
 
+const slideAnimationFps = 100;
+const slideAnimationTimout = 1000 / slideAnimationFps;
+
 export class HTMLImgComparisonSliderElement extends HTMLElement {
   private firstElement: HTMLElement;
   private firstImageContainerElement: HTMLElement;
@@ -108,15 +111,21 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     if (transition) {
       const transitionTime = 100;
-      this.firstElement.style.transition = `width ${transitionTime}ms`;
+      this.firstElement.style.setProperty(
+        '--transition-time',
+        `${transitionTime}ms`
+      );
 
       this.transitionTimer = window.setTimeout(() => {
-        this.firstElement.style.transition = null;
+        this.firstElement.style.setProperty('--transition-time', `0ms`);
         this.transitionTimer = null;
       }, transitionTime);
     }
 
-    this.firstElement.style.width = `${this.exposure}%`;
+    this.firstElement.style.setProperty(
+      '--exposure',
+      `${100 - this.exposure}%`
+    );
   }
 
   private onWindowMouseMove = (e: MouseEvent) => {
@@ -209,7 +218,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     const key = e.key;
 
-    if (!Object.keys(KeySlideOffset).includes(key)) {
+    if (KeySlideOffset[key] === undefined) {
       return;
     }
 
@@ -235,14 +244,16 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   private startSlideAnimation(offset: number) {
-    const fps = 120;
-    const fraction = 1 * offset;
-
     const slide = () => {
-      this.keyboardSlideAnimationTimeoutId = window.setTimeout(() => {
-        this.animationRequestId = window.requestAnimationFrame(slide);
-      }, 1000 / fps);
-      this.slide(fraction);
+      this.keyboardSlideAnimationTimeoutId = window.setTimeout(
+        onSlideTimeout,
+        slideAnimationTimout
+      );
+      this.slide(offset);
+    };
+
+    const onSlideTimeout = () => {
+      this.animationRequestId = window.requestAnimationFrame(slide);
     };
 
     slide();
@@ -261,7 +272,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
   private resetWidth = () => {
     this.imageWidth = this.offsetWidth;
-    this.firstImageContainerElement.style.width = `${this.offsetWidth}px`;
   };
 }
 

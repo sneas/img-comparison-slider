@@ -37,13 +37,21 @@
   line-height: normal;
   font-size: 100%;
 
-  .first-overlay {
-    overflow: hidden;
-  }
+  --exposure: 50%;
+  --transition-time: 0ms;
+
+  transform: translateX(calc(var(--exposure) * -1));
+  transition: transform var(--transition-time);
 
   .first-overlay-container {
     position: relative;
     z-index: -1;
+    transform: translateX(var(--exposure));
+    transition: transform var(--transition-time);
+  }
+
+  .first-overlay {
+    overflow: hidden;
   }
 }
 
@@ -61,6 +69,7 @@
   align-items: flex-end;
   justify-content: center;
   flex-direction: column;
+  z-index: 1;
 }
 
 .divider {
