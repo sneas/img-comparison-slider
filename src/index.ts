@@ -24,7 +24,7 @@ const getTouchPagePoint = (e: TouchEvent): Point => ({
   y: e.touches[0].pageY,
 });
 
-const slideAnimationFps = 100;
+const slideAnimationFps = 60;
 const slideAnimationTimout = 1000 / slideAnimationFps;
 
 export class HTMLImgComparisonSliderElement extends HTMLElement {
@@ -36,8 +36,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private exposure = 50;
   private isMouseDown = false;
 
-  private keyboardSlideAnimationTimeoutId: number;
-  private animationRequestId: number;
+  private isAnimating: boolean;
   private transitionTimer: number;
 
   private isFocused = false;
@@ -212,9 +211,11 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   };
 
   private onKeyDown = (e: KeyboardEvent) => {
-    if (this.keyboardSlideAnimationTimeoutId) {
+    if (this.isAnimating) {
       return;
     }
+
+    this.isAnimating = true;
 
     const key = e.key;
 
@@ -226,7 +227,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   };
 
   private onKeyUp = (e: KeyboardEvent) => {
-    if (!this.keyboardSlideAnimationTimeoutId) {
+    if (!this.isAnimating) {
       return;
     }
 
@@ -244,30 +245,30 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   private startSlideAnimation(offset: number) {
+    let lastTimestamp: number = Date.now();
     const slide = () => {
-      this.keyboardSlideAnimationTimeoutId = window.setTimeout(
-        onSlideTimeout,
-        slideAnimationTimout
-      );
-      this.slide(offset);
-    };
+      if (!this.isAnimating) {
+        return;
+      }
+      const now = Date.now(),
+        delta = now - lastTimestamp,
+        distance = (delta / slideAnimationTimout) * offset;
 
-    const onSlideTimeout = () => {
-      this.animationRequestId = window.requestAnimationFrame(slide);
+      this.slide(distance);
+
+      lastTimestamp = now;
+      window.requestAnimationFrame(slide);
     };
 
     slide();
   }
 
   private stopSlideAnimation() {
-    if (!this.keyboardSlideAnimationTimeoutId) {
+    if (!this.isAnimating) {
       return;
     }
 
-    window.clearTimeout(this.keyboardSlideAnimationTimeoutId);
-    window.cancelAnimationFrame(this.animationRequestId);
-    this.keyboardSlideAnimationTimeoutId = null;
-    this.animationRequestId = null;
+    this.isAnimating = false;
   }
 
   private resetWidth = () => {
