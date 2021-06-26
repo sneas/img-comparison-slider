@@ -7,15 +7,13 @@
 
   position: relative;
   display: inline-block;
-  font-size: 0;
   overflow: hidden;
   isolation: isolate;
-  line-height: 0;
   // ToDo: remove this style and fix rtl behaviour
   direction: ltr;
 }
 
-::slotted(img) {
+::slotted(*) {
   -webkit-user-drag: none;
   -khtml-user-drag: none;
   -moz-user-drag: none;
@@ -36,6 +34,8 @@
   top: 0;
   bottom: 0;
   z-index: -1;
+  line-height: normal;
+  font-size: 100%;
 
   --exposure: 50%;
   --transition-time: 0ms;
@@ -43,7 +43,9 @@
   transform: translateX(calc(var(--exposure) * -1));
   transition: transform var(--transition-time);
 
-  .first-image {
+  .first-overlay-container {
+    position: relative;
+    z-index: -1;
     transform: translateX(var(--exposure));
     transition: transform var(--transition-time);
   }
