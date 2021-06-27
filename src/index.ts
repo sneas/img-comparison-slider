@@ -133,6 +133,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     window.addEventListener('mousemove', this.onWindowMouseMove);
     window.addEventListener('mouseup', this.onWindowMouseUp);
     this.isMouseDown = true;
+    this.enableTransition();
     this.slideToPageX(e.pageX);
     this.focus();
     this.bodyUserSelectStyle = window.document.body.style.userSelect;
@@ -154,6 +155,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.touchStartPoint = getTouchPagePoint(e);
 
     if (this.isFocused) {
+      this.enableTransition();
       this.slideToPageX(e.touches[0].pageX);
     }
   };
@@ -227,7 +229,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private slideToPageX(pageX: number) {
     const x = pageX - this.getBoundingClientRect().left - window.scrollX;
     this.exposure = (x / this.imageWidth) * 100;
-    this.enableTransition();
     this.slide(0);
   }
 
