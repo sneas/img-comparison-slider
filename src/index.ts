@@ -24,8 +24,7 @@ const getTouchPagePoint = (e: TouchEvent): Point => ({
   y: e.touches[0].pageY,
 });
 
-const slideAnimationFps = 100;
-const slideAnimationTimout = 1000 / slideAnimationFps;
+const slideAnimationPeriod = 1000 / 60;
 
 export class HTMLImgComparisonSliderElement extends HTMLElement {
   private firstElement: HTMLElement;
@@ -36,8 +35,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private exposure = 50;
   private isMouseDown = false;
 
-  private keyboardSlideAnimationTimeoutId: number;
-  private animationRequestId: number;
+  private isAnimating: boolean;
   private transitionTimer: number;
 
   private isFocused = false;
@@ -106,21 +104,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.slide(0);
   }
 
-  private slide(increment = 0, transition = false) {
+  private slide(increment = 0) {
     this.exposure = inBetween(this.exposure + increment, 0, 100);
-
-    if (transition) {
-      const transitionTime = 100;
-      this.firstElement.style.setProperty(
-        '--transition-time',
-        `${transitionTime}ms`
-      );
-
-      this.transitionTimer = window.setTimeout(() => {
-        this.firstElement.style.setProperty('--transition-time', `0ms`);
-        this.transitionTimer = null;
-      }, transitionTime);
-    }
 
     this.firstElement.style.setProperty(
       '--exposure',
@@ -148,7 +133,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     window.addEventListener('mousemove', this.onWindowMouseMove);
     window.addEventListener('mouseup', this.onWindowMouseUp);
     this.isMouseDown = true;
-    this.slideToPageX(e.pageX, true);
+    this.slideToPageX(e.pageX);
     this.focus();
     this.bodyUserSelectStyle = window.document.body.style.userSelect;
     window.document.body.style.userSelect = 'none';
@@ -169,7 +154,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.touchStartPoint = getTouchPagePoint(e);
 
     if (this.isFocused) {
-      this.slideToPageX(e.touches[0].pageX, true);
+      this.slideToPageX(e.touches[0].pageX);
     }
   };
 
@@ -188,7 +173,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
       ) {
         this.isTouchComparing = true;
         this.focus();
-        this.slideToPageX(e.touches[0].pageX, true);
+        this.slideToPageX(e.touches[0].pageX);
         e.preventDefault();
         return false;
       }
@@ -212,9 +197,11 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   };
 
   private onKeyDown = (e: KeyboardEvent) => {
-    if (this.keyboardSlideAnimationTimeoutId) {
+    if (this.isAnimating) {
       return;
     }
+
+    this.isAnimating = true;
 
     const key = e.key;
 
@@ -226,48 +213,58 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   };
 
   private onKeyUp = (e: KeyboardEvent) => {
-    if (!this.keyboardSlideAnimationTimeoutId) {
+    if (!this.isAnimating) {
       return;
     }
 
-    if (!Object.keys(KeySlideOffset).includes(e.key)) {
+    if (KeySlideOffset[e.key] === undefined) {
       return;
     }
 
     this.stopSlideAnimation();
   };
 
-  private slideToPageX(pageX: number, transition = false) {
+  private slideToPageX(pageX: number) {
     const x = pageX - this.getBoundingClientRect().left - window.scrollX;
     this.exposure = (x / this.imageWidth) * 100;
-    this.slide(0, transition);
+    this.enableTransition();
+    this.slide(0);
+  }
+
+  private enableTransition() {
+    const transitionTime = 100;
+    this.firstElement.style.setProperty(
+      '--transition-time',
+      `${transitionTime}ms`
+    );
+
+    this.transitionTimer = window.setTimeout(() => {
+      this.firstElement.style.setProperty('--transition-time', `0ms`);
+      this.transitionTimer = null;
+    }, transitionTime);
   }
 
   private startSlideAnimation(offset: number) {
-    const slide = () => {
-      this.keyboardSlideAnimationTimeoutId = window.setTimeout(
-        onSlideTimeout,
-        slideAnimationTimout
-      );
-      this.slide(offset);
+    let lastTimestamp: number = null;
+    const slide = (now: number) => {
+      if (lastTimestamp === null) {
+        lastTimestamp = now;
+      }
+
+      const interval = now - lastTimestamp,
+        distance = (interval / slideAnimationPeriod) * offset;
+      this.slide(distance);
+      if (this.isAnimating) {
+        window.requestAnimationFrame(slide);
+        lastTimestamp = now;
+      }
     };
 
-    const onSlideTimeout = () => {
-      this.animationRequestId = window.requestAnimationFrame(slide);
-    };
-
-    slide();
+    window.requestAnimationFrame(slide);
   }
 
   private stopSlideAnimation() {
-    if (!this.keyboardSlideAnimationTimeoutId) {
-      return;
-    }
-
-    window.clearTimeout(this.keyboardSlideAnimationTimeoutId);
-    window.cancelAnimationFrame(this.animationRequestId);
-    this.keyboardSlideAnimationTimeoutId = null;
-    this.animationRequestId = null;
+    this.isAnimating = false;
   }
 
   private resetWidth = () => {
