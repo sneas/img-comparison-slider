@@ -24,8 +24,7 @@ const getTouchPagePoint = (e: TouchEvent): Point => ({
   y: e.touches[0].pageY,
 });
 
-const slideAnimationFps = 60;
-const slideAnimationTimout = 1000 / slideAnimationFps;
+const slideAnimationPeriod = 1000 / 60;
 
 export class HTMLImgComparisonSliderElement extends HTMLElement {
   private firstElement: HTMLElement;
@@ -252,8 +251,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
         lastTimestamp = now;
       }
 
-      const delta = now - lastTimestamp,
-        distance = (delta / slideAnimationTimout) * offset;
+      const interval = now - lastTimestamp,
+        distance = (interval / slideAnimationPeriod) * offset;
       this.slide(distance);
       if (this.isAnimating) {
         window.requestAnimationFrame(slide);
