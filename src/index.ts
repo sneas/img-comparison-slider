@@ -133,7 +133,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     window.addEventListener('mousemove', this.onWindowMouseMove);
     window.addEventListener('mouseup', this.onWindowMouseUp);
     this.isMouseDown = true;
-    this.slideToPageX(e.pageX, true);
+    this.slideToPageX(e.pageX);
     this.focus();
     this.bodyUserSelectStyle = window.document.body.style.userSelect;
     window.document.body.style.userSelect = 'none';
@@ -154,7 +154,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.touchStartPoint = getTouchPagePoint(e);
 
     if (this.isFocused) {
-      this.slideToPageX(e.touches[0].pageX, true);
+      this.slideToPageX(e.touches[0].pageX);
     }
   };
 
@@ -173,7 +173,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
       ) {
         this.isTouchComparing = true;
         this.focus();
-        this.slideToPageX(e.touches[0].pageX, true);
+        this.slideToPageX(e.touches[0].pageX);
         e.preventDefault();
         return false;
       }
@@ -217,14 +217,14 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
       return;
     }
 
-    if (!Object.keys(KeySlideOffset).includes(e.key)) {
+    if (KeySlideOffset[e.key] === undefined) {
       return;
     }
 
     this.stopSlideAnimation();
   };
 
-  private slideToPageX(pageX: number, transition = false) {
+  private slideToPageX(pageX: number) {
     const x = pageX - this.getBoundingClientRect().left - window.scrollX;
     this.exposure = (x / this.imageWidth) * 100;
     this.enableTransition();
@@ -264,10 +264,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   private stopSlideAnimation() {
-    if (!this.isAnimating) {
-      return;
-    }
-
     this.isAnimating = false;
   }
 
