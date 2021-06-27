@@ -105,21 +105,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.slide(0);
   }
 
-  private slide(increment = 0, transition = false) {
+  private slide(increment = 0) {
     this.exposure = inBetween(this.exposure + increment, 0, 100);
-
-    if (transition) {
-      const transitionTime = 100;
-      this.firstElement.style.setProperty(
-        '--transition-time',
-        `${transitionTime}ms`
-      );
-
-      this.transitionTimer = window.setTimeout(() => {
-        this.firstElement.style.setProperty('--transition-time', `0ms`);
-        this.transitionTimer = null;
-      }, transitionTime);
-    }
 
     this.firstElement.style.setProperty(
       '--exposure',
@@ -241,7 +228,21 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private slideToPageX(pageX: number, transition = false) {
     const x = pageX - this.getBoundingClientRect().left - window.scrollX;
     this.exposure = (x / this.imageWidth) * 100;
-    this.slide(0, transition);
+    this.enableTransition();
+    this.slide(0);
+  }
+
+  private enableTransition() {
+    const transitionTime = 100;
+    this.firstElement.style.setProperty(
+      '--transition-time',
+      `${transitionTime}ms`
+    );
+
+    this.transitionTimer = window.setTimeout(() => {
+      this.firstElement.style.setProperty('--transition-time', `0ms`);
+      this.transitionTimer = null;
+    }, transitionTime);
   }
 
   private startSlideAnimation(offset: number) {
