@@ -87,13 +87,15 @@ Example:
 
 ### Available variables
 
-| Variable                   | Description                                     | Default value |
-| -------------------------- | ----------------------------------------------- | ------------- |
-| `--divider-width`          | Width of the vertical line dividing both images | `1px`         |
-| `--divider-color`          | Color of the vertical line dividing both images | `#fff`        |
-| `--default-handle-width`   | Width of the default handle                     | `50px`        |
-| `--default-handle-color`   | Color of the default handle                     | `#fff`        |
-| `--default-handle-opacity` | Opacity of the default handle                   | `1`           |
+| Variable                   | Description                                              | Default value | Example value                    |
+| -------------------------- | -------------------------------------------------------- | ------------- | -------------------------------- |
+| `--divider-width`          | Width of the vertical line dividing both images          | `1px`         | `1em`                            |
+| `--divider-color`          | Color of the vertical line dividing both images          | `#fff`        | `rgba(0, 0, 0, 0.5)`             |
+| `--divider-shadow`         | Shadow casting by the vertical line dividing both images | `none`        | `0px 0px 5px rgba(0, 0, 0, 0.5)` |
+| `--default-handle-width`   | Width of the default handle                              | `50px`        |                                  |
+| `--default-handle-color`   | Color of the default handle                              | `#fff`        | `rgba(0, 0, 0, 0.5)`             |
+| `--default-handle-opacity` | Opacity of the default handle                            | `1`           | `0.3`                            |
+| `--default-handle-shadow`  | Shadow from the default handle                           | `none`        | `0px 0px 5px rgba(0, 0, 0, 1)`   |
 
 ### Handle
 
