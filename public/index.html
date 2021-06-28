@@ -55,6 +55,8 @@
             <a class="d-block mb-2" href="#always-show"
               >Make handle larger and disappear on focus</a
             >
+            <a class="d-block mb-2" href="#shadows">Shadows</a>
+            <a class="d-block mb-2" href="#colors">Divider and handle color</a>
             <a class="d-block mb-2" href="#relative-size"
               >Relative size handle</a
             >
@@ -124,6 +126,67 @@
                   slot="second"
                   width="100%"
                   src="<%=require('./images/ferns-blurred.webp')%>"
+                />
+              </img-comparison-slider>
+            </code>
+          </x-ray>
+          <!-- htmlmin:ignore -->
+
+          <h3 id="shadows">Shadows</h3>
+          <p>
+            Some shadows can be used in order to give divider and arrows more
+            contrast on bright background.
+          </p>
+          <p>
+            Beware: shadows negatively affect component's rendering performance.
+          </p>
+
+          <!-- htmlmin:ignore -->
+          <x-ray>
+            <code>
+              <style>
+                .slider-with-shadows {
+                  --default-handle-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+                  --divider-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+                }
+              </style>
+              <img-comparison-slider class="slider-with-shadows">
+                <img
+                  slot="first"
+                  width="100%"
+                  src="<%=require('./images/high-contrast.webp')%>"
+                />
+                <img
+                  slot="second"
+                  width="100%"
+                  src="<%=require('./images/high-contrast-blurred.webp')%>"
+                />
+              </img-comparison-slider>
+            </code>
+          </x-ray>
+          <!-- htmlmin:ignore -->
+
+          <h3 id="colors">Divider and handle color</h3>
+
+          <!-- htmlmin:ignore -->
+          <x-ray>
+            <code>
+              <style>
+                .coloured-slider {
+                  --divider-color: rgba(0, 0, 0, 0.5);
+                  --default-handle-color: rgba(0, 0, 0, 0.5);
+                }
+              </style>
+              <img-comparison-slider class="coloured-slider">
+                <img
+                  slot="first"
+                  width="100%"
+                  src="<%=require('./images/pink.webp')%>"
+                />
+                <img
+                  slot="second"
+                  width="100%"
+                  src="<%=require('./images/pink-blurred.webp')%>"
                 />
               </img-comparison-slider>
             </code>
@@ -311,7 +374,7 @@
 
           <h3 id="before-and-after-labels">Before and after labels</h3>
           <p>
-            Slots <code>before</code> and <code>after</code> should not
+            Slots <code>first</code> and <code>second</code> should not
             necessarily be of <code>&lt;img&gt;</code> tag. They could be of
             arbitrary HTML. Let's use it to our advantage and create
             good-looking semantic-friendly labels.
