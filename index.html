@@ -1,7 +1,7 @@
 <!doctype html><html dir="ltr" lang="en"><head><link rel="stylesheet" href="styles.css"/><script defer="defer" src="https://unpkg.com/@sneas/x-ray@3/dist/index.js"></script><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"/><title>Slider Component For Comparing Two Images</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/><style>x-ray {
         display: block;
         margin-bottom: 1rem;
-      }</style><link rel="icon" href="favicon.svg"><script defer="defer" src="index.js"></script></head><body><div class="container mt-4 mb-4"><h1>Slider Component For Comparing Two Images</h1><p>Installation and usage instructions are available on <a href="https://github.com/sneas/img-comparison-slider">GitHub</a>.</p><p><a class="github-button" href="https://github.com/sneas/img-comparison-slider" data-size="large" aria-label="Star sneas/img-comparison-slider on GitHub">img-comparison-slider</a></p><h2>Usage Examples</h2><p>All images in the examples are given <code>width="100%"</code> property to make them responsive.</p><div class="row"><div class="col-12 col-sm-4 col-md-3 mb-4"><nav class="position-sticky" style="top: 0.5rem"><a class="d-block mb-2" href="#default">Default settings</a> <a class="d-block mb-2" href="#always-show">Make handle larger and disappear on focus</a> <a class="d-block mb-2" href="#relative-size">Relative size handle</a> <a class="d-block mb-2" href="#focus">Change element :focus styles</a> <a class="d-block mb-2" href="#custom-handle">Custom handle</a> <a class="d-block mb-2" href="#custom-handle-with-animation">Custom handle with hover animation</a> <a class="d-block" href="#width">No handle and change spilt line width</a> <a class="d-block" href="#before-and-after-labels">Before and after labels</a></nav></div><div class="col-12 col-sm-8 col-md-9"><h3 id="default">Default settings</h3>
+      }</style><link rel="icon" href="favicon.svg"><script defer="defer" src="index.js"></script></head><body><div class="container mt-4 mb-4"><h1>Slider Component For Comparing Two Images</h1><p>Installation and usage instructions are available on <a href="https://github.com/sneas/img-comparison-slider">GitHub</a>.</p><p><a class="github-button" href="https://github.com/sneas/img-comparison-slider" data-size="large" aria-label="Star sneas/img-comparison-slider on GitHub">img-comparison-slider</a></p><h2>Usage Examples</h2><p>All images in the examples are given <code>width="100%"</code> property to make them responsive.</p><div class="row"><div class="col-12 col-sm-4 col-md-3 mb-4"><nav class="position-sticky" style="top: 0.5rem"><a class="d-block mb-2" href="#default">Default settings</a> <a class="d-block mb-2" href="#always-show">Make handle larger and disappear on focus</a> <a class="d-block mb-2" href="#shadows">Shadows</a> <a class="d-block mb-2" href="#colors">Divider and handle color</a> <a class="d-block mb-2" href="#relative-size">Relative size handle</a> <a class="d-block mb-2" href="#focus">Change element :focus styles</a> <a class="d-block mb-2" href="#custom-handle">Custom handle</a> <a class="d-block mb-2" href="#custom-handle-with-animation">Custom handle with hover animation</a> <a class="d-block" href="#width">No handle and change spilt line width</a> <a class="d-block" href="#before-and-after-labels">Before and after labels</a></nav></div><div class="col-12 col-sm-8 col-md-9"><h3 id="default">Default settings</h3>
           <x-ray>
             <code>
               <img-comparison-slider>
@@ -44,6 +44,52 @@
               </img-comparison-slider>
             </code>
           </x-ray>
+          <h3 id="shadows">Shadows</h3><p>Some shadows can be used in order to give divider and arrows more contrast on bright background.</p><p>Beware: shadows negatively affect component's rendering performance.</p>
+          <x-ray>
+            <code>
+              <style>
+                .slider-with-shadows {
+                  --default-handle-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
+                  --divider-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+                }
+              </style>
+              <img-comparison-slider class="slider-with-shadows">
+                <img
+                  slot="first"
+                  width="100%"
+                  src="images/high-contrast.webp"
+                />
+                <img
+                  slot="second"
+                  width="100%"
+                  src="images/high-contrast-blurred.webp"
+                />
+              </img-comparison-slider>
+            </code>
+          </x-ray>
+          <h3 id="colors">Divider and handle color</h3>
+          <x-ray>
+            <code>
+              <style>
+                .coloured-slider {
+                  --divider-color: rgba(0, 0, 0, 0.5);
+                  --default-handle-color: rgba(0, 0, 0, 0.5);
+                }
+              </style>
+              <img-comparison-slider class="coloured-slider">
+                <img
+                  slot="first"
+                  width="100%"
+                  src="images/pink.webp"
+                />
+                <img
+                  slot="second"
+                  width="100%"
+                  src="images/pink-blurred.webp"
+                />
+              </img-comparison-slider>
+            </code>
+          </x-ray>
           <h3 id="relative-size">Relative size handle</h3><p>Resize the window to see it in action.</p>
           <x-ray>
             <code>
@@ -56,12 +102,12 @@
                 <img
                   slot="first"
                   width="100%"
-                  src="images/bright-leaves.webp"
+                  src="images/monstera.webp"
                 />
                 <img
                   slot="second"
                   width="100%"
-                  src="images/bright-leaves-blurred.webp"
+                  src="images/monstera-blurred.webp"
                 />
               </img-comparison-slider>
             </code>
@@ -144,12 +190,12 @@
                 <img
                   slot="first"
                   width="100%"
-                  src="images/colorful-leaves.webp"
+                  src="images/bright-leaves.webp"
                 />
                 <img
                   slot="second"
                   width="100%"
-                  src="images/colorful-leaves-blurred.webp"
+                  src="images/bright-leaves-blurred.webp"
                 />
                 <svg
                   slot="handle"
@@ -193,7 +239,7 @@
               </img-comparison-slider>
             </code>
           </x-ray>
-          <h3 id="before-and-after-labels">Before and after labels</h3><p>Slots <code>before</code> and <code>after</code> should not necessarily be of <code>&lt;img&gt;</code> tag. They could be of arbitrary HTML. Let's use it to our advantage and create good-looking semantic-friendly labels.</p>
+          <h3 id="before-and-after-labels">Before and after labels</h3><p>Slots <code>first</code> and <code>second</code> should not necessarily be of <code>&lt;img&gt;</code> tag. They could be of arbitrary HTML. Let's use it to our advantage and create good-looking semantic-friendly labels.</p>
           <x-ray>
             <code>
               <style>
