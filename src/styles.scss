@@ -10,7 +10,6 @@
   position: relative;
   display: inline-block;
   overflow: hidden;
-  isolation: isolate;
   // ToDo: remove this style and fix rtl behaviour
   direction: ltr;
 }
@@ -34,8 +33,6 @@
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 0;
-  z-index: -1;
   line-height: normal;
   font-size: 100%;
 
@@ -47,7 +44,6 @@
 
   .first-overlay-container {
     position: relative;
-    z-index: -1;
     transform: translateX(var(--exposure));
     transition: transform var(--transition-time);
   }
@@ -59,19 +55,18 @@
 
 .second {
   position: relative;
-  z-index: -2;
 }
 
 .handle-container {
   transform: translateX(50%);
   position: absolute;
+  top: 0;
   right: 0;
   height: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   flex-direction: column;
-  z-index: 1;
 }
 
 .divider {

@@ -1,4 +1,12 @@
+<div class="second" id="second">
+  <slot name="second"><slot name="before"></slot></slot>
+</div>
 <div class="first" id="first">
+  <div class="first-overlay">
+    <div class="first-overlay-container" id="firstImageContainer">
+      <slot name="first"><slot name="after"></slot></slot>
+    </div>
+  </div>
   <div class="handle-container">
     <div class="divider"></div>
     <div class="handle">
@@ -19,12 +27,4 @@
       </slot>
     </div>
   </div>
-  <div class="first-overlay">
-    <div class="first-overlay-container" id="firstImageContainer">
-      <slot name="first"><slot name="after"></slot></slot>
-    </div>
-  </div>
-</div>
-<div class="second" id="second">
-  <slot name="second"><slot name="before"></slot></slot>
 </div>
