@@ -10,8 +10,17 @@
   position: relative;
   display: inline-block;
   overflow: hidden;
+  line-height: 0;
+
   // ToDo: remove this style and fix rtl behaviour
   direction: ltr;
+
+  // ToDo: Remove this Chrome-specific hack which is fixing :focus outline
+  @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+    & {
+      outline-offset: 1px;
+    }
+  }
 }
 
 ::slotted(*) {
