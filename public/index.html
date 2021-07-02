@@ -426,6 +426,32 @@
             </code>
           </x-ray>
           <!-- htmlmin:ignore -->
+
+          <h3 id="offset">Divider offset</h3>
+
+          <p>
+            The divider offset could be specified in percents with
+            <code>value</code> property.
+          </p>
+
+          <!-- htmlmin:ignore -->
+          <x-ray>
+            <code>
+              <img-comparison-slider value="75">
+                <img
+                  slot="first"
+                  width="100%"
+                  src="<%=require('./images/plant.webp')%>"
+                />
+                <img
+                  slot="second"
+                  width="100%"
+                  src="<%=require('./images/plant-blurred.webp')%>"
+                />
+              </img-comparison-slider>
+            </code>
+          </x-ray>
+          <!-- htmlmin:ignore -->
         </div>
       </div>
     </div>
