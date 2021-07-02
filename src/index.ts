@@ -32,7 +32,9 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private secondElement: HTMLElement;
 
   private imageWidth: number;
-  private exposure = parseInt(this.getAttribute('value')) || 50;
+  private exposure = this.hasAttribute('value')
+    ? parseFloat(this.getAttribute('value'))
+    : 50;
   private isMouseDown = false;
 
   private isAnimating: boolean;
@@ -44,8 +46,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     return this.exposure;
   }
 
-  public set value(newValue) {
-    this.exposure = newValue;
+  public set value(newValue: any) {
+    this.exposure = parseFloat(newValue);
     this.slide();
   }
 
