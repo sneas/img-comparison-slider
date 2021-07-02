@@ -110,11 +110,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     }
   }
 
-  public reset() {
-    this.exposure = parseInt(this.getAttribute('value')) || 50;
-    this.slide();
-  }
-
   private slide(increment = 0) {
     this.exposure = inBetween(this.exposure + increment, 0, 100);
 
