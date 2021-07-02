@@ -32,13 +32,24 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private secondElement: HTMLElement;
 
   private imageWidth: number;
-  private exposure = 50;
+  private exposure = this.hasAttribute('value')
+    ? parseFloat(this.getAttribute('value'))
+    : 50;
   private isMouseDown = false;
 
   private isAnimating: boolean;
   private transitionTimer: number;
 
   private isFocused = false;
+
+  public get value() {
+    return this.exposure;
+  }
+
+  public set value(newValue: any) {
+    this.exposure = parseFloat(newValue);
+    this.slide();
+  }
 
   constructor() {
     super();
@@ -97,11 +108,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     if (this.transitionTimer) {
       window.clearTimeout(this.transitionTimer);
     }
-  }
-
-  public reset() {
-    this.exposure = 50;
-    this.slide(0);
   }
 
   private slide(increment = 0) {

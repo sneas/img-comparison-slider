@@ -67,6 +67,14 @@ Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.gi
 - [Vue2](docs/installation/vue.md)
 - [Vue3](bindings/vue/README.md)
 
+## Supported Attributes
+
+Besides the default `HTMLElement` attributes such as `class`, `tabindex`, `title`, etc., `img-comparison-slider` supports:
+
+| Attribute | Description                          | Default | Available |
+| --------- | ------------------------------------ | ------- | --------- |
+| `value`   | Position of the divider in percents. | `50`    | `0..100`  |
+
 ## Styling
 
 Some styling techniques and ideas could be found in the [demo](https://sneas.github.io/img-comparison-slider).
@@ -85,7 +93,7 @@ Example:
 </style>
 ```
 
-### Available variables
+### Available Variables
 
 | Variable                   | Description                                              | Default value | Example value                    |
 | -------------------------- | -------------------------------------------------------- | ------------- | -------------------------------- |

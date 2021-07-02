@@ -74,6 +74,8 @@
             <a class="d-block" href="#before-and-after-labels"
               >Before and after labels</a
             >
+
+            <a class="d-block" href="#position">Divider position</a>
           </nav>
         </div>
         <div class="col-12 col-sm-8 col-md-9 bg-white">
@@ -422,6 +424,32 @@
                   />
                   <figcaption>After</figcaption>
                 </figure>
+              </img-comparison-slider>
+            </code>
+          </x-ray>
+          <!-- htmlmin:ignore -->
+
+          <h3 id="position">Divider position</h3>
+
+          <p>
+            The divider position could be specified in percents with the help of
+            <code>value</code> property.
+          </p>
+
+          <!-- htmlmin:ignore -->
+          <x-ray>
+            <code>
+              <img-comparison-slider value="75">
+                <img
+                  slot="first"
+                  width="100%"
+                  src="<%=require('./images/plant.webp')%>"
+                />
+                <img
+                  slot="second"
+                  width="100%"
+                  src="<%=require('./images/plant-blurred.webp')%>"
+                />
               </img-comparison-slider>
             </code>
           </x-ray>
