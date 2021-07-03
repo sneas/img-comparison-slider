@@ -46,6 +46,13 @@ const commonConfig = {
           esModule: false,
         },
       },
+      {
+        test: /\.hbs$/,
+        loader: 'handlebars-loader',
+        options: {
+          query: { inlineRequires: '/public/' },
+        },
+      },
     ],
   },
   resolve: {
@@ -66,13 +73,16 @@ const commonConfig = {
 const demoConfig = ({ favicon = 'public/favicon.svg' } = {}) => ({
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: './public/index.hbs',
       filename: 'index.html',
       inject: true,
       favicon,
     }),
     new CopyWebpackPlugin({
       patterns: [{ from: 'public/static', to: '' }],
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'public/images', to: 'images' }],
     }),
   ],
   output: {
