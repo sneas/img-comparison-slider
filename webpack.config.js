@@ -79,8 +79,8 @@ const demoConfig = ({ favicon = 'public/favicon.svg' } = {}) => ({
     path: path.resolve(__dirname, 'demo'),
   },
   devServer: {
-    host: '0.0.0.0',
-    useLocalIp: true,
+    host: process.env.HOST ?? '0.0.0.0',
+    useLocalIp: process.env.NO_LOCAL_IP !== 'true',
   },
 });
 
