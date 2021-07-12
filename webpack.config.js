@@ -70,29 +70,43 @@ const commonConfig = {
   ],
 };
 
-const demoConfig = ({ favicon = 'public/favicon.svg' } = {}) => ({
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.hbs',
-      filename: 'index.html',
-      inject: true,
-      favicon,
-    }),
-    new CopyWebpackPlugin({
-      patterns: [{ from: 'public/static', to: '' }],
-    }),
-    new CopyWebpackPlugin({
-      patterns: [{ from: 'public/images', to: 'images' }],
-    }),
-  ],
-  output: {
-    path: path.resolve(__dirname, 'demo'),
-  },
-  devServer: {
-    host: process.env.HOST ?? '0.0.0.0',
-    useLocalIp: process.env.NO_LOCAL_IP !== 'true',
-  },
-});
+const demoConfig = ({ favicon = 'public/favicon.svg' } = {}) => {
+  const htmlOptions = {
+    inject: true,
+    favicon,
+  };
+
+  return {
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: './public/index.hbs',
+        filename: 'index.html',
+        ...htmlOptions,
+      }),
+      new HtmlWebpackPlugin({
+        template: './public/examples.hbs',
+        filename: 'examples.html',
+        ...htmlOptions,
+      }),
+      new CopyWebpackPlugin({
+        patterns: [{ from: 'public/static', to: '' }],
+      }),
+      new CopyWebpackPlugin({
+        patterns: [{ from: 'public/images', to: 'images' }],
+      }),
+      new CopyWebpackPlugin({
+        patterns: [{ from: 'public/main.css', to: 'main.css' }],
+      }),
+    ],
+    output: {
+      path: path.resolve(__dirname, 'demo'),
+    },
+    devServer: {
+      host: process.env.HOST ?? '0.0.0.0',
+      useLocalIp: process.env.NO_LOCAL_IP !== 'true',
+    },
+  };
+};
 
 const devConfig = {
   mode: 'development',
