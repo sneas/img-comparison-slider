@@ -71,10 +71,11 @@ const commonConfig = {
   ],
 };
 
-const demoConfig = ({ favicon = 'public/favicon.svg' } = {}) => {
+const demoConfig = ({ favicon = 'public/favicon.svg', base = '/' } = {}) => {
   const htmlOptions = {
     inject: true,
     favicon,
+    base,
   };
 
   return {
@@ -125,7 +126,12 @@ module.exports = (env) => {
         devConfig
       );
     case env.demo:
-      return merge(commonConfig, demoConfig());
+      return merge(
+        commonConfig,
+        demoConfig({
+          base: '/img-comparison-slider/',
+        })
+      );
     case env.production:
       return merge(commonConfig, prodConfig);
     default:
