@@ -1,0 +1,52 @@
+{{#> layout }}
+  <div class="bg-warning">
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-12">
+          <h1>Slider Component</h1>
+          <p>Compare two images. Before and after.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <style>
+            .styled {
+              transition: box-shadow 200ms ease-in-out;
+            }
+
+            .styled:focus {
+              outline: none;
+              box-shadow: 0px 0px 15px 5px rgba(57, 57, 57, 0.28);
+            }
+          </style>
+          <img-comparison-slider class="styled">
+            <img
+                    slot="first"
+                    width="100%"
+                    src="images/sunflowers.webp"
+            />
+            <img
+                    slot="second"
+                    width="100%"
+                    src="images/sunflowers-blurred.webp"
+            />
+          </img-comparison-slider>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-3">
+    <h1 class="my-5">Reasons to use img-comparison-slider</h1>
+
+    <div class="row align-items-center gy-5">
+      {{#each features}}
+        <div class="col-2 col-md-1 col-lg-1 text-center">
+          <i class="{{ this.icon }} fa-3x"></i>
+        </div>
+        <div class="col-4 col-md-3 col-lg-3">
+          {{ this.title }}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+{{/layout}}
