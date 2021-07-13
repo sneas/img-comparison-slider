@@ -35,4 +35,17 @@
       </div>
     </div>
   </div>
+  <div class="container mt-3">
+    <h1 class="my-5">Reasons to use img-comparison-slider</h1>
+
+    <div class="row align-items-center gy-5">
+      {{#each features}}
+        <div class="col-2 col-md-1 col-lg-1 text-center">
+          <i class="{{ this.icon }} fa-3x"></i>
+        </div>
+        <div class="col-4 col-md-3 col-lg-3">
+          {{ this.title }}
+        </div>
+      {{/each}}
+    </div>
 {{/layout}}

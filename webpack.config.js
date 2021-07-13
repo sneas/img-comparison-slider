@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const indexParameters = require('./public/templateParameters/index');
 
 const commonConfig = {
   mode: 'production',
@@ -81,6 +82,7 @@ const demoConfig = ({ favicon = 'public/favicon.svg' } = {}) => {
       new HtmlWebpackPlugin({
         template: './public/index.hbs',
         filename: 'index.html',
+        templateParameters: indexParameters,
         ...htmlOptions,
       }),
       new HtmlWebpackPlugin({
