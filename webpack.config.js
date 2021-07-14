@@ -126,12 +126,7 @@ module.exports = (env) => {
         devConfig
       );
     case env.demo:
-      return merge(
-        commonConfig,
-        demoConfig({
-          base: '/img-comparison-slider/',
-        })
-      );
+      return merge(commonConfig, demoConfig());
     case env.production:
       return merge(commonConfig, prodConfig);
     default:
