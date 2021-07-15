@@ -71,11 +71,10 @@ const commonConfig = {
   ],
 };
 
-const demoConfig = ({ favicon = 'public/favicon.svg', base = '/' } = {}) => {
+const demoConfig = ({ favicon = 'public/favicon.svg' } = {}) => {
   const htmlOptions = {
     inject: true,
     favicon,
-    base,
   };
 
   return {
