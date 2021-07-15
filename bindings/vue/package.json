@@ -23,7 +23,7 @@
     "vue": "^3.0.4",
     "vue-class-component": "^8.0.0-0"
   },
-  "homepage": "https://sneas.github.io/img-comparison-slider",
+  "homepage": "https://img-comparison-slider.sneas.io",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

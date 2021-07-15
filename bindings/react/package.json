@@ -2,7 +2,7 @@
   "name": "@img-comparison-slider/react",
   "version": "0.0.0-automatic",
   "description": "React wrapper for img-comparison-slider",
-  "homepage": "https://sneas.github.io/img-comparison-slider",
+  "homepage": "https://img-comparison-slider.sneas.io",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [

@@ -7,7 +7,7 @@
 
 Refer to this [doc](https://github.com/sneas/img-comparison-slider/blob/master/docs/installation/vue.md) for **Vue2** support.
 
-Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.github.io/img-comparison-slider)
+Usage examples: [https://img-comparison-slider.sneas.io/examples.html](https://img-comparison-slider.sneas.io/examples.html)
 
 ![Example](https://raw.githubusercontent.com/sneas/img-comparison-slider/master/docs/example.gif)
 
@@ -26,12 +26,12 @@ npm install --save @img-comparison-slider/vue
     <img
       slot="first"
       style="width: 100%"
-      src="https://sneas.github.io/img-comparison-slider/demo/images/before.webp"
+      src="https://img-comparison-slider.sneas.io/demo/images/before.webp"
     />
     <img
       slot="second"
       style="width: 100%"
-      src="https://sneas.github.io/img-comparison-slider/demo/images/after.webp"
+      src="https://img-comparison-slider.sneas.io/demo/images/after.webp"
     />
     <!-- eslint-enable -->
   </ImgComparisonSlider>

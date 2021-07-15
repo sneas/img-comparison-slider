@@ -5,7 +5,7 @@
 
 Slider component for comparing images (before and after).
 
-Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.github.io/img-comparison-slider)
+Usage examples: [https://img-comparison-slider.sneas.io/examples.html](https://img-comparison-slider.sneas.io/examples.html)
 
 ![Example](docs/example.gif)
 
@@ -32,8 +32,8 @@ Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.gi
     />
 
     <img-comparison-slider>
-      <img slot="first" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/before.webp">
-      <img slot="second" width="100%" src="https://sneas.github.io/img-comparison-slider/demo/images/after.webp">
+      <img slot="first" width="100%" src="https://img-comparison-slider.sneas.io/demo/images/before.webp">
+      <img slot="second" width="100%" src="https://img-comparison-slider.sneas.io/demo/images/after.webp">
     </img-comparison-slider>
   </template>
 </custom-element-demo>
@@ -77,7 +77,7 @@ Besides the default `HTMLElement` attributes such as `class`, `tabindex`, `title
 
 ## Styling
 
-Some styling techniques and ideas could be found in the [demo](https://sneas.github.io/img-comparison-slider).
+Some styling techniques and ideas could be found in [examples](https://img-comparison-slider.sneas.io/examples.html).
 
 The component items such as the default handle or divider could be styled with the help of CSS3 variables.
 

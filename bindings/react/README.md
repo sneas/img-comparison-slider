@@ -5,7 +5,7 @@
 React wrapper for
 [img-comparison-slider](https://github.com/sneas/img-comparison-slider) component.
 
-Usage examples: [https://sneas.github.io/img-comparison-slider](https://sneas.github.io/img-comparison-slider)
+Usage examples: [https://img-comparison-slider.sneas.io/examples.html](https://img-comparison-slider.sneas.io/examples.html)
 
 ![Example](https://raw.githubusercontent.com/sneas/img-comparison-slider/master/docs/example.gif)
 
@@ -24,8 +24,8 @@ import { ImgComparisonSlider } from '@img-comparison-slider/react';
 render() {
   return (
     <ImgComparisonSlider>
-      <img slot="first" src="https://sneas.github.io/img-comparison-slider/demo/images/before.webp" />
-      <img slot="second" src="https://sneas.github.io/img-comparison-slider/demo/images/after.webp" />
+      <img slot="first" src="https://img-comparison-slider.sneas.io/demo/images/before.webp" />
+      <img slot="second" src="https://img-comparison-slider.sneas.io/demo/images/after.webp" />
     </ImgComparisonSlider>
   );
 }
