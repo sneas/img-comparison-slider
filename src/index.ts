@@ -83,7 +83,9 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.addEventListener('keyup', this.onKeyUp);
     this.addEventListener('focus', this.onFocus);
     this.addEventListener('blur', this.onBlur);
-    this.addEventListener('touchstart', this.onTouchStart);
+    this.addEventListener('touchstart', this.onTouchStart, {
+      passive: true,
+    });
     this.addEventListener('touchmove', this.onTouchMove, {
       passive: false,
     });
