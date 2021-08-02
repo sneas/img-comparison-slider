@@ -5,7 +5,9 @@ import { TABINDEX, RENDERED_CLASS } from './defaults';
 
 const templateElement = document.createElement('template');
 
-templateElement.innerHTML = `<style>${styles}</style>${templateHtml}`;
+const styleElement = document.createElement('style');
+styleElement.textContent = styles;
+templateElement.insertBefore(styleElement, templateElement.childNodes[0]);
 
 type SlideKey = 'ArrowLeft' | 'ArrowRight';
 
