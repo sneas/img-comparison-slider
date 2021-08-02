@@ -7,7 +7,10 @@ const templateElement = document.createElement('template');
 
 const styleElement = document.createElement('style');
 styleElement.textContent = styles;
-templateElement.insertBefore(styleElement, templateElement.childNodes[0]);
+templateElement.appendChild(styleElement);
+const range = document.createRange();
+const documentFragment = range.createContextualFragment(templateHtml);
+templateElement.appendChild(documentFragment);
 
 type SlideKey = 'ArrowLeft' | 'ArrowRight';
 
