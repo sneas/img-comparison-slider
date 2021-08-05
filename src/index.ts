@@ -1,16 +1,69 @@
 import styles from './styles.scss';
 import { inBetween } from './inBetween';
-import templateHtml from './template.html';
 import { TABINDEX, RENDERED_CLASS } from './defaults';
 
 const templateElement = document.createElement('template');
 
 const styleElement = document.createElement('style');
 styleElement.textContent = styles;
-templateElement.appendChild(styleElement);
-const range = document.createRange();
-const documentFragment = range.createContextualFragment(templateHtml);
-templateElement.appendChild(documentFragment);
+templateElement.content.appendChild(styleElement);
+
+const secondDivElement = document.createElement('div');
+secondDivElement.classList.add('second');
+secondDivElement.id = 'second';
+const secondSlotElement = document.createElement('slot');
+secondSlotElement.setAttribute('name', 'second');
+const beforeSlotElement = document.createElement('slot');
+beforeSlotElement.setAttribute('name', 'before');
+secondSlotElement.appendChild(beforeSlotElement);
+secondDivElement.appendChild(secondSlotElement);
+
+templateElement.content.appendChild(secondDivElement);
+
+const firstDivElement = document.createElement('div');
+firstDivElement.classList.add('first');
+firstDivElement.id = 'first';
+const firstOverlayDivElement = document.createElement('div');
+firstOverlayDivElement.classList.add('first-overlay');
+const firstOverlayContainerDivElement = document.createElement('div');
+firstOverlayContainerDivElement.classList.add('first-overlay-container');
+firstOverlayContainerDivElement.id = 'firstImageContainer';
+const firstSlotElement = document.createElement('slot');
+firstSlotElement.setAttribute('name', 'first');
+const afterSlotElement = document.createElement('slot');
+afterSlotElement.setAttribute('name', 'after');
+
+firstSlotElement.appendChild(afterSlotElement);
+firstOverlayContainerDivElement.appendChild(firstSlotElement);
+firstOverlayDivElement.appendChild(firstOverlayContainerDivElement);
+firstDivElement.appendChild(firstOverlayDivElement);
+
+const handleContainerElement = document.createElement('div');
+handleContainerElement.classList.add('handle-container');
+const dividerElement = document.createElement('div');
+dividerElement.classList.add('divider');
+const handleElement = document.createElement('div');
+handleElement.classList.add('handle');
+const handleSlotElement = document.createElement('slot');
+handleSlotElement.setAttribute('name', 'handle');
+const handleSVGElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+handleSVGElement.classList.add('default-handle');
+handleSVGElement.setAttribute('viewBox', '-8 -3 16 6');
+const pathElement = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+pathElement.setAttribute('d', 'M -5 -2 L -7 0 L -5 2 M 5 -2 L 7 0 L 5 2');
+pathElement.setAttribute('fill', 'none');
+pathElement.setAttribute('vector-effect', 'non-scaling-stroke');
+
+handleSVGElement.appendChild(pathElement);
+handleSlotElement.appendChild(handleSVGElement);
+handleElement.appendChild(handleSlotElement);
+
+handleContainerElement.appendChild(dividerElement);
+handleContainerElement.appendChild(handleElement);
+
+firstDivElement.appendChild(handleContainerElement);
+
+templateElement.content.appendChild(firstDivElement);
 
 type SlideKey = 'ArrowLeft' | 'ArrowRight';
 
