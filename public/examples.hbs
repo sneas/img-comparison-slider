@@ -40,6 +40,8 @@
           >
 
           <a class="d-block mb-2" href="#position">Divider position</a>
+
+          <a class="d-block" href="#hover">Automatically slide on mouse move</a>
         </nav>
       </div>
       <div class="col-12 col-sm-8 col-md-9 bg-white">
@@ -413,6 +415,32 @@
                       slot="second"
                       width="100%"
                       src="images/plant-blurred.webp"
+              />
+            </img-comparison-slider>
+          </code>
+        </x-ray>
+        <!-- htmlmin:ignore -->
+
+        <h3 id="hover">Automatically slide on mouse move</h3>
+
+        <p>
+          Automatic slide on mouse over could be enabled by setting up
+          <code>hover</code> property.
+        </p>
+
+        <!-- htmlmin:ignore -->
+        <x-ray>
+          <code>
+            <img-comparison-slider hover="hover">
+              <img
+                slot="first"
+                width="100%"
+                src="images/purple-flowers.webp"
+              />
+              <img
+                slot="second"
+                width="100%"
+                src="images/purple-flowers-blurred.webp"
               />
             </img-comparison-slider>
           </code>
