@@ -51,6 +51,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.slide();
   }
 
+  public hover = this.hasAttribute('hover');
+
   constructor() {
     super();
 
@@ -92,6 +94,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.addEventListener('touchend', this.onTouchEnd);
     this.addEventListener('mousedown', this.onMouseDown);
 
+    if (this.hover) {
+      this.addEventListener('mousemove', this.onMouseMove);
+    }
+
     this.resetWidth();
     if (!this.classList.contains(RENDERED_CLASS)) {
       this.classList.add(RENDERED_CLASS);
@@ -121,16 +127,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     );
   }
 
-  private onWindowMouseMove = (e: MouseEvent) => {
-    /**
-     * This dynamic window.onmousemove event handler
-     * registers on mousedown and removes on mouse up.
-     * The whole mumbo-jumbo is needed to capture
-     * mouse events outside of component. This provides
-     * better user experience.
-     */
-
-    if (this.isMouseDown) {
+  private onMouseMove = (e: MouseEvent) => {
+    if (this.isMouseDown || this.hover) {
       this.slideToPageX(e.pageX);
     }
   };
@@ -138,7 +136,11 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private bodyUserSelectStyle = '';
 
   private onMouseDown = (e: MouseEvent) => {
-    window.addEventListener('mousemove', this.onWindowMouseMove);
+    if (this.hover) {
+      return;
+    }
+
+    window.addEventListener('mousemove', this.onMouseMove);
     window.addEventListener('mouseup', this.onWindowMouseUp);
     this.isMouseDown = true;
     this.enableTransition();
@@ -151,7 +153,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private onWindowMouseUp = () => {
     this.isMouseDown = false;
     window.document.body.style.userSelect = this.bodyUserSelectStyle;
-    window.removeEventListener('mousemove', this.onWindowMouseMove);
+    window.removeEventListener('mousemove', this.onMouseMove);
     window.removeEventListener('mouseup', this.onWindowMouseUp);
   };
 
