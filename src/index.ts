@@ -35,6 +35,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private exposure = this.hasAttribute('value')
     ? parseFloat(this.getAttribute('value'))
     : 50;
+  private slideOnHover = this.hasAttribute('hover')
+    ? this.getAttribute('hover').toLowerCase() !== 'false'
+    : false;
+
   private isMouseDown = false;
 
   private isAnimating: boolean;
@@ -51,7 +55,21 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.slide();
   }
 
-  public hover = this.hasAttribute('hover');
+  public get hover() {
+    return this.slideOnHover;
+  }
+
+  public set hover(newValue: any) {
+    this.slideOnHover = newValue.toString().toLowerCase() !== 'false';
+    this.removeEventListener('mousemove', this.onMouseMove);
+    if (this.slideOnHover) {
+      this.addEventListener('mousemove', this.onMouseMove);
+    }
+  }
+
+  static get observedAttributes() {
+    return ['hover'];
+  }
 
   constructor() {
     super();
@@ -94,7 +112,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.addEventListener('touchend', this.onTouchEnd);
     this.addEventListener('mousedown', this.onMouseDown);
 
-    if (this.hover) {
+    if (this.slideOnHover) {
       this.addEventListener('mousemove', this.onMouseMove);
     }
 
@@ -118,6 +136,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     }
   }
 
+  private attributeChangedCallback(name, oldValue, newValue) {
+    this.hover = newValue;
+  }
+
   private slide(increment = 0) {
     this.exposure = inBetween(this.exposure + increment, 0, 100);
 
@@ -128,7 +150,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   private onMouseMove = (e: MouseEvent) => {
-    if (this.isMouseDown || this.hover) {
+    if (this.isMouseDown || this.slideOnHover) {
       this.slideToPageX(e.pageX);
     }
   };
@@ -136,7 +158,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private bodyUserSelectStyle = '';
 
   private onMouseDown = (e: MouseEvent) => {
-    if (this.hover) {
+    if (this.slideOnHover) {
       return;
     }
 

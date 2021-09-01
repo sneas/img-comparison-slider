@@ -6,6 +6,7 @@ if (typeof document !== 'undefined') {
 
 type ImgComparisonSliderProps = AllHTMLAttributes<HTMLElement> & {
   value?: number | string;
+  hover?: boolean;
 };
 
 export const ImgComparisonSlider: FC<ImgComparisonSliderProps> = ({
