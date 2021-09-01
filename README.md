@@ -3,23 +3,23 @@
 [![npm package](https://img.shields.io/npm/v/img-comparison-slider.svg)](https://www.npmjs.com/package/img-comparison-slider)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/img-comparison-slider)
 
-Slider component for comparing images (before and after).
+## Slider Component for Comparing Images (Before and After).
 
 Usage examples: [https://img-comparison-slider.sneas.io/examples.html](https://img-comparison-slider.sneas.io/examples.html)
 
 ![Example](docs/example.gif)
 
-## Key Features
+## Most Important Features
 
 - Mobile friendly
 - Accessible
 - Responsive
-- Compact - less than 9 kB minified (Or less than 3 kB when gzipped)
+- Compact - less than 9 kB minified (Or less than 3 kB if gzipped)
 - Compatible with modern frameworks ([React](bindings/react/README.md),
   [Angular](docs/installation/angular.md),
   [Vue2](docs/installation/vue.md),
   [Vue3](bindings/vue/README.md))
-- Distributed through CDN or NPM
+- Distributed via CDN or NPM
 
 <!--
 ```
@@ -77,9 +77,9 @@ Besides the default `HTMLElement` attributes such as `class`, `tabindex`, `title
 
 ## Styling
 
-Some styling techniques and ideas could be found in [examples](https://img-comparison-slider.sneas.io/examples.html).
+Some styling techniques and ideas can be found in [examples](https://img-comparison-slider.sneas.io/examples.html).
 
-The component items such as the default handle or divider could be styled with the help of CSS3 variables.
+The component elements like the default handle or the separator line could be styled using CSS3 variables.
 
 Example:
 
@@ -95,16 +95,16 @@ Example:
 
 ### Available Variables
 
-| Variable                   | Description                                              | Default value | Example value                    |
-| -------------------------- | -------------------------------------------------------- | ------------- | -------------------------------- |
-| `--divider-width`          | Width of the vertical line dividing both images          | `1px`         | `1em`                            |
-| `--divider-color`          | Color of the vertical line dividing both images          | `#fff`        | `rgba(0, 0, 0, 0.5)`             |
-| `--divider-shadow`         | Shadow casting by the vertical line dividing both images | `none`        | `0px 0px 5px rgba(0, 0, 0, 0.5)` |
-| `--default-handle-width`   | Width of the default handle                              | `50px`        |                                  |
-| `--default-handle-color`   | Color of the default handle                              | `#fff`        | `rgba(0, 0, 0, 0.5)`             |
-| `--default-handle-opacity` | Opacity of the default handle                            | `1`           | `0.3`                            |
-| `--default-handle-shadow`  | Shadow from the default handle                           | `none`        | `0px 0px 5px rgba(0, 0, 0, 1)`   |
+| Variable                   | Description                                                | Default value | Example value                    |
+| -------------------------- | ---------------------------------------------------------- | ------------- | -------------------------------- |
+| `--divider-width`          | Width of the vertical line separating both images          | `1px`         | `1em`                            |
+| `--divider-color`          | Color of the vertical line separating the two images       | `#fff`        | `rgba(0, 0, 0, 0.5)`             |
+| `--divider-shadow`         | Shadow cast by the vertical line separating the two images | `none`        | `0px 0px 5px rgba(0, 0, 0, 0.5)` |
+| `--default-handle-width`   | Width of the default handle                                | `50px`        |                                  |
+| `--default-handle-color`   | Color of the default handle                                | `#fff`        | `rgba(0, 0, 0, 0.5)`             |
+| `--default-handle-opacity` | Opacity of the default handle                              | `1`           | `0.3`                            |
+| `--default-handle-shadow`  | Shadow cast by the default handle                          | `none`        | `0px 0px 5px rgba(0, 0, 0, 1)`   |
 
 ### Handle
 
-The component's handle could be changed by assigning `slot="handle"` attribute to any element inside `img-comparison-slider`.
+The handle of the component can be changed by assigning the attribute `slot="handle"` to any element within `img-comparison-slider`.
