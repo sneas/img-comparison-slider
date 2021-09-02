@@ -35,6 +35,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private exposure = this.hasAttribute('value')
     ? parseFloat(this.getAttribute('value'))
     : 50;
+  private slideOnHover = false;
+
   private isMouseDown = false;
 
   private isAnimating: boolean;
@@ -49,6 +51,22 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   public set value(newValue: any) {
     this.exposure = parseFloat(newValue);
     this.slide();
+  }
+
+  public get hover() {
+    return this.slideOnHover;
+  }
+
+  public set hover(newValue: any) {
+    this.slideOnHover = newValue.toString().toLowerCase() !== 'false';
+    this.removeEventListener('mousemove', this.onMouseMove);
+    if (this.slideOnHover) {
+      this.addEventListener('mousemove', this.onMouseMove);
+    }
+  }
+
+  static get observedAttributes() {
+    return ['hover'];
   }
 
   constructor() {
@@ -92,6 +110,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.addEventListener('touchend', this.onTouchEnd);
     this.addEventListener('mousedown', this.onMouseDown);
 
+    this.hover = this.hasAttribute('hover')
+      ? this.getAttribute('hover')
+      : false;
+
     this.resetWidth();
     if (!this.classList.contains(RENDERED_CLASS)) {
       this.classList.add(RENDERED_CLASS);
@@ -112,6 +134,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     }
   }
 
+  private attributeChangedCallback(name, oldValue, newValue) {
+    this.hover = newValue;
+  }
+
   private slide(increment = 0) {
     this.exposure = inBetween(this.exposure + increment, 0, 100);
 
@@ -121,16 +147,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     );
   }
 
-  private onWindowMouseMove = (e: MouseEvent) => {
-    /**
-     * This dynamic window.onmousemove event handler
-     * registers on mousedown and removes on mouse up.
-     * The whole mumbo-jumbo is needed to capture
-     * mouse events outside of component. This provides
-     * better user experience.
-     */
-
-    if (this.isMouseDown) {
+  private onMouseMove = (e: MouseEvent) => {
+    if (this.isMouseDown || this.slideOnHover) {
       this.slideToPageX(e.pageX);
     }
   };
@@ -138,7 +156,11 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private bodyUserSelectStyle = '';
 
   private onMouseDown = (e: MouseEvent) => {
-    window.addEventListener('mousemove', this.onWindowMouseMove);
+    if (this.slideOnHover) {
+      return;
+    }
+
+    window.addEventListener('mousemove', this.onMouseMove);
     window.addEventListener('mouseup', this.onWindowMouseUp);
     this.isMouseDown = true;
     this.enableTransition();
@@ -151,7 +173,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private onWindowMouseUp = () => {
     this.isMouseDown = false;
     window.document.body.style.userSelect = this.bodyUserSelectStyle;
-    window.removeEventListener('mousemove', this.onWindowMouseMove);
+    window.removeEventListener('mousemove', this.onMouseMove);
     window.removeEventListener('mouseup', this.onWindowMouseUp);
   };
 

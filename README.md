@@ -74,6 +74,7 @@ Besides the default `HTMLElement` attributes such as `class`, `tabindex`, `title
 | Attribute | Description                          | Default | Available |
 | --------- | ------------------------------------ | ------- | --------- |
 | `value`   | Position of the divider in percents. | `50`    | `0..100`  |
+| `hover`   | Automatically slide on mouse over.   | `false` |           |
 
 ## Styling
 
