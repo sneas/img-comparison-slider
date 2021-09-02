@@ -35,9 +35,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private exposure = this.hasAttribute('value')
     ? parseFloat(this.getAttribute('value'))
     : 50;
-  private slideOnHover = this.hasAttribute('hover')
-    ? this.getAttribute('hover').toLowerCase() !== 'false'
-    : false;
+  private slideOnHover = false;
 
   private isMouseDown = false;
 
@@ -112,9 +110,9 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.addEventListener('touchend', this.onTouchEnd);
     this.addEventListener('mousedown', this.onMouseDown);
 
-    if (this.slideOnHover) {
-      this.addEventListener('mousemove', this.onMouseMove);
-    }
+    this.hover = this.hasAttribute('hover')
+      ? this.getAttribute('hover')
+      : false;
 
     this.resetWidth();
     if (!this.classList.contains(RENDERED_CLASS)) {
