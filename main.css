@@ -2,7 +2,8 @@
 /*! `Hootstrap` Bootstrap 5 theme */
 @import url(https://fonts.googleapis.com/css?family=Comfortaa:200,300,400,700);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,700);
-@import url(https://fonts.googleapis.com/css?family=Autour+One:200,300,400,700); /*!
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:wght@300);
+/*!
  * Bootstrap v5.0.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.
@@ -25,7 +26,7 @@
   --bs-primary: #528078;
   --bs-secondary: #eed75a;
   --bs-success: #fec100;
-  --bs-info: #63e792;
+  --bs-info: #20c997;
   --bs-warning: #ffe869;
   --bs-danger: #703b3b;
   --bs-light: #fdfbf7;
@@ -73,8 +74,10 @@ hr:not([size]) {
   height: 1px;
 }
 
-.navbar-brand {
-  font-family: Autour One;
+.logo {
+  background: url('logo.svg') left 5px no-repeat;
+  padding-left: 1.8rem;
+  font-family: Montserrat;
 }
 
 h1,
@@ -5658,7 +5661,7 @@ fieldset:disabled .btn {
   background-color: #fec100 !important;
 }
 .bg-info {
-  background-color: #63e792 !important;
+  background-color: #fede00 !important;
 }
 .bg-warning {
   background-color: #ffe869 !important;
