@@ -49,8 +49,15 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   public set value(newValue: any) {
-    this.exposure = parseFloat(newValue);
-    this.slide();
+    const newExposure = parseFloat(newValue);
+
+    if (newExposure === this.exposure) {
+      return;
+    }
+
+    this.exposure = newExposure;
+    this.enableTransition();
+    this.setExposure();
   }
 
   public get hover() {
@@ -95,7 +102,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     const resizeObserver = new ResizeObserver(this.resetWidth);
     resizeObserver.observe(this);
 
-    this.slide(0);
+    this.setExposure(0);
 
     this.addEventListener('keydown', this.onKeyDown);
     this.addEventListener('keyup', this.onKeyUp);
@@ -138,13 +145,20 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.hover = newValue;
   }
 
-  private slide(increment = 0) {
+  private setExposure(increment = 0) {
     this.exposure = inBetween(this.exposure + increment, 0, 100);
 
     this.firstElement.style.setProperty(
       '--exposure',
       `${100 - this.exposure}%`
     );
+  }
+
+  private slide(increment = 0) {
+    this.setExposure(increment);
+
+    const event = new Event('slide');
+    this.dispatchEvent(event);
   }
 
   private onMouseMove = (e: MouseEvent) => {

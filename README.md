@@ -76,6 +76,10 @@ Besides the default `HTMLElement` attributes such as `class`, `tabindex`, `title
 | `value`   | Position of the divider in percents. | `50`    | `0..100`  |
 | `hover`   | Automatically slide on mouse over.   | `false` |           |
 
+## Events
+
+The component emits `slide` event when the slider position is changed by user.
+
 ## Styling
 
 Some styling techniques and ideas can be found in [examples](https://img-comparison-slider.sneas.io/examples.html).
