@@ -23,7 +23,7 @@ type ImgComparisonSliderProps =
 
 export const ImgComparisonSlider: FC<ImgComparisonSliderProps> = ({
   children,
-  onSlide = () => null,
+  onSlide,
   ...props
 }: PropsWithChildren<ImgComparisonSliderProps>) => {
   const ref = React.createRef<HTMLImgComparisonSliderElement>();
@@ -34,9 +34,11 @@ export const ImgComparisonSlider: FC<ImgComparisonSliderProps> = ({
   }, [props.value, ref]);
 
   React.useEffect(() => {
-    // @ts-ignore
-    ref.current.addEventListener('slide', onSlide);
-  }, [ref]);
+    if (onSlide) {
+      // @ts-ignore
+      ref.current.addEventListener('slide', onSlide);
+    }
+  }, []);
 
   return React.createElement(
     'img-comparison-slider',
