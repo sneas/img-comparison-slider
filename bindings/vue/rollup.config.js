@@ -31,7 +31,6 @@ function createEntry(options) {
 }
 
 export default [
-  createEntry({ format: 'iife', file: pkg.browser }),
   createEntry({ format: 'es', file: pkg.module }),
   createEntry({ format: 'cjs', file: pkg.main }),
 ];
