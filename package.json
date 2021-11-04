@@ -1,6 +1,6 @@
 {
   "name": "img-comparison-slider",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Slider component to compare images before and after",
   "homepage": "https://img-comparison-slider.sneas.io",
   "main": "dist/index.js",
