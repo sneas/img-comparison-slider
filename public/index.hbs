@@ -20,8 +20,18 @@
               outline: none;
               box-shadow: 0px 0px 15px 5px rgba(57, 57, 57, 0.28);
             }
+
+            .info {
+              max-height: 100px;
+              overflow: hidden;
+              transition: max-height 1s;
+            }
+
+            .info-collapsed {
+              max-height: 0;
+            }
           </style>
-          <img-comparison-slider class="styled">
+          <img-comparison-slider class="styled" id="slider">
             <img
               slot="first"
               width="100%"
@@ -33,6 +43,23 @@
               src="images/sunflowers-blurred.webp"
             />
           </img-comparison-slider>
+          <div class="pt-3 d-flex flex-row info info-collapsed small text-dark" id="slider-info">
+            <span class="flex-grow-1" style="flex-basis: 0; text-align: right">Try using</span>
+            <span class="flex-grow-0 text-center px-1"><i class="fas fa-arrow-left"></i> or <i class="fas fa-arrow-right"></i></span>
+            <span class="flex-grow-1" style="flex-basis: 0;">arrow keys.</span>
+          </div>
+          <script type="text/javascript">
+            const info = document.getElementById('slider-info');
+            const slider = document.getElementById('slider');
+
+            slider.addEventListener('focus', () => {
+              info.classList.remove('info-collapsed');
+            });
+
+            slider.addEventListener('blur', () => {
+              info.classList.add('info-collapsed');
+            })
+          </script>
         </div>
       </div>
     </div>
