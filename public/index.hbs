@@ -5,7 +5,7 @@
         <div class="col-12">
           <div class="d-md-flex align-items-center mb-3">
             <h1 class="p-0 m-0">Slider Component</h1>
-            <div class="ms-3">&mdash; compare two images. Before and after.</div>
+            <div class="ms-3">Compare two images. Before and after.</div>
           </div>
         </div>
       </div>
@@ -64,10 +64,21 @@
       </div>
     </div>
   </div>
-  <div class="container mt-3">
-    <h1 class="my-5">Why do I need img-comparison-slider?</h1>
+  <div class="container mt-5">
     <div class="row">
       <div class="col-12 col-md-6">
+        <h1 class="mb-5">Features</h1>
+        <ul class="row align-items-center mb-5 list-unstyled g-0">
+          {{#each features}}
+            <li class="col-6 col-xl-4 row align-items-center mb-5 g-0">
+              <div class="col-8">{{ this.title }}</div>
+              <div class="col-4 order-first"><i class="{{ this.icon }} fa-3x"></i></div>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="col-12 col-md-6">
+        <h3>Why do I need img-comparison-slider?</h3>
         <p>
           This <a href="https://github.com/sneas/img-comparison-slider/blob/master/LICENSE">free open source</a> slider
           component was created to demonstrate the difference between two images. For
@@ -82,20 +93,6 @@
           <a href="/examples.html">the examples</a>. The setup and settings documentation is available on the <a
           href="https://github.com/sneas/img-comparison-slider">component's GitHub page</a>.
         </p>
-      </div>
-      <div class="col-12 col-md-6">
-        <h2 class="mb-5">Component Features</h2>
-
-        <div class="row align-items-center gy-5 mb-5">
-          {{#each features}}
-            <div class="col-2 col-xl-1 text-center">
-              <i class="{{ this.icon }} fa-3x"></i>
-            </div>
-            <div class="col-4 col-xl-3 ps-xl-3">
-              {{ this.title }}
-            </div>
-          {{/each}}
-        </div>
       </div>
     </div>
   </div>
