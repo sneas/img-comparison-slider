@@ -80,9 +80,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     super();
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
-    /*
-     * add styles here for nonce
-     */
+
     const styleEl = document.createElement('style');
     styleEl.innerHTML = `${styles}`;
 
