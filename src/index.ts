@@ -86,8 +86,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     const styleEl = document.createElement('style');
     styleEl.innerHTML = `${styles}`;
 
-    if (this.nonce) {
-      styleEl.setAttribute('nonce', this.nonce);
+    if (this.getAttribute('nonce')) {
+      styleEl.setAttribute('nonce', this.getAttribute('nonce'));
     }
     shadowRoot.appendChild(styleEl);
 
