@@ -5,7 +5,7 @@ import { TABINDEX, RENDERED_CLASS } from './defaults';
 
 const templateElement = document.createElement('template');
 
-templateElement.innerHTML = `${templateHtml}`;
+templateElement.innerHTML = templateHtml;
 
 type SlideKey = 'ArrowLeft' | 'ArrowRight';
 
@@ -82,7 +82,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: 'open' });
 
     const styleEl = document.createElement('style');
-    styleEl.innerHTML = `${styles}`;
+    styleEl.innerHTML = styles;
 
     if (this.getAttribute('nonce')) {
       styleEl.setAttribute('nonce', this.getAttribute('nonce'));
