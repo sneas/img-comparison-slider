@@ -65,6 +65,14 @@
     overflow: hidden;
     height: 100%;
   }
+
+  &.focused {
+    will-change: transform;
+
+    .first-overlay-container {
+      will-change: transform;
+    }
+  }
 }
 
 .second {

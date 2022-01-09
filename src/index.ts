@@ -245,10 +245,12 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private onBlur = () => {
     this.stopSlideAnimation();
     this.isFocused = false;
+    this.firstElement.classList.remove('focused');
   };
 
   private onFocus = () => {
     this.isFocused = true;
+    this.firstElement.classList.add('focused');
   };
 
   private onKeyDown = (e: KeyboardEvent) => {
