@@ -73,6 +73,19 @@
       will-change: transform;
     }
   }
+
+  // Ignore Safari browser
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      &.focused {
+        will-change: auto;
+
+        .first-overlay-container {
+          will-change: auto;
+        }
+      }
+    }
+  }
 }
 
 .second {
