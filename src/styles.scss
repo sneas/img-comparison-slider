@@ -143,8 +143,8 @@
   }
 }
 
-:host([direction='vertical']) {
-  .first {
+.vertical {
+  &.first {
     transform: translateY(calc(var(--exposure) * -1));
 
     .first-overlay-container {
