@@ -82,7 +82,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['hover'];
+    return ['hover', 'direction'];
   }
 
   constructor() {
@@ -160,7 +160,13 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   private attributeChangedCallback(name, oldValue, newValue) {
-    this.hover = newValue;
+    if (name === 'hover') {
+      this.hover = newValue;
+    }
+
+    if (name === 'direction') {
+      this.direction = newValue;
+    }
   }
 
   private setExposure(increment = 0) {
