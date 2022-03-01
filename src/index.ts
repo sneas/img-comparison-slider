@@ -166,6 +166,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     if (name === 'direction') {
       this.direction = newValue;
+      this.exposure = 50;
+      this.slide(0);
     }
   }
 
