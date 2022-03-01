@@ -142,3 +142,36 @@
     stroke: var(--default-handle-color);
   }
 }
+
+:host([direction="vertical"]) .first {
+  transform: translateY(calc(var(--exposure) * -1));
+
+  .first-overlay-container {
+    transform: translateY(var(--exposure));
+  }
+
+  .handle-container {
+    transform: translateY(50%);
+    height: auto;
+    top: unset;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    flex-direction: row;
+  }
+
+  .divider {
+    &:after {
+      height: 1px;
+      width: 100%;
+      border-top-width: var(--divider-width);
+      border-top-style: solid;
+      border-top-color: var(--divider-color);
+      border-left: 0;
+    }
+  }
+
+  .handle {
+    transform: translateX(-0.5px) rotate(90deg);
+  }
+}

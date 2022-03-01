@@ -24,6 +24,11 @@ const getTouchPagePoint = (e: TouchEvent): Point => ({
   y: e.touches[0].pageY,
 });
 
+const getMousePagePoint = (e: MouseEvent): Point => ({
+  x: e.pageX,
+  y: e.pageY,
+});
+
 const slideAnimationPeriod = 1000 / 60;
 
 export class HTMLImgComparisonSliderElement extends HTMLElement {
@@ -32,10 +37,14 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private secondElement: HTMLElement;
 
   private imageWidth: number;
+  private imageHeight: number;
   private exposure = this.hasAttribute('value')
     ? parseFloat(this.getAttribute('value'))
     : 50;
   private slideOnHover = false;
+  private direction = this.hasAttribute('direction')
+    ? this.getAttribute('direction')
+    : 'horizontal';
 
   private isMouseDown = false;
 
@@ -108,7 +117,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
       return false;
     });
 
-    const resizeObserver = new ResizeObserver(this.resetWidth);
+    const resizeObserver = new ResizeObserver(this.resetDimensions);
     resizeObserver.observe(this);
 
     this.setExposure(0);
@@ -130,7 +139,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
       ? this.getAttribute('hover')
       : false;
 
-    this.resetWidth();
+    this.resetDimensions();
     if (!this.classList.contains(RENDERED_CLASS)) {
       this.classList.add(RENDERED_CLASS);
     }
@@ -172,7 +181,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
   private onMouseMove = (e: MouseEvent) => {
     if (this.isMouseDown || this.slideOnHover) {
-      this.slideToPageX(e.pageX);
+      const currentPoint = getMousePagePoint(e);
+      this.slideToPage(currentPoint);
     }
   };
 
@@ -187,7 +197,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     window.addEventListener('mouseup', this.onWindowMouseUp);
     this.isMouseDown = true;
     this.enableTransition();
-    this.slideToPageX(e.pageX);
+
+    const currentPoint = getMousePagePoint(e);
+    this.slideToPage(currentPoint);
+
     this.focus();
     this.bodyUserSelectStyle = window.document.body.style.userSelect;
     window.document.body.style.userSelect = 'none';
@@ -209,26 +222,32 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     if (this.isFocused) {
       this.enableTransition();
-      this.slideToPageX(e.touches[0].pageX);
+
+      this.slideToPage(this.touchStartPoint);
     }
   };
 
   private onTouchMove = (e: TouchEvent) => {
+    const currentPoint = getTouchPagePoint(e);
+
     if (this.isTouchComparing) {
-      this.slideToPageX(e.touches[0].pageX);
+      this.slideToPage(currentPoint);
       e.preventDefault();
       return false;
     }
 
     if (!this.hasTouchMoved) {
-      const currentPoint = getTouchPagePoint(e);
       if (
-        Math.abs(currentPoint.y - this.touchStartPoint.y) <
-        Math.abs(currentPoint.x - this.touchStartPoint.x)
+        (this.direction === 'horizontal' &&
+          Math.abs(currentPoint.y - this.touchStartPoint.y) <
+            Math.abs(currentPoint.x - this.touchStartPoint.x)) ||
+        (this.direction === 'vertical' &&
+          Math.abs(currentPoint.y - this.touchStartPoint.y) >
+            Math.abs(currentPoint.x - this.touchStartPoint.x))
       ) {
         this.isTouchComparing = true;
         this.focus();
-        this.slideToPageX(e.touches[0].pageX);
+        this.slideToPage(currentPoint);
         e.preventDefault();
         return false;
       }
@@ -281,9 +300,26 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.stopSlideAnimation();
   };
 
+  private slideToPage(currentPoint: Point) {
+    if (this.direction === 'horizontal') {
+      this.slideToPageX(currentPoint.x);
+    }
+
+    if (this.direction === 'vertical') {
+      this.slideToPageY(currentPoint.y);
+    }
+  }
+
   private slideToPageX(pageX: number) {
     const x = pageX - this.getBoundingClientRect().left - window.scrollX;
     this.exposure = (x / this.imageWidth) * 100;
+    this.slide(0);
+  }
+
+  private slideToPageY(pageY: number) {
+    const y = pageY - this.getBoundingClientRect().top - window.scrollY;
+    this.exposure = (y / this.imageHeight) * 100;
+
     this.slide(0);
   }
 
@@ -323,8 +359,9 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.isAnimating = false;
   }
 
-  private resetWidth = () => {
+  private resetDimensions = () => {
     this.imageWidth = this.offsetWidth;
+    this.imageHeight = this.offsetHeight;
   };
 }
 
