@@ -71,11 +71,12 @@ Usage examples: [https://img-comparison-slider.sneas.io/examples.html](https://i
 
 Besides the default `HTMLElement` attributes such as `class`, `tabindex`, `title`, etc., `img-comparison-slider` supports:
 
-| Attribute | Description                                     | Default | Available |
-| --------- | ----------------------------------------------- | ------- | --------- |
-| `value`   | Position of the divider in percents.            | `50`    | `0..100`  |
-| `hover`   | Automatically slide on mouse over.              | `false` |           |
-| `nonce`   | Define nonce which gets passed to inline style. |         |           |
+| Attribute   | Description                                     | Default      | Available              |
+| ----------- | ----------------------------------------------- | ------------ | ---------------------- |
+| `value`     | Position of the divider in percents.            | `50`         | `0..100`               |
+| `hover`     | Automatically slide on mouse over.              | `false`      |                        |
+| `direction` | Set slider direction.                           | `horizontal` | `horizontal, vertical` |
+| `nonce`     | Define nonce which gets passed to inline style. |              |                        |
 
 ## Events
 
