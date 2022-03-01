@@ -245,13 +245,12 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     }
 
     if (!this.hasTouchMoved) {
+      const offsetY = Math.abs(currentPoint.y - this.touchStartPoint.y);
+      const offsetX = Math.abs(currentPoint.x - this.touchStartPoint.x);
+
       if (
-        (this.direction === 'horizontal' &&
-          Math.abs(currentPoint.y - this.touchStartPoint.y) <
-            Math.abs(currentPoint.x - this.touchStartPoint.x)) ||
-        (this.direction === 'vertical' &&
-          Math.abs(currentPoint.y - this.touchStartPoint.y) >
-            Math.abs(currentPoint.x - this.touchStartPoint.x))
+        (this.direction === 'horizontal' && offsetY < offsetX) ||
+        (this.direction === 'vertical' && offsetY > offsetX)
       ) {
         this.isTouchComparing = true;
         this.focus();
@@ -327,7 +326,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private slideToPageY(pageY: number) {
     const y = pageY - this.getBoundingClientRect().top - window.scrollY;
     this.exposure = (y / this.imageHeight) * 100;
-
     this.slide(0);
   }
 
