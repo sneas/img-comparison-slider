@@ -143,11 +143,13 @@
   }
 }
 
-:host([direction="vertical"]) .first {
-  transform: translateY(calc(var(--exposure) * -1));
+:host([direction='vertical']) {
+  .first {
+    transform: translateY(calc(var(--exposure) * -1));
 
-  .first-overlay-container {
-    transform: translateY(var(--exposure));
+    .first-overlay-container {
+      transform: translateY(var(--exposure));
+    }
   }
 
   .handle-container {
