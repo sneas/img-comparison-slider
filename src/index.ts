@@ -14,6 +14,10 @@ const KeySlideOffset: Record<SlideKey, number> = {
   ArrowRight: 1,
 };
 
+type SlideDirection = 'horizontal' | 'vertical';
+
+const slideDirections: Array<SlideDirection> = ['horizontal', 'vertical'];
+
 interface Point {
   x: number;
   y: number;
@@ -24,6 +28,11 @@ const getTouchPagePoint = (e: TouchEvent): Point => ({
   y: e.touches[0].pageY,
 });
 
+const getMousePagePoint = (e: MouseEvent): Point => ({
+  x: e.pageX,
+  y: e.pageY,
+});
+
 const slideAnimationPeriod = 1000 / 60;
 
 export class HTMLImgComparisonSliderElement extends HTMLElement {
@@ -32,10 +41,12 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private secondElement: HTMLElement;
 
   private imageWidth: number;
+  private imageHeight: number;
   private exposure = this.hasAttribute('value')
     ? parseFloat(this.getAttribute('value'))
     : 50;
   private slideOnHover = false;
+  private slideDirection: SlideDirection = 'horizontal';
 
   private isMouseDown = false;
 
@@ -72,8 +83,27 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     }
   }
 
+  public get direction() {
+    return this.slideDirection;
+  }
+
+  public set direction(newValue: any) {
+    this.slideDirection = newValue.toString().toLowerCase();
+
+    this.exposure = 50;
+    this.slide(0);
+
+    this.firstElement.classList.remove(...slideDirections);
+
+    if (!slideDirections.includes(this.slideDirection)) {
+      return;
+    }
+
+    this.firstElement.classList.add(this.slideDirection);
+  }
+
   static get observedAttributes() {
-    return ['hover'];
+    return ['hover', 'direction'];
   }
 
   constructor() {
@@ -108,7 +138,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
       return false;
     });
 
-    const resizeObserver = new ResizeObserver(this.resetWidth);
+    const resizeObserver = new ResizeObserver(this.resetDimensions);
     resizeObserver.observe(this);
 
     this.setExposure(0);
@@ -130,7 +160,11 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
       ? this.getAttribute('hover')
       : false;
 
-    this.resetWidth();
+    this.direction = this.hasAttribute('direction')
+      ? this.getAttribute('direction')
+      : 'horizontal';
+
+    this.resetDimensions();
     if (!this.classList.contains(RENDERED_CLASS)) {
       this.classList.add(RENDERED_CLASS);
     }
@@ -151,7 +185,13 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   }
 
   private attributeChangedCallback(name, oldValue, newValue) {
-    this.hover = newValue;
+    if (name === 'hover') {
+      this.hover = newValue;
+    }
+
+    if (name === 'direction') {
+      this.direction = newValue;
+    }
   }
 
   private setExposure(increment = 0) {
@@ -172,7 +212,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
   private onMouseMove = (e: MouseEvent) => {
     if (this.isMouseDown || this.slideOnHover) {
-      this.slideToPageX(e.pageX);
+      const currentPoint = getMousePagePoint(e);
+      this.slideToPage(currentPoint);
     }
   };
 
@@ -187,7 +228,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     window.addEventListener('mouseup', this.onWindowMouseUp);
     this.isMouseDown = true;
     this.enableTransition();
-    this.slideToPageX(e.pageX);
+
+    const currentPoint = getMousePagePoint(e);
+    this.slideToPage(currentPoint);
+
     this.focus();
     this.bodyUserSelectStyle = window.document.body.style.userSelect;
     window.document.body.style.userSelect = 'none';
@@ -209,26 +253,31 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     if (this.isFocused) {
       this.enableTransition();
-      this.slideToPageX(e.touches[0].pageX);
+
+      this.slideToPage(this.touchStartPoint);
     }
   };
 
   private onTouchMove = (e: TouchEvent) => {
+    const currentPoint = getTouchPagePoint(e);
+
     if (this.isTouchComparing) {
-      this.slideToPageX(e.touches[0].pageX);
+      this.slideToPage(currentPoint);
       e.preventDefault();
       return false;
     }
 
     if (!this.hasTouchMoved) {
-      const currentPoint = getTouchPagePoint(e);
+      const offsetY = Math.abs(currentPoint.y - this.touchStartPoint.y);
+      const offsetX = Math.abs(currentPoint.x - this.touchStartPoint.x);
+
       if (
-        Math.abs(currentPoint.y - this.touchStartPoint.y) <
-        Math.abs(currentPoint.x - this.touchStartPoint.x)
+        (this.slideDirection === 'horizontal' && offsetY < offsetX) ||
+        (this.slideDirection === 'vertical' && offsetY > offsetX)
       ) {
         this.isTouchComparing = true;
         this.focus();
-        this.slideToPageX(e.touches[0].pageX);
+        this.slideToPage(currentPoint);
         e.preventDefault();
         return false;
       }
@@ -281,9 +330,25 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.stopSlideAnimation();
   };
 
+  private slideToPage(currentPoint: Point) {
+    if (this.slideDirection === 'horizontal') {
+      this.slideToPageX(currentPoint.x);
+    }
+
+    if (this.slideDirection === 'vertical') {
+      this.slideToPageY(currentPoint.y);
+    }
+  }
+
   private slideToPageX(pageX: number) {
     const x = pageX - this.getBoundingClientRect().left - window.scrollX;
     this.exposure = (x / this.imageWidth) * 100;
+    this.slide(0);
+  }
+
+  private slideToPageY(pageY: number) {
+    const y = pageY - this.getBoundingClientRect().top - window.scrollY;
+    this.exposure = (y / this.imageHeight) * 100;
     this.slide(0);
   }
 
@@ -323,8 +388,9 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.isAnimating = false;
   }
 
-  private resetWidth = () => {
+  private resetDimensions = () => {
     this.imageWidth = this.offsetWidth;
+    this.imageHeight = this.offsetHeight;
   };
 }
 

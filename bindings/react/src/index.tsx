@@ -12,12 +12,14 @@ if (typeof document !== 'undefined') {
 type HTMLImgComparisonSliderElement = HTMLElement & {
   value: number;
   hover: boolean;
+  direction: string;
 };
 
 type ImgComparisonSliderProps =
   AllHTMLAttributes<HTMLImgComparisonSliderElement> & {
     value?: number | string;
     hover?: boolean;
+    direction?: string;
     onSlide?: ChangeEventHandler<HTMLImgComparisonSliderElement>;
   };
 
