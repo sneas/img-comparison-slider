@@ -90,7 +90,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   public set direction(newValue: any) {
     this.slideDirection = newValue.toString().toLowerCase();
 
-    this.exposure = 50;
     this.slide(0);
 
     this.firstElement.classList.remove(...slideDirections);
