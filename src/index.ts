@@ -392,8 +392,9 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.imageHeight = this.offsetHeight;
   };
 }
-
-window.customElements.define(
-  'img-comparison-slider',
-  HTMLImgComparisonSliderElement
-);
+if (typeof window !== 'undefined') {
+  window.customElements.define(
+    'img-comparison-slider',
+    HTMLImgComparisonSliderElement
+  );
+}
