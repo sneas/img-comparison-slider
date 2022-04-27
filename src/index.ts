@@ -48,6 +48,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private slideOnHover = false;
   private slideDirection: SlideDirection = 'horizontal';
 
+  private keyboard = 'enabled';
+
   private isMouseDown = false;
 
   private isAnimating: boolean;
@@ -142,8 +144,15 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     this.setExposure(0);
 
-    this.addEventListener('keydown', this.onKeyDown);
-    this.addEventListener('keyup', this.onKeyUp);
+    this.keyboard = this.hasAttribute('keyboard')
+      ? this.getAttribute('keyboard')
+      : 'enabled';
+
+    if (this.keyboard !== 'disabled') {
+      this.addEventListener('keydown', this.onKeyDown);
+      this.addEventListener('keyup', this.onKeyUp);
+    }
+
     this.addEventListener('focus', this.onFocus);
     this.addEventListener('blur', this.onBlur);
     this.addEventListener('touchstart', this.onTouchStart, {
