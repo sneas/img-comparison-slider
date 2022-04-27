@@ -102,6 +102,15 @@
   align-items: flex-end;
   justify-content: center;
   flex-direction: column;
+
+  &.handle-control {
+    pointer-events: none;
+
+    .handle,
+    .divider:after {
+      pointer-events: all;
+    }
+  }
 }
 
 .divider {

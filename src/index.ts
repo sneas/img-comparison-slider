@@ -15,6 +15,7 @@ const KeySlideOffset: Record<SlideKey, number> = {
 };
 
 type SlideDirection = 'horizontal' | 'vertical';
+type ControlMode = 'full' | 'handle';
 
 const slideDirections: Array<SlideDirection> = ['horizontal', 'vertical'];
 
@@ -39,6 +40,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private firstElement: HTMLElement;
   private firstImageContainerElement: HTMLElement;
   private secondElement: HTMLElement;
+  private handleElement: HTMLElement;
 
   private imageWidth: number;
   private imageHeight: number;
@@ -47,6 +49,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     : 50;
   private slideOnHover = false;
   private slideDirection: SlideDirection = 'horizontal';
+
+  private control: ControlMode = 'full';
 
   private isMouseDown = false;
 
@@ -125,6 +129,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
       'firstImageContainer'
     );
     this.secondElement = shadowRoot.getElementById('second');
+
+    this.handleElement = shadowRoot.querySelector('.handle-container');
   }
 
   private connectedCallback() {
@@ -146,14 +152,21 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.addEventListener('keyup', this.onKeyUp);
     this.addEventListener('focus', this.onFocus);
     this.addEventListener('blur', this.onBlur);
-    this.addEventListener('touchstart', this.onTouchStart, {
+
+    this.control = this.hasAttribute('control') &&
+                   this.getAttribute('control') === 'handle' ? 'handle' : 'full';
+
+    this.handleElement.classList.toggle('handle-control', this.control === 'handle');
+    const controlElement = this.control === 'handle' ?  this.handleElement : this;
+    controlElement.addEventListener('touchstart', this.onTouchStart, {
       passive: true,
     });
+    controlElement.addEventListener('mousedown', this.onMouseDown);
+
     this.addEventListener('touchmove', this.onTouchMove, {
       passive: false,
     });
     this.addEventListener('touchend', this.onTouchEnd);
-    this.addEventListener('mousedown', this.onMouseDown);
 
     this.hover = this.hasAttribute('hover')
       ? this.getAttribute('hover')
