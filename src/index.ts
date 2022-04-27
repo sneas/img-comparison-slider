@@ -15,6 +15,7 @@ const KeySlideOffset: Record<SlideKey, number> = {
 };
 
 type SlideDirection = 'horizontal' | 'vertical';
+type KeyboardMode = 'enabled' | 'disabled';
 
 const slideDirections: Array<SlideDirection> = ['horizontal', 'vertical'];
 
@@ -48,7 +49,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private slideOnHover = false;
   private slideDirection: SlideDirection = 'horizontal';
 
-  private keyboard = 'enabled';
+  private keyboard: KeyboardMode = 'enabled';
 
   private isMouseDown = false;
 
@@ -144,9 +145,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     this.setExposure(0);
 
-    this.keyboard = this.hasAttribute('keyboard')
-      ? this.getAttribute('keyboard')
-      : 'enabled';
+    this.keyboard = this.hasAttribute('keyboard') &&
+					  this.getAttribute('keyboard') === 'disabled' ? 'disabled' : 'enabled';
 
     if (this.keyboard !== 'disabled') {
       this.addEventListener('keydown', this.onKeyDown);
