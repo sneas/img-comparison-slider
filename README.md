@@ -44,7 +44,7 @@ Usage examples: [https://img-comparison-slider.sneas.io/examples.html](https://i
 
 ### Browser Requirements
 
-- Support for [ECMAScript 2015 (ES6)](https://caniuse.com/?search=es6). Use [Babel](https://babeljs.io/docs/en/babel-preset-env) if needed. 
+- Support for [ECMAScript 2015 (ES6)](https://caniuse.com/?search=es6). Use [Babel](https://babeljs.io/docs/en/babel-preset-env) if needed.
 - Support for [Custom Elements (V1)](https://caniuse.com/?search=custom%20elements%20v1) and [ShadowDOM (V1)](https://caniuse.com/?search=shadowdom%20v1). Use [Polyfills](https://www.webcomponents.org/polyfills) if support for older browsers is needed.
 - Support for [CSS Variables (Custom Properties)](https://caniuse.com/?search=css%20custom%20properties). [Polyfill](https://github.com/nuxodin/ie11CustomProperties) it for IE11.
 
@@ -77,12 +77,13 @@ Usage examples: [https://img-comparison-slider.sneas.io/examples.html](https://i
 
 Besides the default `HTMLElement` attributes such as `class`, `tabindex`, `title`, etc., `img-comparison-slider` supports:
 
-| Attribute   | Description                                     | Default      | Available              |
-| ----------- | ----------------------------------------------- | ------------ | ---------------------- |
-| `value`     | Position of the divider in percents.            | `50`         | `0..100`               |
-| `hover`     | Automatically slide on mouse over.              | `false`      |                        |
-| `direction` | Set slider direction.                           | `horizontal` | `horizontal, vertical` |
-| `nonce`     | Define nonce which gets passed to inline style. |              |                        |
+| Attribute   | Description                                               | Default      | Available                |
+| ----------- | --------------------------------------------------------- | ------------ | ------------------------ |
+| `value`     | Position of the divider in percents.                      | `50`         | `0..100`                 |
+| `hover`     | Automatically slide on mouse over.                        | `false`      |                          |
+| `direction` | Set slider direction.                                     | `horizontal` | `horizontal`, `vertical` |
+| `nonce`     | Define nonce which gets passed to inline style.           |              |                          |
+| `keyboard`  | Enable/disable slider position control with the keyboard. | `enabled`    | `enabled`, `disabled`    |
 
 ## Events
 
