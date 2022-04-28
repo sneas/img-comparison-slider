@@ -151,10 +151,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
         ? 'disabled'
         : 'enabled';
 
-    if (this.keyboard !== 'disabled') {
-      this.addEventListener('keydown', this.onKeyDown);
-      this.addEventListener('keyup', this.onKeyUp);
-    }
+    this.addEventListener('keydown', this.onKeyDown);
+    this.addEventListener('keyup', this.onKeyUp);
 
     this.addEventListener('focus', this.onFocus);
     this.addEventListener('blur', this.onBlur);
@@ -318,6 +316,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   };
 
   private onKeyDown = (e: KeyboardEvent) => {
+    if (this.keyboard === 'disabled') {
+      return;
+    }
+
     if (this.isAnimating) {
       return;
     }
@@ -334,6 +336,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   };
 
   private onKeyUp = (e: KeyboardEvent) => {
+    if (this.keyboard === 'disabled') {
+      return;
+    }
+
     if (!this.isAnimating) {
       return;
     }
