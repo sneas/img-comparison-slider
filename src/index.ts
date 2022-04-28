@@ -16,6 +16,7 @@ const KeySlideOffset: Record<SlideKey, number> = {
 
 type SlideDirection = 'horizontal' | 'vertical';
 type ControlMode = 'full' | 'handle';
+type KeyboardMode = 'enabled' | 'disabled';
 
 const slideDirections: Array<SlideDirection> = ['horizontal', 'vertical'];
 
@@ -51,6 +52,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private slideDirection: SlideDirection = 'horizontal';
 
   private control: ControlMode = 'full';
+  private keyboard: KeyboardMode = 'enabled';
 
   private isMouseDown = false;
 
@@ -148,16 +150,29 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     this.setExposure(0);
 
+    this.keyboard =
+      this.hasAttribute('keyboard') &&
+      this.getAttribute('keyboard') === 'disabled'
+        ? 'disabled'
+        : 'enabled';
+
     this.addEventListener('keydown', this.onKeyDown);
     this.addEventListener('keyup', this.onKeyUp);
+
     this.addEventListener('focus', this.onFocus);
     this.addEventListener('blur', this.onBlur);
 
-    this.control = this.hasAttribute('control') &&
-                   this.getAttribute('control') === 'handle' ? 'handle' : 'full';
+    this.control =
+      this.hasAttribute('control') && this.getAttribute('control') === 'handle'
+        ? 'handle'
+        : 'full';
 
-    this.handleElement.classList.toggle('handle-control', this.control === 'handle');
-    const controlElement = this.control === 'handle' ?  this.handleElement : this;
+    this.handleElement.classList.toggle(
+      'handle-control',
+      this.control === 'handle'
+    );
+    const controlElement =
+      this.control === 'handle' ? this.handleElement : this;
     controlElement.addEventListener('touchstart', this.onTouchStart, {
       passive: true,
     });
@@ -203,6 +218,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     if (name === 'direction') {
       this.direction = newValue;
+    }
+
+    if (name === 'keyboard') {
+      this.keyboard = newValue === 'disabled' ? 'disabled' : 'enabled';
     }
   }
 
@@ -315,6 +334,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   };
 
   private onKeyDown = (e: KeyboardEvent) => {
+    if (this.keyboard === 'disabled') {
+      return;
+    }
+
     if (this.isAnimating) {
       return;
     }
@@ -331,6 +354,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   };
 
   private onKeyUp = (e: KeyboardEvent) => {
+    if (this.keyboard === 'disabled') {
+      return;
+    }
+
     if (!this.isAnimating) {
       return;
     }
