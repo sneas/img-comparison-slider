@@ -20,6 +20,7 @@ type ImgComparisonSliderProps =
     value?: number | string;
     hover?: boolean;
     direction?: string;
+    keyboard?: 'enabled' | 'disabled';
     onSlide?: ChangeEventHandler<HTMLImgComparisonSliderElement>;
   };
 

@@ -145,8 +145,11 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     this.setExposure(0);
 
-    this.keyboard = this.hasAttribute('keyboard') &&
-					  this.getAttribute('keyboard') === 'disabled' ? 'disabled' : 'enabled';
+    this.keyboard =
+      this.hasAttribute('keyboard') &&
+      this.getAttribute('keyboard') === 'disabled'
+        ? 'disabled'
+        : 'enabled';
 
     if (this.keyboard !== 'disabled') {
       this.addEventListener('keydown', this.onKeyDown);
@@ -199,6 +202,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     if (name === 'direction') {
       this.direction = newValue;
+    }
+
+    if (name === 'keyboard') {
+      this.keyboard = newValue === 'disabled' ? 'disabled' : 'enabled';
     }
   }
 
