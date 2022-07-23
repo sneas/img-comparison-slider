@@ -65,7 +65,6 @@ typings/
 .vscode
 
 dist/
-/demo/
 loader/
 .DS_Store
 .envrc
