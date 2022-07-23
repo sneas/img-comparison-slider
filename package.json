@@ -3,31 +3,12 @@
   "version": "0.0.0",
   "description": "Slider component to compare images before and after",
   "homepage": "https://img-comparison-slider.sneas.io",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "keywords": [
-    "image",
-    "img",
-    "slider",
-    "compare",
-    "comparison",
-    "web-component"
-  ],
   "workspaces": {
     "packages": [
       "packages/*"
     ]
   },
-  "scripts": {
-    "prebuild": "rimraf ./dist",
-    "build": "webpack --env production",
-    "watch": "webpack --watch --env production",
-    "start": "webpack serve --env development --open",
-    "predemo": "rimraf ./demo",
-    "demo": "webpack --env demo",
-    "gh": "gh-pages -d demo",
-    "release-bindings": "./scripts/release-bindings.sh"
-  },
+  "scripts": {},
   "devDependencies": {
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
