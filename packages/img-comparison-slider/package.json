@@ -1,0 +1,32 @@
+{
+  "name": "img-comparison-slider",
+  "version": "7.6.0",
+  "description": "Slider component to compare images before and after",
+  "homepage": "https://img-comparison-slider.sneas.io",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "image",
+    "img",
+    "slider",
+    "compare",
+    "comparison",
+    "web-component"
+  ],
+  "scripts": {
+    "prebuild": "rimraf ./dist",
+    "build": "webpack --env production",
+    "watch": "webpack --watch --env production",
+    "start": "npm run watch",
+    "img-comparison-slider": "npm run watch"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sneas/img-comparison-slider.git"
+  },
+  "devDependencies": {
+    "mini-css-extract-plugin": "^2.6.1",
+    "resolve-url-loader": "^5.0.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@img-comparison-slider/www",
+  "version": "0.0.0",
+  "homepage": "https://img-comparison-slider.sneas.io",
+  "scripts": {
+    "prebuild": "rimraf ./dist",
+    "build": "webpack --env production",
+    "watch": "webpack --watch --env production",
+    "start": "webpack serve --env development --open",
+    "www": "npm run start",
+    "gh": "gh-pages -d dist"
+  },
+  "devDependencies": {},
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sneas/img-comparison-slider.git"
+  }
+}
