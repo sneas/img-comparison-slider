@@ -45,9 +45,6 @@ jobs:
     docker:
       - image: cimg/node:lts
     working_directory: ~/repo
-    branches:
-      only:
-        - master
     steps:
       - checkout
       - install-npm-dependencies
@@ -64,3 +61,15 @@ jobs:
       - run:
           name: Release @img-comparison-slider/vue
           command: npx -w vue semantic-release
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+  release:
+    jobs:
+      - release:
+          filters:
+            branches:
+              only: master
