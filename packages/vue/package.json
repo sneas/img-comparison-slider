@@ -1,6 +1,6 @@
 {
   "name": "@img-comparison-slider/vue",
-  "version": "0.0.0-automatic",
+  "version": "7.6.0",
   "description": "Vue wrapper for img-comparison-slider",
   "scripts": {
     "build": "npm run clean && rollup -c",
@@ -20,5 +20,8 @@
     "type": "git",
     "url": "https://github.com/sneas/img-comparison-slider.git"
   },
-  "types": "./dist/index.d.ts"
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "img-comparison-slider": "^7.6.0"
+  }
 }
