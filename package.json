@@ -16,7 +16,6 @@
   "scripts": {},
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^11.0.1",
-    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@types/node": "^15.6.2",
     "@types/react": "^17.0.9",

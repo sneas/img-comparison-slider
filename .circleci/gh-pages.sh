@@ -8,4 +8,4 @@ fi
 git config --global user.name "$GH_NAME"
 git config --global user.email "$GH_EMAIL"
 
-npm run gh -- -m "Automatically update gh-pages [skip ci]"
+npm run gh --prefix packages/www -- -m "Automatically update gh-pages [skip ci]"

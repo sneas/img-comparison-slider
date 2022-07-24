@@ -1,14 +1,8 @@
-version: 2
-jobs:
-  build:
-    docker:
-      - image: 'circleci/node:lts'
-    working_directory: ~/repo
-    branches:
-      only:
-        - master
+version: 2.1
+
+commands:
+  install_npm_dependencies:
     steps:
-      - checkout
       - restore_cache:
           name: Restore NPM dependencies
           keys:
@@ -22,15 +16,51 @@ jobs:
           paths:
             - ./node_modules/
           key: npm-{{ checksum "package.json" }}
+
+  build-all:
+    steps:
       - run:
-          name: Build
-          command: npm run build
+          name: Build img-comparison-slider
+          command: npm run build --prefix packages/img-comparison-slider
       - run:
-          name: Release
-          command: npx semantic-release || true
+          name: Build www
+          command: npm run build --prefix packages/www
       - run:
-          name: Build Demo
-          command: npm run demo
+          name: Build react
+          command: npm run build --prefix packages/react
       - run:
-          name: Publish to GitHub Pages
+          name: Build vue
+          command: npm run build --prefix packages/vue
+jobs:
+  build:
+    docker:
+      - image: cimg/node:lts
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - install-npm-dependencies
+      - build-all
+
+  release:
+    docker:
+      - image: cimg/node:lts
+    working_directory: ~/repo
+    branches:
+      only:
+        - master
+    steps:
+      - checkout
+      - install-npm-dependencies
+      - build-all
+      - run:
+          name: Publish www
           command: sh .circleci/gh-pages.sh
+      - run:
+          name: Release img-comparison-slider
+          command: npx -w img-comparison-slider semantic-release
+      - run:
+          name: Release @img-comparison-slider/react
+          command: npx -w react semantic-release
+      - run:
+          name: Release @img-comparison-slider/vue
+          command: npx -w vue semantic-release
