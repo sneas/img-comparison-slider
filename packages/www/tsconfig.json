@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "module": "es6",
+    "target": "es6",
+    "moduleResolution": "node",
+    "declaration": true
+  },
+  "exclude": ["bindings", "dist"]
+}

@@ -1,4 +1,5 @@
 module.exports = {
+  extends: 'semantic-release-monorepo',
   ci: true,
   branches: ['master'],
   plugins: [
@@ -17,16 +18,9 @@ module.exports = {
     [
       '@semantic-release/git',
       {
-        assets: ['package.json', 'package-lock.json'],
+        assets: ['package.json'],
         message:
-          'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
-      },
-    ],
-    [
-      '@semantic-release/exec',
-      {
-        // Wait for NPM to apply new version before releasing bindings
-        successCmd: 'sleep 10 && npm run release-bindings',
+          'chore(release-vue): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
       },
     ],
   ],
