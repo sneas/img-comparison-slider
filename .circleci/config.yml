@@ -57,10 +57,10 @@ jobs:
           command: npx -w img-comparison-slider semantic-release
       - run:
           name: Release @img-comparison-slider/react
-          command: npx -w react semantic-release
+          command: npx -w @img-comparison-slider/react semantic-release
       - run:
           name: Release @img-comparison-slider/vue
-          command: npx -w vue semantic-release
+          command: npx -w @img-comparison-slider/vue semantic-release
 
 workflows:
   version: 2
