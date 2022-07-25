@@ -1,0 +1,102 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const indexParameters = require('../public/templateParameters');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+
+module.exports = ({ favicon = 'public/favicon.svg' } = {}) => {
+  const htmlOptions = {
+    inject: true,
+    favicon,
+  };
+
+  return {
+    mode: 'production',
+    entry: './src/index.ts',
+    module: {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          use: 'ts-loader',
+          exclude: /node_modules/,
+        },
+        {
+          test: /\.s[ac]ss$/i,
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: false,
+              },
+            },
+            {
+              loader: 'sass-loader',
+            },
+          ],
+        },
+        {
+          test: /images\/.+\.(webp|svg)$/i,
+          loader: 'file-loader',
+          options: {
+            name: 'images/[name].[ext]',
+            esModule: false,
+          },
+        },
+        {
+          test: /src\/.+\.html/,
+          loader: 'html-loader',
+        },
+        {
+          test: /favicon\.svg?$/,
+          loader: 'file-loader',
+          options: {
+            esModule: false,
+          },
+        },
+        {
+          test: /\.hbs$/,
+          loader: 'handlebars-loader',
+          options: {
+            query: { inlineRequires: '/public/' },
+          },
+        },
+      ],
+    },
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js'],
+    },
+    output: {
+      filename: 'index.js',
+      path: path.resolve(__dirname, 'demo'),
+    },
+    devtool: 'source-map',
+    plugins: [
+      new CopyWebpackPlugin({
+        patterns: [{ from: 'src/assets', to: '' }],
+      }),
+      new HtmlWebpackPlugin({
+        template: './public/index.hbs',
+        filename: 'index.html',
+        templateParameters: indexParameters,
+        ...htmlOptions,
+      }),
+      new HtmlWebpackPlugin({
+        template: './public/examples.hbs',
+        filename: 'examples.html',
+        ...htmlOptions,
+      }),
+      new CopyWebpackPlugin({
+        patterns: [{ from: 'public/static', to: '' }],
+      }),
+      new CopyWebpackPlugin({
+        patterns: [{ from: 'public/images', to: 'images' }],
+      }),
+      new CopyWebpackPlugin({
+        patterns: [{ from: 'public/main.css', to: 'main.css' }],
+      }),
+    ],
+    devServer: {
+      host: process.env.HOST ?? '0.0.0.0',
+      useLocalIp: process.env.NO_LOCAL_IP !== 'true',
+    },
+  };
+};
