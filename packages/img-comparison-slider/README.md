@@ -109,15 +109,16 @@ Example:
 
 ### Available Variables
 
-| Variable                   | Description                                                | Default value | Example value                    |
-| -------------------------- | ---------------------------------------------------------- | ------------- | -------------------------------- |
-| `--divider-width`          | Width of the vertical line separating both images          | `1px`         | `1em`                            |
-| `--divider-color`          | Color of the vertical line separating the two images       | `#fff`        | `rgba(0, 0, 0, 0.5)`             |
-| `--divider-shadow`         | Shadow cast by the vertical line separating the two images | `none`        | `0px 0px 5px rgba(0, 0, 0, 0.5)` |
-| `--default-handle-width`   | Width of the default handle                                | `50px`        |                                  |
-| `--default-handle-color`   | Color of the default handle                                | `#fff`        | `rgba(0, 0, 0, 0.5)`             |
-| `--default-handle-opacity` | Opacity of the default handle                              | `1`           | `0.3`                            |
-| `--default-handle-shadow`  | Shadow cast by the default handle                          | `none`        | `0px 0px 5px rgba(0, 0, 0, 1)`   |
+| Variable                   | Description                                                                              | Default value | Example value                    |
+| -------------------------- | ---------------------------------------------------------------------------------------- | ------------- | -------------------------------- |
+| `--divider-width`          | Width of the vertical line separating both images                                        | `1px`         | `1em`                            |
+| `--divider-color`          | Color of the vertical line separating the two images                                     | `#fff`        | `rgba(0, 0, 0, 0.5)`             |
+| `--divider-shadow`         | Shadow cast by the vertical line separating the two images                               | `none`        | `0px 0px 5px rgba(0, 0, 0, 0.5)` |
+| `--handle-position-start`  | Handle position on the divider axis. In case the handle must be displaced off the center | `50%`         |                                  |
+| `--default-handle-width`   | Width of the default handle                                                              | `50px`        |                                  |
+| `--default-handle-color`   | Color of the default handle                                                              | `#fff`        | `rgba(0, 0, 0, 0.5)`             |
+| `--default-handle-opacity` | Opacity of the default handle                                                            | `1`           | `0.3`                            |
+| `--default-handle-shadow`  | Shadow cast by the default handle                                                        | `none`        | `0px 0px 5px rgba(0, 0, 0, 1)`   |
 
 ### Handle
 
