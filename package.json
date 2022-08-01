@@ -13,7 +13,11 @@
       "packages/*"
     ]
   },
-  "scripts": {},
+  "scripts": {
+    "start:img-comparison-slider": "npm run img-comparison-slider --prefix packages/img-comparison-slider",
+    "start:www": "npm run www --prefix packages/www",
+    "start": "npm-run-all --parallel start:img-comparison-slider start:www"
+  },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^11.0.1",
     "@semantic-release/git": "^10.0.1",
@@ -30,6 +34,7 @@
     "html-webpack-plugin": "^5.3.1",
     "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

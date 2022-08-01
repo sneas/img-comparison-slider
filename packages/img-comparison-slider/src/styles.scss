@@ -6,6 +6,7 @@
   --default-handle-color: #fff;
   --default-handle-opacity: 1;
   --default-handle-shadow: none;
+  --handle-position-start: 50%;
 
   position: relative;
   display: inline-block;
@@ -98,10 +99,6 @@
   top: 0;
   right: 0;
   height: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  flex-direction: column;
 }
 
 .divider {
@@ -127,10 +124,13 @@
 }
 
 .handle {
+  position: absolute;
+  top: var(--handle-position-start);
   pointer-events: none;
   box-sizing: border-box;
   margin-left: 1px;
-  transform: translateX(-0.5px);
+  transform: translate(calc(-50% - 0.5px), -50%);
+  line-height: 0;
 }
 
 .default-handle {
@@ -174,6 +174,8 @@
   }
 
   .handle {
-    transform: translateX(-0.5px) rotate(90deg);
+    top: auto;
+    left: var(--handle-position-start);
+    transform: translate(calc(-50% - 0.5px), -50%) rotate(90deg);
   }
 }
