@@ -1,91 +1,48 @@
 {{#> layout }}
-  <div class="bg-info">
-    <div class="container py-4">
-      <div class="row">
-        <div class="col-12">
-          <div class="d-md-flex align-items-center mb-3">
-            <h1 class="p-0 m-0">Slider Component</h1>
-            <div class="ms-3">Compare two images. Before and after.</div>
-          </div>
+  <div class="container pt-4 position-relative">
+    <img-comparison-slider class="d-block main-slider">
+      <div slot="first">
+        <img slot="first" src="images/www/first.svg" width="100%" />
+        <div class="position-absolute" style="left: 1%; bottom: 35%;">Compare two images. Before and after.</div>
+      </div>
+      <div slot="second">
+        <img src="images/www/second.svg" width="100%" />
+        <div class="position-absolute hint" style="bottom: 5%; right: 1%;">
+          Now try to use
+          <i class="fas fa-arrow-left"></i> or <i class="fas fa-arrow-right"></i>
+          arrows on the keyboard.
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <style>
-            .styled {
-              transition: box-shadow 200ms ease-in-out;
-            }
-
-            .styled:focus {
-              outline: none;
-              box-shadow: 0px 0px 15px 5px rgba(57, 57, 57, 0.28);
-            }
-
-            .info {
-              max-height: 100px;
-              overflow: hidden;
-              transition: max-height 1s;
-            }
-
-            .info-collapsed {
-              max-height: 0;
-            }
-          </style>
-          <img-comparison-slider class="styled d-block" id="slider">
-            <img slot="first" src="images/www/first.svg" width="100%" />
-            <img slot="second" src="images/www/second.svg" width="100%" />
-          </img-comparison-slider>
-          <div class="pt-3 info info-collapsed small text-center" id="slider-info">
-            Now try to use
-            <i class="fas fa-arrow-left"></i> or <i class="fas fa-arrow-right"></i>
-            arrows on the keyboard.
-          </div>
-          <script type="text/javascript">
-            const info = document.getElementById('slider-info');
-            const slider = document.getElementById('slider');
-
-            slider.addEventListener('focus', () => {
-              info.classList.remove('info-collapsed');
-            });
-
-            slider.addEventListener('blur', () => {
-              info.classList.add('info-collapsed');
-            })
-          </script>
+    </img-comparison-slider>
+  </div>
+  <div class="bg-warning py-5">
+    <div class="container">
+      <div class="row gx-5">
+        <div class="col-12 col-md-6">
+          This <a href="https://github.com/sneas/img-comparison-slider/blob/master/LICENSE">free open source</a> slider
+          component was created to demonstrate the difference between two images. For
+          example, to show the difference before and after applying photo effects or filters, to compare photos of rooms
+          before and after construction, or to show landscape changes over time. The
+          component is well suited for news portals, artist or design portfolios.
+        </div>
+        <div class="col-12 col-md-6 mt-3 mt-md-0">
+          Since it is a <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">web component</a>, it can be effortlessly added to almost any web application or design system. The
+          component offers a wide range of settings - many configuration ideas and styling techniques can be found in
+          <a href="/examples.html">the examples</a>. The setup and settings documentation is available on the <a
+          href="https://github.com/sneas/img-comparison-slider">component's GitHub page</a>.
         </div>
       </div>
     </div>
   </div>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-12 col-md-6">
-        <h1 class="mb-5">Features</h1>
-        <ul class="row align-items-center mb-5 list-unstyled g-0">
-          {{#each features}}
-            <li class="col-6 col-xl-4 row align-items-center mb-5 g-0">
-              <div class="col-8">{{ this.title }}</div>
-              <div class="col-4 order-first"><i class="{{ this.icon }} fa-3x"></i></div>
-            </li>
-          {{/each}}
-        </ul>
-      </div>
-      <div class="col-12 col-md-6">
-        <h3>Why do I need img-comparison-slider?</h3>
-        <p>
-          This <a href="https://github.com/sneas/img-comparison-slider/blob/master/LICENSE">free open source</a> slider
-          component was created to demonstrate the difference between two images. For
-          example, to show the difference before and after applying photo effects or filters, to compare photos of rooms
-          before and after construction, or to show landscape changes over time. The most enjoyable user experience
-          with the component could be achieved by comparing images with pixel-perfect matching fragments. This
-          component is well suited for news portals, artist or design portfolios.
-        </p>
-        <p class="mb-5">
-          Since it is a web component, it can be effortlessly added to almost any web application or design system. The
-          component offers a wide range of settings - many configuration ideas and styling techniques can be found in
-          <a href="/examples.html">the examples</a>. The setup and settings documentation is available on the <a
-          href="https://github.com/sneas/img-comparison-slider">component's GitHub page</a>.
-        </p>
-      </div>
-    </div>
+  <div class="container py-5">
+    <h1 class="mb-5">Features</h1>
+    <ul class="row align-items-center list-unstyled g-0">
+      {{#each features}}
+        <li class="col-6 col-xl-4 row align-items-center mb-5 g-0">
+          <div class="col-8">{{ this.title }}</div>
+          <div class="col-4 order-first"><i class="{{ this.icon }} fa-3x"></i></div>
+        </li>
+      {{/each}}
+    </ul>
   </div>
 {{/layout}}
