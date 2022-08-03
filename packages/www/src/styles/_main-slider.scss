@@ -3,6 +3,9 @@
   --default-handle-color: #000;
   --handle-position-start: 25%;
 
+  border-radius: 1rem 1rem 0 0;
+  transition: box-shadow 200ms ease-in-out;
+
   .hint {
     opacity: 0;
     transition: opacity 200ms ease-in-out;
@@ -10,6 +13,7 @@
 
   &:focus {
     outline: none;
+    box-shadow: 0px 0px 15px 5px $yellow;
 
     .hint {
       opacity: 1;
