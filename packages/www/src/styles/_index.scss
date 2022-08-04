@@ -5,14 +5,14 @@
 
   border-radius: 1rem 1rem 0 0;
 
-  .hint {
+  .show-on-focus {
     opacity: 0;
     transition: opacity 200ms ease-in-out;
   }
 
   &:focus {
     outline: none;
-    .hint {
+    .show-on-focus {
       opacity: 1;
     }
   }
@@ -23,5 +23,21 @@
   outline: none;
   &:focus {
     box-shadow: 0px -5px 10px 5px $gray-400;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .fs-md-2 {
+    font-size: $h2-font-size;
+  }
+
+  .fs-md-4 {
+    font-size: $h4-font-size;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .fs-xl-1 {
+    font-size: $h1-font-size;
   }
 }
