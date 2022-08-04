@@ -17,3 +17,11 @@
     }
   }
 }
+
+.another-slider {
+  transition: box-shadow 200ms ease-in-out;
+  outline: none;
+  &:focus {
+    box-shadow: 0px 0px 15px 5px $yellow;
+  }
+}
