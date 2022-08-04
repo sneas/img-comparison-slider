@@ -1,0 +1,11 @@
+.navbar-brand {
+  margin-bottom: -1.8rem;
+
+  .navbar-brand-image {
+    width: 12rem;
+  }
+}
+
+.navbar-nav {
+  --bs-nav-link-color: #{$body-color};
+}

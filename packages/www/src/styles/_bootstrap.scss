@@ -1,0 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:200,300,500);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:700);
+
+$font-family-sans-serif: 'Roboto', sans-serif;
+$headings-font-family: 'Montserrat';
+$yellow: #fae64d;
+$primary: #9d9d9d;
+$font-size-base: 1.2rem;
+
+$font-weight-lighter: lighter;
+$font-weight-light: 200;
+$font-weight-normal: 300;
+$font-weight-semibold: 500;
+$font-weight-bold: 500;
+$font-weight-bolder: bolder !default;
+
+@import '~bootstrap/scss/bootstrap';

@@ -1,0 +1,27 @@
+.main-slider {
+  --divider-color: #000;
+  --default-handle-color: #000;
+  --handle-position-start: 25%;
+
+  border-radius: 1rem 1rem 0 0;
+
+  .hint {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+  }
+
+  &:focus {
+    outline: none;
+    .hint {
+      opacity: 1;
+    }
+  }
+}
+
+.another-slider {
+  transition: box-shadow 200ms ease-in-out;
+  outline: none;
+  &:focus {
+    box-shadow: 0px -5px 10px 5px $gray-400;
+  }
+}

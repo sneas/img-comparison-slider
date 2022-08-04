@@ -1,10 +1,10 @@
 module.exports = {
   features: [
-    { icon: 'fa fa-mobile-alt', title: 'Mobile-friendly' },
-    { icon: 'fa fa-universal-access', title: 'Accessible' },
-    { icon: 'far fa-window-maximize', title: 'Responsive' },
-    { icon: 'fas fa-file-archive', title: 'Compact' },
-    { icon: 'fas fa-sliders-h', title: 'Adjustable' },
-    { icon: 'fab fa-js', title: 'Supports modern JS frameworks' },
+    { icon: 'mobile-friendly', title: 'Mobile-friendly' },
+    { icon: 'accessible', title: 'Accessible' },
+    { icon: 'responsive', title: 'Responsive' },
+    { icon: 'compact', title: 'Compact' },
+    { icon: 'adjustable', title: 'Adjustable' },
+    { icon: 'js', title: 'Supports modern JS frameworks' },
   ],
 };
