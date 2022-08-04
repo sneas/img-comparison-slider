@@ -22,6 +22,6 @@
   transition: box-shadow 200ms ease-in-out;
   outline: none;
   &:focus {
-    box-shadow: 0px 0px 15px 5px $yellow;
+    box-shadow: 0px -5px 10px 5px $gray-400;
   }
 }
