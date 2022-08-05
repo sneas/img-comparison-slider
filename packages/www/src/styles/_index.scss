@@ -31,13 +31,13 @@
     font-size: $h2-font-size;
   }
 
-  .fs-md-4 {
-    font-size: $h4-font-size;
+  .fs-md-5 {
+    font-size: $h5-font-size;
   }
 }
 
-@include media-breakpoint-up(xl) {
-  .fs-xl-1 {
-    font-size: $h1-font-size;
+@include media-breakpoint-up(lg) {
+  .fs-lg-2 {
+    font-size: $h2-font-size;
   }
 }
