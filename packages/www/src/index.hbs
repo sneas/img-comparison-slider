@@ -15,6 +15,10 @@
         }
       "
       onkeyup="
+        if (!['ArrowLeft', 'ArrowRight'].includes(event.code)) {
+          return;
+        }
+
         window.hasKeyboardBeenUsed = true;
         if (window.session === 2) {
           document.getElementById('second-message').classList.remove('opacity-0');
