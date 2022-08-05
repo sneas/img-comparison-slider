@@ -37,7 +37,19 @@
 }
 
 @include media-breakpoint-up(lg) {
-  .fs-lg-2 {
+  .fs-lg-3 {
+    font-size: $h3-font-size;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .fs-xl-2 {
     font-size: $h2-font-size;
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  .fs-xxl-1 {
+    font-size: $h1-font-size;
   }
 }
