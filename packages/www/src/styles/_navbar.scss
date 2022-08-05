@@ -1,8 +1,8 @@
 .navbar-brand {
-  margin-bottom: -1.8rem;
+  margin-bottom: clamp(-1.8rem, -1vw, 0rem);
 
   .navbar-brand-image {
-    width: 12rem;
+    width: clamp(7rem, 13vw, 12rem);
   }
 }
 
