@@ -9,7 +9,11 @@
           document.getElementById('message').classList.add('d-none');
         } else {
           document.getElementById('message').classList.remove('d-none');
-        }" onkeyup="window.hasKeyboardBeenUsed = true;
+        }" onkeyup="if (!['ArrowLeft', 'ArrowRight'].includes(event.code)) {
+          return;
+        }
+
+        window.hasKeyboardBeenUsed = true;
         if (window.session === 2) {
           document.getElementById('second-message').classList.remove('opacity-0');
         } else {
