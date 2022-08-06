@@ -8,8 +8,9 @@ const templateElement = document.createElement('template');
 templateElement.innerHTML = templateHtml;
 
 type SlideKey = 'ArrowLeft' | 'ArrowRight';
+type Direction = 1 | -1;
 
-const KeySlideOffset: Record<SlideKey, number> = {
+const KeySlideOffset: Record<SlideKey, Direction> = {
   ArrowLeft: -1,
   ArrowRight: 1,
 };
@@ -53,7 +54,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
   private isMouseDown = false;
 
-  private isAnimating: boolean;
+  private animationDirection: Direction | 0 = 0;
   private transitionTimer: number;
 
   private isFocused = false;
@@ -320,19 +321,18 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
       return;
     }
 
-    if (this.isAnimating) {
+    const direction = KeySlideOffset[e.key];
+
+    if (this.animationDirection === direction) {
       return;
     }
 
-    this.isAnimating = true;
-
-    const key = e.key;
-
-    if (KeySlideOffset[key] === undefined) {
+    if (direction === undefined) {
       return;
     }
 
-    this.startSlideAnimation(KeySlideOffset[key as SlideKey]);
+    this.animationDirection = direction;
+    this.startSlideAnimation();
   };
 
   private onKeyUp = (e: KeyboardEvent) => {
@@ -340,11 +340,13 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
       return;
     }
 
-    if (!this.isAnimating) {
+    const direction = KeySlideOffset[e.key];
+
+    if (direction === undefined) {
       return;
     }
 
-    if (KeySlideOffset[e.key] === undefined) {
+    if (this.animationDirection !== direction) {
       return;
     }
 
@@ -386,27 +388,34 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     }, transitionTime);
   }
 
-  private startSlideAnimation(offset: number) {
+  private startSlideAnimation() {
     let lastTimestamp: number = null;
+    let initialDirection = this.animationDirection;
     const slide = (now: number) => {
+      if (
+        this.animationDirection === 0 ||
+        initialDirection !== this.animationDirection
+      ) {
+        return;
+      }
+
       if (lastTimestamp === null) {
         lastTimestamp = now;
       }
 
       const interval = now - lastTimestamp,
-        distance = (interval / slideAnimationPeriod) * offset;
+        distance = (interval / slideAnimationPeriod) * this.animationDirection;
       this.slide(distance);
-      if (this.isAnimating) {
-        window.requestAnimationFrame(slide);
-        lastTimestamp = now;
-      }
+
+      window.requestAnimationFrame(slide);
+      lastTimestamp = now;
     };
 
     window.requestAnimationFrame(slide);
   }
 
   private stopSlideAnimation() {
-    this.isAnimating = false;
+    this.animationDirection = 0;
   }
 
   private resetDimensions = () => {
