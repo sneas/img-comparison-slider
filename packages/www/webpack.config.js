@@ -69,6 +69,12 @@ const config = ({ favicon = 'src/favicon.svg' } = {}) => {
         filename: 'examples.html',
         ...htmlOptions,
       }),
+      new HtmlWebpackPlugin({
+        template: './src/iframe-demo.hbs',
+        filename: 'iframe-demo.html',
+        ...htmlOptions,
+        inject: false,
+      }),
       new CopyWebpackPlugin({
         patterns: [{ from: 'src/static', to: '' }],
       }),

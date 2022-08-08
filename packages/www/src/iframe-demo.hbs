@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <script
+      defer=""
+      src="https://unpkg.com/img-comparison-slider@7/dist/index.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/img-comparison-slider@7/dist/styles.css"
+    />
+    <style>
+      html, body {
+        padding: 0;
+        margin: 0;
+      }
+
+      img-comparison-slider {
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <img-comparison-slider>
+      <img
+        slot="first"
+        width="100%"
+        src="https://img-comparison-slider.sneas.io/demo/images/before.webp"
+      />
+      <img
+        slot="second"
+        width="100%"
+        src="https://img-comparison-slider.sneas.io/demo/images/after.webp"
+      />
+    </img-comparison-slider>
+  </body>
+</html>
