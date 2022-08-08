@@ -39,7 +39,6 @@ const slideAnimationPeriod = 1000 / 60;
 
 export class HTMLImgComparisonSliderElement extends HTMLElement {
   private firstElement: HTMLElement;
-  private firstImageContainerElement: HTMLElement;
   private secondElement: HTMLElement;
 
   private imageWidth: number;
@@ -125,9 +124,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     shadowRoot.appendChild(templateElement.content.cloneNode(true));
 
     this.firstElement = shadowRoot.getElementById('first');
-    this.firstImageContainerElement = shadowRoot.getElementById(
-      'firstImageContainer'
-    );
     this.secondElement = shadowRoot.getElementById('second');
   }
 
