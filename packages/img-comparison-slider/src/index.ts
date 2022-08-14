@@ -403,7 +403,9 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
         distance = (interval / slideAnimationPeriod) * this.animationDirection;
       this.slide(distance);
 
-      window.requestAnimationFrame(slide);
+      // This is necessary to speed up the key up event in Desktop Safari
+      setTimeout(() => window.requestAnimationFrame(slide), 0);
+
       lastTimestamp = now;
     };
 
