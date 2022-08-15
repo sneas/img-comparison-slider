@@ -14,7 +14,7 @@ Usage examples: [https://img-comparison-slider.sneas.io/examples.html](https://i
 - Mobile friendly
 - Accessible
 - Responsive
-- Compact - less than 9 kB minified (Or less than 3 kB if gzipped)
+- Compact - less than 12 kB minified (Or less than 4 kB if gzipped)
 - Compatible with modern frameworks ([React](bindings/react/README.md),
   [Angular](docs/installation/angular.md),
   [Vue2](docs/installation/vue.md),
