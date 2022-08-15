@@ -379,7 +379,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     );
 
     this.transitionTimer = window.setTimeout(() => {
-      this.firstElement.style.setProperty('--transition-time', `0ms`);
+      this.firstElement.style.setProperty(
+        '--transition-time',
+        `var(--default-transition-time)`
+      );
       this.transitionTimer = null;
     }, transitionTime);
   }
@@ -387,6 +390,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private startSlideAnimation() {
     let lastTimestamp: number = null;
     let initialDirection = this.animationDirection;
+    this.firstElement.style.setProperty(
+      '--transition-time',
+      `var(--keyboard-transition-time)`
+    );
     const slide = (now: number) => {
       if (
         this.animationDirection === 0 ||
@@ -403,7 +410,9 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
         distance = (interval / slideAnimationPeriod) * this.animationDirection;
       this.slide(distance);
 
-      window.requestAnimationFrame(slide);
+      // This is necessary to speed up the key up event in Desktop Safari
+      setTimeout(() => window.requestAnimationFrame(slide), 0);
+
       lastTimestamp = now;
     };
 
@@ -412,6 +421,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
   private stopSlideAnimation() {
     this.animationDirection = 0;
+    this.firstElement.style.setProperty(
+      '--transition-time',
+      `var(--default-transition-time)`
+    );
   }
 
   private resetDimensions = () => {

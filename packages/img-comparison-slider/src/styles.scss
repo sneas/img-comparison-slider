@@ -43,6 +43,7 @@
   position: absolute;
   left: 0;
   top: 0;
+  right: 0;
   line-height: normal;
   font-size: 100%;
   max-height: 100%;
@@ -50,15 +51,14 @@
   width: 100%;
 
   --exposure: 50%;
-  --transition-time: 0ms;
-
-  transform: translateX(calc(var(--exposure) * -1));
-  transition: transform var(--transition-time);
+  --keyboard-transition-time: 0ms;
+  --default-transition-time: 0ms;
+  --transition-time: var(--default-transition-time);
 
   .first-overlay-container {
     position: relative;
-    transform: translateX(var(--exposure));
-    transition: transform var(--transition-time);
+    clip-path: inset(0 var(--exposure) 0 0);
+    transition: clip-path var(--transition-time);
     height: 100%;
   }
 
@@ -68,16 +68,31 @@
   }
 
   &.focused {
-    will-change: transform;
+    will-change: clip-path;
 
     .first-overlay-container {
-      will-change: transform;
+      will-change: clip-path;
     }
   }
 
-  // Ignore Safari browser
+  // Safari Desktop & Mobile
   @media not all and (min-resolution: 0.001dpcm) {
     @supports (-webkit-appearance: none) {
+      & {
+        --keyboard-transition-time: 50ms;
+        --default-transition-time: 10ms;
+
+        transform: translateX(calc(var(--exposure) * -1));
+        transition: transform var(--transition-time);
+        right: auto;
+
+        .first-overlay-container {
+          transform: translateX(var(--exposure));
+          transition: transform var(--transition-time);
+          clip-path: none;
+        }
+      }
+
       &.focused {
         will-change: auto;
 
@@ -97,8 +112,26 @@
   transform: translateX(50%);
   position: absolute;
   top: 0;
-  right: 0;
+  right: var(--exposure);
   height: 100%;
+  transition: right var(--transition-time), bottom var(--transition-time);
+
+  .focused & {
+    will-change: right;
+  }
+
+  // Safari Desktop & Mobile
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      & {
+        right: 0;
+      }
+
+      .focused & {
+        will-change: auto;
+      }
+    }
+  }
 }
 
 .divider {
@@ -144,19 +177,15 @@
 }
 
 .vertical {
-  &.first {
-    transform: translateY(calc(var(--exposure) * -1));
-
-    .first-overlay-container {
-      transform: translateY(var(--exposure));
-    }
+  .first-overlay-container {
+    clip-path: inset(0 0 var(--exposure) 0);
   }
 
   .handle-container {
     transform: translateY(50%);
     height: auto;
     top: unset;
-    bottom: 0;
+    bottom: var(--exposure);
     width: 100%;
     left: 0;
     flex-direction: row;
@@ -177,5 +206,23 @@
     top: auto;
     left: var(--handle-position-start);
     transform: translate(calc(-50% - 0.5px), -50%) rotate(90deg);
+  }
+
+  // Safari Desktop & Mobile
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      &.first {
+        transform: translateY(calc(var(--exposure) * -1));
+      }
+
+      .first-overlay-container {
+        transform: translateY(var(--exposure));
+        clip-path: none;
+      }
+
+      .handle-container {
+        bottom: 0;
+      }
+    }
   }
 }
