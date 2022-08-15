@@ -379,7 +379,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     );
 
     this.transitionTimer = window.setTimeout(() => {
-      this.firstElement.style.setProperty('--transition-time', `0ms`);
+      this.firstElement.style.setProperty(
+        '--transition-time',
+        `var(--default-transition-time)`
+      );
       this.transitionTimer = null;
     }, transitionTime);
   }
@@ -418,7 +421,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
   private stopSlideAnimation() {
     this.animationDirection = 0;
-    this.firstElement.style.setProperty('--transition-time', `0ms`);
+    this.firstElement.style.setProperty(
+      '--transition-time',
+      `var(--default-transition-time)`
+    );
   }
 
   private resetDimensions = () => {

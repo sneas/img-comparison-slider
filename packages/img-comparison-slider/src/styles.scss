@@ -52,7 +52,8 @@
 
   --exposure: 50%;
   --keyboard-transition-time: 0ms;
-  --transition-time: 0ms;
+  --default-transition-time: 0ms;
+  --transition-time: var(--default-transition-time);
 
   .first-overlay-container {
     position: relative;
@@ -79,6 +80,7 @@
     @supports (-webkit-appearance: none) {
       & {
         --keyboard-transition-time: 50ms;
+        --default-transition-time: 10ms;
 
         transform: translateX(calc(var(--exposure) * -1));
         transition: transform var(--transition-time);
