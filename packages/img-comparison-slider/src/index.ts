@@ -387,6 +387,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private startSlideAnimation() {
     let lastTimestamp: number = null;
     let initialDirection = this.animationDirection;
+    this.firstElement.style.setProperty(
+      '--transition-time',
+      `var(--keyboard-transition-time)`
+    );
     const slide = (now: number) => {
       if (
         this.animationDirection === 0 ||
@@ -414,6 +418,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
   private stopSlideAnimation() {
     this.animationDirection = 0;
+    this.firstElement.style.setProperty('--transition-time', `0ms`);
   }
 
   private resetDimensions = () => {

@@ -50,6 +50,10 @@
   height: 100%;
   width: 100%;
 
+  --exposure: 50%;
+  --keyboard-transition-time: 0ms;
+  --transition-time: 0ms;
+
   .first-overlay-container {
     position: relative;
     clip-path: inset(0 var(--exposure) 0 0);
@@ -74,6 +78,8 @@
   @media not all and (min-resolution: 0.001dpcm) {
     @supports (-webkit-appearance: none) {
       & {
+        --keyboard-transition-time: 50ms;
+
         transform: translateX(calc(var(--exposure) * -1));
         transition: transform var(--transition-time);
         right: auto;
