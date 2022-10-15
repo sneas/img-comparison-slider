@@ -2,6 +2,7 @@ import styles from './styles.scss';
 import { inBetween } from './inBetween';
 import templateHtml from './template.html';
 import { TABINDEX, RENDERED_CLASS } from './defaults';
+import { isElementAffected } from './isElementAffected';
 
 const templateElement = document.createElement('template');
 
@@ -40,6 +41,7 @@ const slideAnimationPeriod = 1000 / 60;
 export class HTMLImgComparisonSliderElement extends HTMLElement {
   private firstElement: HTMLElement;
   private secondElement: HTMLElement;
+  private handleElement: HTMLElement;
 
   private imageWidth: number;
   private imageHeight: number;
@@ -57,6 +59,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private transitionTimer: number;
 
   private isFocused = false;
+
+  public handle = false;
 
   public get value() {
     return this.exposure;
@@ -125,6 +129,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     this.firstElement = shadowRoot.getElementById('first');
     this.secondElement = shadowRoot.getElementById('second');
+    this.handleElement = shadowRoot.getElementById('handle');
   }
 
   private connectedCallback() {
@@ -161,6 +166,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     });
     this.addEventListener('touchend', this.onTouchEnd);
     this.addEventListener('mousedown', this.onMouseDown);
+
+    this.handle = this.hasAttribute('handle');
 
     this.hover = this.hasAttribute('hover')
       ? this.getAttribute('hover')
@@ -234,6 +241,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
       return;
     }
 
+    if (this.handle && !isElementAffected(this.handleElement, e)) {
+      return;
+    }
+
     window.addEventListener('mousemove', this.onMouseMove);
     window.addEventListener('mouseup', this.onWindowMouseUp);
     this.isMouseDown = true;
@@ -259,6 +270,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private hasTouchMoved = false;
 
   private onTouchStart = (e: TouchEvent) => {
+    if (this.handle && !isElementAffected(this.handleElement, e)) {
+      return;
+    }
+
     this.touchStartPoint = getTouchPagePoint(e);
 
     if (this.isFocused) {
@@ -269,6 +284,10 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   };
 
   private onTouchMove = (e: TouchEvent) => {
+    if (this.handle && !isElementAffected(this.handleElement, e)) {
+      return;
+    }
+
     const currentPoint = getTouchPagePoint(e);
 
     if (this.isTouchComparing) {

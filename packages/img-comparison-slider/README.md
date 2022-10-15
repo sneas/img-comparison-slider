@@ -84,6 +84,7 @@ Besides the default `HTMLElement` attributes such as `class`, `tabindex`, `title
 | `direction` | Set slider direction.                                     | `horizontal` | `horizontal`, `vertical` |
 | `nonce`     | Define nonce which gets passed to inline style.           |              |                          |
 | `keyboard`  | Enable/disable slider position control with the keyboard. | `enabled`    | `enabled`, `disabled`    |
+| `handle`    | Enable/disable dragging by handle only.                   | `false`      | `true`, `false`          |
 
 ## Events
 
