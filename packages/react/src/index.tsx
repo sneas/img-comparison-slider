@@ -11,6 +11,7 @@ if (typeof document !== 'undefined') {
 
 type HTMLImgComparisonSliderElement = HTMLElement & {
   value: number;
+  handle: boolean;
   hover: boolean;
   direction: string;
 };
@@ -18,6 +19,7 @@ type HTMLImgComparisonSliderElement = HTMLElement & {
 type ImgComparisonSliderProps =
   AllHTMLAttributes<HTMLImgComparisonSliderElement> & {
     value?: number | string;
+    handle?: boolean;
     hover?: boolean;
     direction?: string;
     keyboard?: 'enabled' | 'disabled';
