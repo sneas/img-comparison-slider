@@ -15,10 +15,10 @@ Usage examples: [https://img-comparison-slider.sneas.io/examples.html](https://i
 - Accessible
 - Responsive
 - Compact - less than 12 kB minified (Or less than 4 kB if gzipped)
-- Compatible with modern frameworks ([React](bindings/react/README.md),
+- Compatible with modern frameworks ([React](packages/react/README.md),
   [Angular](docs/installation/angular.md),
   [Vue2](docs/installation/vue.md),
-  [Vue3](bindings/vue/README.md))
+  [Vue3](packages/vue/README.md))
 - Distributed via CDN or NPM
 
 <!--
