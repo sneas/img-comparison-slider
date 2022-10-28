@@ -265,7 +265,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     window.removeEventListener('mouseup', this.onWindowMouseUp);
   };
 
-  private touchStartPoint: Point;
+  private touchStartPoint: Point | null = null;
   private isTouchComparing = false;
   private hasTouchMoved = false;
 
@@ -284,7 +284,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   };
 
   private onTouchMove = (e: TouchEvent) => {
-    if (this.handle && !isElementAffected(this.handleElement, e)) {
+    if (this.touchStartPoint === null) {
       return;
     }
 
@@ -318,6 +318,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private onTouchEnd = () => {
     this.isTouchComparing = false;
     this.hasTouchMoved = false;
+    this.touchStartPoint = null;
   };
 
   private onBlur = () => {
