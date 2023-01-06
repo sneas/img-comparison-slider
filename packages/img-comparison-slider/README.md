@@ -68,10 +68,10 @@ Usage examples: [https://img-comparison-slider.sneas.io/examples.html](https://i
 
 ### Frameworks Support
 
-- [React](bindings/react/README.md)
+- [React](packages/react/README.md)
 - [Angular](docs/installation/angular.md)
 - [Vue2](docs/installation/vue.md)
-- [Vue3](bindings/vue/README.md)
+- [Vue3](packages/vue/README.md)
 
 ## Supported Attributes
 
