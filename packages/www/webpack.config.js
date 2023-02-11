@@ -92,8 +92,7 @@ const config = ({ favicon = 'src/favicon.svg' } = {}) => {
     },
     devtool: 'source-map',
     devServer: {
-      host: process.env.HOST ?? '0.0.0.0',
-      useLocalIp: process.env.NO_LOCAL_IP !== 'true',
+      host: 'local-ip',
     },
   };
 };
