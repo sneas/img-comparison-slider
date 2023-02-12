@@ -16,6 +16,7 @@
     "outDir": "dist",
     "removeComments": false,
     "sourceMap": true,
+    "inlineSources": true,
     "jsx": "react",
     "target": "ESNext"
   },
