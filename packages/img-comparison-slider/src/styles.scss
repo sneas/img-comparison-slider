@@ -74,34 +74,6 @@
       will-change: clip-path;
     }
   }
-
-  // Safari Desktop & Mobile
-  @media not all and (min-resolution: 0.001dpcm) {
-    @supports (-webkit-appearance: none) {
-      & {
-        --keyboard-transition-time: 50ms;
-        --default-transition-time: 10ms;
-
-        transform: translateX(calc(var(--exposure) * -1));
-        transition: transform var(--transition-time);
-        right: auto;
-
-        .first-overlay-container {
-          transform: translateX(var(--exposure));
-          transition: transform var(--transition-time);
-          clip-path: none;
-        }
-      }
-
-      &.focused {
-        will-change: auto;
-
-        .first-overlay-container {
-          will-change: auto;
-        }
-      }
-    }
-  }
 }
 
 .second {
@@ -118,19 +90,6 @@
 
   .focused & {
     will-change: right;
-  }
-
-  // Safari Desktop & Mobile
-  @media not all and (min-resolution: 0.001dpcm) {
-    @supports (-webkit-appearance: none) {
-      & {
-        right: 0;
-      }
-
-      .focused & {
-        will-change: auto;
-      }
-    }
   }
 }
 
@@ -206,23 +165,5 @@
     top: auto;
     left: var(--handle-position-start);
     transform: translate(calc(-50% - 0.5px), -50%) rotate(90deg);
-  }
-
-  // Safari Desktop & Mobile
-  @media not all and (min-resolution: 0.001dpcm) {
-    @supports (-webkit-appearance: none) {
-      &.first {
-        transform: translateY(calc(var(--exposure) * -1));
-      }
-
-      .first-overlay-container {
-        transform: translateY(var(--exposure));
-        clip-path: none;
-      }
-
-      .handle-container {
-        bottom: 0;
-      }
-    }
   }
 }
