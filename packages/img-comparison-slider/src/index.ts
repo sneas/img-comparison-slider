@@ -245,6 +245,8 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
       return;
     }
 
+    e.preventDefault();
+
     window.addEventListener('mousemove', this.onMouseMove);
     window.addEventListener('mouseup', this.onWindowMouseUp);
     this.isMouseDown = true;
