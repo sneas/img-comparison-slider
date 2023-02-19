@@ -24,6 +24,10 @@
   }
 }
 
+:host(:focus) {
+  outline: 2px solid -webkit-focus-ring-color;
+}
+
 ::slotted(*) {
   -webkit-user-drag: none;
   -khtml-user-drag: none;
