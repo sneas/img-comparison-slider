@@ -24,6 +24,6 @@
     "access": "public"
   },
   "dependencies": {
-    "img-comparison-slider": "~7.7.0"
+    "img-comparison-slider": "~8.0.0"
   }
 }
