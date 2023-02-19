@@ -1,6 +1,6 @@
 {
   "name": "@img-comparison-slider/vue",
-  "version": "7.7.0",
+  "version": "8.0.0",
   "description": "Vue wrapper for img-comparison-slider",
   "scripts": {
     "build": "npm run clean && rollup -c",
