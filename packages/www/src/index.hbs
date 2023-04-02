@@ -37,7 +37,7 @@
       "
     >
       <div slot="first">
-        <img src="images/www/first.svg" width="100%" />
+        <img src="images/www/first.svg" width="100%" alt="First image example" />
         <div class="position-absolute" style="left: 1%; top: 60%;">
           <div class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 mb-1">Compare two images. Before and after.</div>
           <div data-nosnippet class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 mb-1 d-none d-md-block show-on-focus text-nowrap ">
@@ -54,7 +54,7 @@
         </div>
       </div>
       <div slot="second">
-        <img src="images/www/second.svg" width="100%" />
+        <img src="images/www/second.svg" width="100%" alt="Second image example" />
       </div>
     </img-comparison-slider>
   </div>
@@ -80,7 +80,7 @@
     <ul class="row align-items-start list-unstyled g-0">
       {{#each features}}
         <li class="col-6 col-xl-4 mb-5 text-center row justify-content-center g-3">
-          <div class="col-8"><img src="images/www/{{ this.icon }}.svg" class="w-100" /></div>
+          <div class="col-8"><img src="images/www/{{ this.icon }}.svg" class="w-100" alt="{{ this.title }}" /></div>
           <div class="col-12 lead"><strong>{{ this.title }}</strong></div>
         </li>
       {{/each}}
@@ -93,8 +93,8 @@
         / <a href="/examples.html#always-show" style="text-decoration-thickness: 2px">See more examples</a>
       </div>
       <img-comparison-slider class="d-block">
-        <img slot="first" src="images/www/morning.webp" width="100%" />
-        <img slot="second" src="images/www/morning-blurred.webp" width="100%" />
+        <img slot="first" src="images/www/morning.webp" width="100%" alt="First image example" />
+        <img slot="second" src="images/www/morning-blurred.webp" width="100%" alt="Second image example" />
       </img-comparison-slider>
     </div>
   </div>
