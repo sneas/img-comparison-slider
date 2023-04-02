@@ -1,4 +1,6 @@
-{{#> layout }}
+{{#> layout
+  description="Small, lightweight, and mobile-friendly slider component that allows users to compare two images. It is compatible with React, Vue and Angular."
+}}
   <div class="container pt-4 position-relative">
     <!-- The code below is like React, but made with HTML and JS. Cool isn't it? All the IDEs can even highlight it. -->
     <img-comparison-slider
@@ -38,15 +40,15 @@
         <img src="images/www/first.svg" width="100%" />
         <div class="position-absolute" style="left: 1%; top: 60%;">
           <div class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 mb-1">Compare two images. Before and after.</div>
-          <div class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 mb-1 d-none d-md-block show-on-focus text-nowrap ">
+          <div data-nosnippet class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 mb-1 d-none d-md-block show-on-focus text-nowrap ">
             Now try to use
             <i class="fas fa-caret-left align-middle"></i> or <i class="fas fa-caret-right align-middle"></i>
             arrows on the keyboard.
           </div>
-          <div class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 opacity-0 show-on-focus" id="message">
+          <div data-nosnippet class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 opacity-0 show-on-focus" id="message">
             Amazing, isn't it?
           </div>
-          <div class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 opacity-0 show-on-focus" id="second-message">
+          <div data-nosnippet class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 opacity-0 show-on-focus" id="second-message">
             You deserve to be happy.
           </div>
         </div>
@@ -74,7 +76,7 @@
     </div>
   </div>
   <div class="container pt-5 pb-0 pb-md-5">
-    <h1 class="mb-5">Features</h1>
+    <h2 class="h1 mb-5">Features</h2>
     <ul class="row align-items-start list-unstyled g-0">
       {{#each features}}
         <li class="col-6 col-xl-4 mb-5 text-center row justify-content-center g-3">
