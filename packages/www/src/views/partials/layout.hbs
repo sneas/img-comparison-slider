@@ -16,7 +16,12 @@
       margin-bottom: 1rem;
     }
   </style>
-  <link rel="icon" href="images/{{#if isDev}}favicon-dev.svg{{^}}favicon.svg{{/if}}">
+  <link rel="icon" href="images/{{#if isDev}}favicon-dev.ico{{^}}favicon.ico{{/if}}">
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Image Comparison Slider - React, Vue, Angular{{#if title}} - {{title}}{{/if}}"/>
+  <meta property="og:description" content="Lightweight, accessible, and mobile-friendly slider component."/>
+  <meta property="og:url" content="https://img-comparison-slider.sneas.io{{page}}"/>
+  <meta property="og:image" content="https://img-comparison-slider.sneas.io/social-preview.png"/>
   <link href="styles/main.scss" rel="stylesheet">
   <script src="scripts/index.ts" defer="defer"></script>
 </head>

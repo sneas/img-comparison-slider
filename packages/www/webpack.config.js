@@ -15,10 +15,7 @@ const config = (isDev = false) => {
         },
         {
           test: /\.s?[ac]ss$/i,
-          use: [
-            'css-loader',
-            'sass-loader',
-          ],
+          use: ['css-loader', 'sass-loader'],
         },
         {
           test: /\.(webp|svg)$/i,
@@ -28,7 +25,7 @@ const config = (isDev = false) => {
           },
         },
         {
-          test: /favicon\.svg?$/,
+          test: /favicon(-dev)?\.ico$/,
           type: 'asset/resource',
           generator: {
             filename: '[name][ext]',
@@ -40,7 +37,8 @@ const config = (isDev = false) => {
       new HtmlBundlerPlugin({
         entry: {
           // define templates here
-          index: { // => dist/index.html
+          index: {
+            // => dist/index.html
             import: 'src/views/index.hbs',
             data: { ...indexParameters }, // pass data into the single template
           },
@@ -56,9 +54,7 @@ const config = (isDev = false) => {
         loaderOptions: {
           preprocessor: 'handlebars',
           preprocessorOptions: {
-            partials: [
-              'src/views/partials',
-            ],
+            partials: ['src/views/partials'],
           },
           // pass global data into all templates
           data: {
@@ -99,7 +95,7 @@ const config = (isDev = false) => {
     },
     performance: {
       hints: false, // disable warning size limit
-    }
+    },
   };
 };
 
