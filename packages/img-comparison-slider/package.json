@@ -26,7 +26,5 @@
     "url": "https://github.com/sneas/img-comparison-slider.git"
   },
   "devDependencies": {
-    "mini-css-extract-plugin": "^2.6.1",
-    "resolve-url-loader": "^5.0.0"
   }
 }
