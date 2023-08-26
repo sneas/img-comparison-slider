@@ -171,11 +171,11 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     this.hover = this.hasAttribute('hover')
       ? this.getAttribute('hover')
-      : false;
+      : this.slideOnHover;
 
     this.direction = this.hasAttribute('direction')
       ? this.getAttribute('direction')
-      : 'horizontal';
+      : this.slideDirection;
 
     this.resetDimensions();
     if (!this.classList.contains(RENDERED_CLASS)) {
