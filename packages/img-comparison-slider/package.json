@@ -1,6 +1,6 @@
 {
   "name": "img-comparison-slider",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "Slider component to compare images before and after",
   "homepage": "https://img-comparison-slider.sneas.io",
   "main": "dist/index.js",
@@ -25,6 +25,5 @@
     "type": "git",
     "url": "https://github.com/sneas/img-comparison-slider.git"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
