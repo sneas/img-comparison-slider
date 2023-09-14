@@ -25,10 +25,10 @@ Usage examples: [https://img-comparison-slider.sneas.io/examples.html](https://i
 ```
 <custom-element-demo>
   <template>
-    <script defer src="https://unpkg.com/img-comparison-slider@7/dist/index.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"></script>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/img-comparison-slider@7/dist/styles.css"
+      href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
     />
 
     <img-comparison-slider>
@@ -53,11 +53,11 @@ Usage examples: [https://img-comparison-slider.sneas.io/examples.html](https://i
 ```html
 <script
   defer
-  src="https://unpkg.com/img-comparison-slider@7/dist/index.js"
+  src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"
 ></script>
 <link
   rel="stylesheet"
-  href="https://unpkg.com/img-comparison-slider@7/dist/styles.css"
+  href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
 />
 
 <img-comparison-slider>
