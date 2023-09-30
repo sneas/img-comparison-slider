@@ -10,10 +10,25 @@
         window.hasKeyboardBeenUsed = false;
         window.session = window.session ?? 1;
 
-        if (window.session === 2) {
-          document.getElementById('message').classList.add('d-none');
-        } else {
-          document.getElementById('message').classList.remove('d-none');
+        switch(window.session) {
+          case 2: {
+            document.getElementById('message').classList.add('d-none');
+            document.getElementById('second-message').classList.remove('d-none');
+            document.getElementById('third-message').classList.add('d-none');
+            break;
+          }
+          case 3: {
+            document.getElementById('message').classList.add('d-none');
+            document.getElementById('second-message').classList.add('d-none');
+            document.getElementById('third-message').classList.remove('d-none');
+            break;
+          }
+          default: {
+            document.getElementById('message').classList.remove('d-none');
+            document.getElementById('second-message').classList.add('d-none');
+            document.getElementById('third-message').classList.add('d-none');
+            break;
+          }
         }
       "
       onkeyup="
@@ -22,10 +37,25 @@
         }
 
         window.hasKeyboardBeenUsed = true;
-        if (window.session === 2) {
-          document.getElementById('second-message').classList.remove('opacity-0');
-        } else {
-          document.getElementById('message').classList.remove('opacity-0');
+        switch (window.session) {
+          case 2: {
+            document.getElementById('message').classList.add('opacity-0');
+            document.getElementById('second-message').classList.remove('opacity-0');
+            document.getElementById('third-message').classList.add('opacity-0');
+            break;
+          }
+          case 3: {
+            document.getElementById('message').classList.add('opacity-0');
+            document.getElementById('second-message').classList.add('opacity-0');
+            document.getElementById('third-message').classList.remove('opacity-0');
+            break;
+          }
+          default: {
+            document.getElementById('message').classList.remove('opacity-0');
+            document.getElementById('second-message').classList.add('opacity-0');
+            document.getElementById('third-message').classList.add('opacity-0');
+            break;
+          }
         }
       "
       onblur="
@@ -34,6 +64,7 @@
         }
         document.getElementById('message').classList.add('opacity-0')
         document.getElementById('second-message').classList.add('opacity-0')
+        document.getElementById('third-message').classList.add('opacity-0')
       "
     >
       <div slot="first">
@@ -45,11 +76,19 @@
             <i class="fas fa-caret-left align-middle"></i> or <i class="fas fa-caret-right align-middle"></i>
             arrows on the keyboard.
           </div>
-          <div data-nosnippet class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 opacity-0 show-on-focus" id="message">
+          <div data-nosnippet class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 opacity-0 show-on-focus d-none" id="message">
             Amazing, isn't it?
           </div>
-          <div data-nosnippet class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 opacity-0 show-on-focus" id="second-message">
+          <div data-nosnippet class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 opacity-0 show-on-focus d-none" id="second-message">
             You deserve to be happy.
+          </div>
+          <div data-nosnippet class="fs-md-5 fs-lg-3 fs-xl-2 fs-xxl-1 opacity-0 show-on-focus d-none" id="third-message">
+            Your
+            <a href="https://github.com/sneas/img-comparison-slider"
+               target="_blank"
+               class="text-decoration-none"
+               onmousedown="event.stopPropagation()"
+            ><i class="fab fa-github fa-sm align-middle"></i> star</a> will make a big difference for this project.
           </div>
         </div>
       </div>
