@@ -1,20 +1,20 @@
-import React, {
+import { type HTMLImgComparisonSliderElement } from 'img-comparison-slider';
+import {
   FC,
   AllHTMLAttributes,
   PropsWithChildren,
   ChangeEventHandler,
+  forwardRef,
+  ForwardedRef,
+  useRef,
+  useEffect,
+  useImperativeHandle,
+  createElement,
 } from 'react';
 
 if (typeof document !== 'undefined') {
   import('img-comparison-slider');
 }
-
-type HTMLImgComparisonSliderElement = HTMLElement & {
-  value: number;
-  handle: boolean;
-  hover: boolean;
-  direction: string;
-};
 
 type ImgComparisonSliderProps =
   AllHTMLAttributes<HTMLImgComparisonSliderElement> & {
@@ -24,40 +24,50 @@ type ImgComparisonSliderProps =
     direction?: string;
     keyboard?: 'enabled' | 'disabled';
     onSlide?: ChangeEventHandler<HTMLImgComparisonSliderElement>;
+    ref?: ForwardedRef<HTMLImgComparisonSliderElement>;
   };
 
-export const ImgComparisonSlider: FC<ImgComparisonSliderProps> = ({
-  children,
-  onSlide,
-  ...props
-}: PropsWithChildren<ImgComparisonSliderProps>) => {
-  const ref = React.createRef<HTMLImgComparisonSliderElement>();
-  React.useEffect(() => {
-    if (props.value !== undefined) {
-      ref.current.value = parseFloat(props.value.toString());
-    }
-  }, [props.value, ref]);
+export { HTMLImgComparisonSliderElement };
 
-  React.useEffect(() => {
-    if (onSlide) {
-      // @ts-ignore
-      ref.current.addEventListener('slide', onSlide);
-    }
-  }, []);
+export const ImgComparisonSlider: FC<ImgComparisonSliderProps> = forwardRef(
+  (
+    {
+      children,
+      onSlide,
+      ...props
+    }: PropsWithChildren<ImgComparisonSliderProps>,
+    ref: ForwardedRef<HTMLImgComparisonSliderElement>
+  ) => {
+    const sliderRef = useRef<HTMLImgComparisonSliderElement>();
+    useEffect(() => {
+      if (props.value !== undefined) {
+        sliderRef.current.value = parseFloat(props.value.toString());
+      }
+    }, [props.value, sliderRef]);
 
-  return React.createElement(
-    'img-comparison-slider',
-    Object.assign(
-      {
-        class: props.className ? `${props.className} rendered` : 'rendered',
-        // Align tabIndex between the web and React components
-        // this code could be removed when
-        // https://github.com/WICG/webcomponents/issues/762 is resolved.
-        tabIndex: 0,
-        ref,
-      },
-      props
-    ),
-    children
-  );
-};
+    useEffect(() => {
+      if (onSlide) {
+        // @ts-ignore
+        sliderRef.current.addEventListener('slide', onSlide);
+      }
+    }, []);
+
+    useImperativeHandle(ref, () => sliderRef.current, [sliderRef]);
+
+    return createElement(
+      'img-comparison-slider',
+      Object.assign(
+        {
+          class: props.className ? `${props.className} rendered` : 'rendered',
+          // Align tabIndex between the web and React components
+          // this code could be removed when
+          // https://github.com/WICG/webcomponents/issues/762 is resolved.
+          tabIndex: 0,
+          ref: sliderRef,
+        },
+        props
+      ),
+      children
+    );
+  }
+);
