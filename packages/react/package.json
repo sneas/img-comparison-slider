@@ -1,6 +1,6 @@
 {
   "name": "@img-comparison-slider/react",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "React wrapper for img-comparison-slider",
   "homepage": "https://img-comparison-slider.sneas.io",
   "main": "./dist/index.js",
