@@ -40,7 +40,6 @@ const slideAnimationPeriod = 1000 / 60;
 
 export class HTMLImgComparisonSliderElement extends HTMLElement {
   private firstElement: HTMLElement;
-  private secondElement: HTMLElement;
   private handleElement: HTMLElement;
 
   private imageWidth: number;
@@ -60,7 +59,15 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
   private isFocused = false;
 
-  public handle = false;
+  private dragByHandle = false;
+
+  public set handle(newValue: any) {
+    this.dragByHandle = !!newValue;
+  }
+
+  public get handle() {
+    return this.dragByHandle;
+  }
 
   public get value() {
     return this.exposure;
@@ -128,7 +135,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     shadowRoot.appendChild(templateElement.content.cloneNode(true));
 
     this.firstElement = shadowRoot.getElementById('first');
-    this.secondElement = shadowRoot.getElementById('second');
     this.handleElement = shadowRoot.getElementById('handle');
   }
 
@@ -167,7 +173,9 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     this.addEventListener('touchend', this.onTouchEnd);
     this.addEventListener('mousedown', this.onMouseDown);
 
-    this.handle = this.hasAttribute('handle');
+    this.handle = this.hasAttribute('handle')
+      ? this.getAttribute('handle')
+      : this.dragByHandle;
 
     this.hover = this.hasAttribute('hover')
       ? this.getAttribute('hover')
@@ -264,7 +272,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private hasTouchMoved = false;
 
   private onTouchStart = (e: TouchEvent) => {
-    if (this.handle && !isElementAffected(this.handleElement, e)) {
+    if (this.dragByHandle && !isElementAffected(this.handleElement, e)) {
       return;
     }
 
