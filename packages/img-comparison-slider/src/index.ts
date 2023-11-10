@@ -4,9 +4,7 @@ import templateHtml from './template.html';
 import { TABINDEX, RENDERED_CLASS } from './defaults';
 import { isElementAffected } from './isElementAffected';
 
-const templateElement = document.createElement('template');
-
-templateElement.innerHTML = templateHtml;
+let templateElement: HTMLTemplateElement;
 
 type SlideKey = 'ArrowLeft' | 'ArrowRight';
 type Direction = 1 | -1;
@@ -455,6 +453,11 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   };
 }
 if (typeof window !== 'undefined') {
+  if (window.document) {
+    templateElement = document.createElement('template');
+    templateElement.innerHTML = templateHtml;
+  }
+
   window.customElements.define(
     'img-comparison-slider',
     HTMLImgComparisonSliderElement
