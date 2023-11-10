@@ -62,7 +62,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   private dragByHandle = false;
 
   public set handle(newValue: any) {
-    this.dragByHandle = !!newValue;
+    this.dragByHandle = newValue.toString().toLowerCase() !== 'false';
   }
 
   public get handle() {
