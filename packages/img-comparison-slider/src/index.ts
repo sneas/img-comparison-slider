@@ -181,14 +181,6 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
     if (!this.classList.contains(RENDERED_CLASS)) {
       this.classList.add(RENDERED_CLASS);
     }
-
-    if (this.querySelectorAll('[slot="before"], [slot="after"]').length > 0) {
-      console.warn(
-        '<img-comparison-slider>: ' +
-          'slot names "before" and "after" are deprecated and soon won\'t be supported. ' +
-          'Please use slot="first" instead of slot="after", and slot="second" instead of slot="before".'
-      );
-    }
   }
 
   private disconnectedCallback() {
