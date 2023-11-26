@@ -233,6 +233,7 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
   };
 
   private bodyUserSelectStyle = '';
+  private bodyWebkitUserSelectStyle = '';
 
   private onMouseDown = (e: MouseEvent) => {
     if (this.slideOnHover) {
@@ -255,12 +256,17 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     this.focus();
     this.bodyUserSelectStyle = window.document.body.style.userSelect;
+    this.bodyWebkitUserSelectStyle =
+      window.document.body.style.webkitUserSelect;
     window.document.body.style.userSelect = 'none';
+    window.document.body.style.webkitUserSelect = 'none';
   };
 
   private onWindowMouseUp = () => {
     this.isMouseDown = false;
     window.document.body.style.userSelect = this.bodyUserSelectStyle;
+    window.document.body.style.webkitUserSelect =
+      this.bodyWebkitUserSelectStyle;
     window.removeEventListener('mousemove', this.onMouseMove);
     window.removeEventListener('mouseup', this.onWindowMouseUp);
   };
