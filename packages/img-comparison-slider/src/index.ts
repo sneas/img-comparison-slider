@@ -36,6 +36,8 @@ const getMousePagePoint = (e: MouseEvent): Point => ({
 
 const slideAnimationPeriod = 1000 / 60;
 
+const HTMLElement = typeof window !== 'undefined' && window?.HTMLElement;
+
 export class HTMLImgComparisonSliderElement extends HTMLElement {
   private firstElement: HTMLElement;
   private handleElement: HTMLElement;
