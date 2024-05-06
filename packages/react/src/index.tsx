@@ -34,16 +34,18 @@ export const ImgComparisonSlider: FC<ImgComparisonSliderProps> = forwardRef(
     {
       children,
       onSlide,
+      value,
+      className,
       ...props
     }: PropsWithChildren<ImgComparisonSliderProps>,
     ref: ForwardedRef<HTMLImgComparisonSliderElement>
   ) => {
     const sliderRef = useRef<HTMLImgComparisonSliderElement>();
     useEffect(() => {
-      if (props.value !== undefined) {
-        sliderRef.current.value = parseFloat(props.value.toString());
+      if (value !== undefined) {
+        sliderRef.current.value = parseFloat(value.toString());
       }
-    }, [props.value, sliderRef]);
+    }, [value, sliderRef]);
 
     useEffect(() => {
       if (onSlide) {
@@ -58,7 +60,7 @@ export const ImgComparisonSlider: FC<ImgComparisonSliderProps> = forwardRef(
       'img-comparison-slider',
       Object.assign(
         {
-          class: props.className ? `${props.className} rendered` : 'rendered',
+          class: className ? `${className} rendered` : 'rendered',
           // Align tabIndex between the web and React components
           // this code could be removed when
           // https://github.com/WICG/webcomponents/issues/762 is resolved.
