@@ -124,13 +124,9 @@ export class HTMLImgComparisonSliderElement extends HTMLElement {
 
     const shadowRoot = this.attachShadow({ mode: 'open' });
 
-    const styleEl = document.createElement('style');
-    styleEl.innerHTML = styles;
-
-    if (this.getAttribute('nonce')) {
-      styleEl.setAttribute('nonce', this.getAttribute('nonce'));
-    }
-    shadowRoot.appendChild(styleEl);
+    const sheet = new CSSStyleSheet();
+    sheet.replaceSync(styles);
+    shadowRoot.adoptedStyleSheets = [sheet];
 
     shadowRoot.appendChild(templateElement.content.cloneNode(true));
 
